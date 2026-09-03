@@ -1,0 +1,15 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace 'com.rama.mako_forever'
+    compileSdk sdk_version
+
+    defaultConfig {
+        applicationId 'com.rama.mako_forever'
+        minSdk 9
+        targetSdk sdk_version
+
+        versionCode 1
+        versionName '1.0'
+    }
+}
