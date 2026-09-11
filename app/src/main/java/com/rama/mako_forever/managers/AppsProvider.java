@@ -69,10 +69,6 @@ public class AppsProvider {
         return apps;
     }
 
-    public Drawable getIcon(AppEntry app) {
-        return app.resolveInfo.loadIcon(context.getPackageManager());
-    }
-
     /** Launches the app. Returns false if it could no longer be started. */
     public boolean launch(AppEntry app) {
         try {

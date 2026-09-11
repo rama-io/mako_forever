@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.rama.mako_forever.R;
 import com.rama.mako_forever.managers.AppsProvider;
+import com.rama.mako_forever.managers.FontManager;
 import com.rama.mako_forever.managers.GroupManager;
 
 import java.util.ArrayList;
@@ -124,6 +125,7 @@ public class AppListAdapter extends BaseAdapter {
         }
 
         TextView label = (TextView) view.findViewById(R.id.header_text);
+        label.setTypeface(FontManager.getJersey25(context));
         boolean expanded = groupManager.isGroupExpanded(header.groupId);
         String indicator = expanded ? "\u2212 " : "+ "; // minus / plus
         label.setText(indicator + header.label.toUpperCase(Locale.getDefault()));
@@ -137,10 +139,8 @@ public class AppListAdapter extends BaseAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.list_item_app, parent, false);
         }
 
-        ImageView icon = (ImageView) view.findViewById(R.id.app_icon);
-        icon.setImageDrawable(appsProvider.getIcon(app));
-
         TextView label = (TextView) view.findViewById(R.id.app_label);
+        label.setTypeface(FontManager.getJersey25(context));
         label.setText(app.label);
 
         return view;

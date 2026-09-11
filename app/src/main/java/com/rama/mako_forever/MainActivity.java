@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.rama.mako_forever.adapters.AppListAdapter;
 import com.rama.mako_forever.managers.AppsProvider;
 import com.rama.mako_forever.managers.ClockManager;
+import com.rama.mako_forever.managers.FontManager;
 import com.rama.mako_forever.managers.GroupManager;
 
 /**
@@ -28,6 +29,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        View root = findViewById(R.id.root);
+        FontManager.apply(root, FontManager.getJersey25(this));
 
         TextView timeView = (TextView) findViewById(R.id.time);
         TextView dateView = (TextView) findViewById(R.id.date);

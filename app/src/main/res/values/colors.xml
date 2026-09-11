@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bg">#0E181A</color>
-    <color name="foreground">#EAE6DF</color>
-    <color name="h1">#EAE6DE</color>
-    <color name="header">#7A9495</color>
+    <!-- Melange Dark palette (matches Themes.MELANGE in bohio) -->
+    <color name="bg">#161413</color>
+    <color name="foreground">#ECE1D7</color>
+    <color name="h1">#EBC06D</color>
+    <color name="header">#EBC06B</color>
 </resources>
