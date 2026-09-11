@@ -5,4 +5,5 @@
     <color name="foreground">#ECE1D7</color>
     <color name="h1">#EBC06D</color>
     <color name="header">#EBC06B</color>
+    <color name="accent_1">#4DA8AC</color>
 </resources>
