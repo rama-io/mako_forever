@@ -2,11 +2,75 @@ package com.rama.mako_forever;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.rama.mako_forever.adapters.AppListAdapter;
+import com.rama.mako_forever.managers.AppsProvider;
+import com.rama.mako_forever.managers.ClockManager;
+import com.rama.mako_forever.managers.GroupManager;
+
+/**
+ * The one and only screen of this minimal build: clock, date, and the list
+ * of apps bucketed into (currently non-editable) groups.
+ */
 public class MainActivity extends Activity {
+
+    private ClockManager clockManager;
+    private AppsProvider appsProvider;
+    private GroupManager groupManager;
+    private AppListAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView timeView = (TextView) findViewById(R.id.time);
+        TextView dateView = (TextView) findViewById(R.id.date);
+        ListView appList = (ListView) findViewById(R.id.app_list);
+
+        clockManager = new ClockManager(timeView, dateView);
+
+        appsProvider = new AppsProvider(this);
+        groupManager = new GroupManager(this);
+        adapter = new AppListAdapter(this, appsProvider, groupManager);
+
+        appList.setAdapter(adapter);
+        appList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object item = adapter.getItem(position);
+
+                if (item instanceof AppListAdapter.HeaderRow) {
+                    groupManager.toggleGroupExpanded(((AppListAdapter.HeaderRow) item).groupId);
+                    adapter.refresh();
+                } else {
+                    AppsProvider.AppEntry app = (AppsProvider.AppEntry) item;
+                    if (!appsProvider.launch(app)) {
+                        Toast.makeText(
+                                MainActivity.this,
+                                R.string.toast_unable_to_launch_app,
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    }
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        clockManager.start();
+        adapter.refresh();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        clockManager.stop();
     }
 }
