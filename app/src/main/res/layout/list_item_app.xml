@@ -6,6 +6,14 @@
     android:paddingBottom="@dimen/space_between_elements"
     style="@style/HorizontalList">
 
+    <ImageView
+        android:id="@+id/selection_check"
+        android:src="@drawable/px_octagon_check"
+        android:paddingRight="8sp"
+        android:visibility="gone"
+        style="@style/Icon24"
+        />
+
     <TextView
         android:id="@+id/app_label"
         android:layout_width="wrap_content"
@@ -17,54 +25,56 @@
         android:id="@+id/empty_space"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:focusable="false"
         android:background="@android:color/transparent"
+        android:focusable="false"
         android:clickable="false"
         android:gravity="center_vertical|end"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:paddingEnd="@dimen/small"
+        style="@style/VerticalList">
 
-<!--        android:paddingEnd="@dimen/small"-->
-<!--        style="@style/VerticalListDividedSmall"-->
+        <LinearLayout
+            android:id="@+id/api"
+            android:layout_width="wrap_content"
+            android:minWidth="35sp"
+            android:gravity="end"
+            android:visibility="gone"
+            style="@style/HorizontalList">
 
+            <TextView
+                android:id="@+id/min_api"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/disabled"
+                android:textSize="@dimen/small"
+                android:text="1"/>
 
+            <TextView
+                android:id="@+id/api_separator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/disabled"
+                android:textSize="@dimen/small"
+                android:text="-" />
 
-<!--        <LinearLayout-->
-<!--            android:id="@+id/api"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:minWidth="35sp"-->
-<!--            android:gravity="end"-->
-<!--            style="@style/HorizontalList">-->
+            <TextView
+                android:id="@+id/target_api"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/disabled"
+                android:textSize="@dimen/small"
+                android:text="1"/>
+        </LinearLayout>
 
-<!--            <TextView-->
-<!--                android:id="@+id/min_api"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/disabled"-->
-<!--                android:textSize="@dimen/small" />-->
+        <View
+            style="@style/SeparatorListSmall"/>
 
-<!--            <TextView-->
-<!--                android:id="@+id/api_separator"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/disabled"-->
-<!--                android:textSize="@dimen/small"-->
-<!--                android:text="-" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/target_api"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/disabled"-->
-<!--                android:textSize="@dimen/small" />-->
-<!--        </LinearLayout>-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/app_size"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textColor="@color/disabled"-->
-<!--            android:textSize="@dimen/small" />-->
+        <TextView
+            android:id="@+id/app_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/disabled"
+            android:textSize="@dimen/small" />
     </LinearLayout>
 
 </LinearLayout>
