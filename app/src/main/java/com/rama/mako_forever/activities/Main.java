@@ -3,7 +3,6 @@ package com.rama.mako_forever.activities;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.GestureDetector;
-import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
