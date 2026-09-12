@@ -133,7 +133,7 @@
 <!--            android:label="@string/activity_settings_label" />-->
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.Main"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"
             android:excludeFromRecents="true"

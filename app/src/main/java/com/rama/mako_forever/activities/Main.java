@@ -1,4 +1,4 @@
-package com.rama.mako_forever;
+package com.rama.mako_forever.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.rama.mako_forever.R;
 
 import com.rama.mako_forever.adapters.AppListAdapter;
 import com.rama.mako_forever.managers.AppsProvider;
@@ -15,11 +16,7 @@ import com.rama.mako_forever.managers.ClockManager;
 import com.rama.mako_forever.managers.FontManager;
 import com.rama.mako_forever.managers.GroupManager;
 
-/**
- * The one and only screen of this minimal build: clock, date, and the list
- * of apps bucketed into (currently non-editable) groups.
- */
-public class MainActivity extends Activity {
+public class Main extends Activity {
 
     private ClockManager clockManager;
     private BatteryStatusManager batteryStatusManager;
@@ -59,7 +56,7 @@ public class MainActivity extends Activity {
                     AppsProvider.AppEntry app = (AppsProvider.AppEntry) item;
                     if (!appsProvider.launch(app)) {
                         Toast.makeText(
-                                MainActivity.this,
+                                Main.this,
                                 R.string.toast_unable_to_launch_app,
                                 Toast.LENGTH_SHORT
                         ).show();
