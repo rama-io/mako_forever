@@ -17,7 +17,7 @@
         </LinearLayout>
     </ScrollView>
     <View
-        style="@style/SeparatorList"/>
+        style="@style/Separator"/>
     <Button
         android:id="@+id/go_about"
         android:text="ABOUT"
