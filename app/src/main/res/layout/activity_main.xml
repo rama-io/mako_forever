@@ -47,8 +47,11 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/bg"
+        android:cacheColorHint="@color/bg"
         android:divider="@null"
         android:dividerHeight="0dp"
+        android:fadingEdge="none"
+        android:overScrollMode="never"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:scrollbars="none" />
