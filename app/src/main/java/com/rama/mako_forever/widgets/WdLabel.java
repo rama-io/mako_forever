@@ -15,15 +15,11 @@ public class WdLabel extends LinearLayout {
     private final TextView iconText;
 
     public WdLabel(Context context) {
-        this(context, null, 0);
+        this(context, null);
     }
 
     public WdLabel(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public WdLabel(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+        super(context, attrs);
 
         LayoutInflater.from(context).inflate(
                 R.layout.wd_label,
