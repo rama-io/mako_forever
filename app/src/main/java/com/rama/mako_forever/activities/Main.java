@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.rama.mako_forever.R;
 
+import android.content.Intent;
+
 import com.rama.mako_forever.adapters.AppListAdapter;
 import com.rama.mako_forever.managers.AppsProvider;
 import com.rama.mako_forever.managers.BatteryStatusManager;
