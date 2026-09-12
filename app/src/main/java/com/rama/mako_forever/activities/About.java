@@ -18,6 +18,17 @@ public class About extends Activity {
         View root = findViewById(R.id.root);
         FontManager.apply(root, FontManager.getJersey25(this));
 
+//        val claimsLayout = findViewById<LinearLayout>(R.id.claims)
+//        if (appClaimsArrayRes != 0) {
+//            val claimsData = resources.getStringArray(appClaimsArrayRes)
+//            claimsData.forEach { claim ->
+//                    val tag = WdLabel(this)
+//                tag.setText(claim)
+//                tag.setIcon(R.drawable.px_octagon_check)
+//                claimsLayout.addView(tag)
+//            }
+//        }
+
         Button btnBack = (Button) findViewById(R.id.go_back);
         btnBack.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { startActivity(new Intent(About.this, Settings.class)); } });
     }

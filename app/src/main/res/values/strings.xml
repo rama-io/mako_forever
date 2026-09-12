@@ -2,4 +2,10 @@
 <resources>
     <string name="app_name">Mako Forever</string>
     <string name="toast_unable_to_launch_app">Unable to open app</string>
+
+    <string name="app_ads_desc">No Ads</string>
+    <string name="app_background_tasks_desc">No Background Tasks</string>
+    <string name="app_offline_desc">Works Offline</string>
+    <string name="app_trackers_desc">No Trackers</string>
+    <string name="license_gpl3" translatable="false">GPL 3.0</string>
 </resources>
