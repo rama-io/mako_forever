@@ -4,13 +4,14 @@
     style="@style/VerticalList">
     <Button
         android:id="@+id/go_about"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="About"
+        android:text="ABOUT"
+        style="@style/BTN2"
     />
+    <View
+        style="@style/SeparatorList"/>
     <Button
         android:id="@+id/go_back"
-        android:text="Go Back"
+        android:text="GO BACK"
         style="@style/BTN1"
         />
 </LinearLayout>

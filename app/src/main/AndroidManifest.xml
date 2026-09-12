@@ -122,11 +122,10 @@
 <!--            </intent-filter>-->
 <!--        </activity>-->
 
-<!--        <activity-->
-<!--            android:exported="false"-->
-<!--            android:name=".activities.AboutActivity"-->
-<!--            android:label="@string/activity_about_label" />-->
-<!--        -->
+        <activity
+            android:exported="false"
+            android:name=".activities.About" />
+
         <activity
             android:exported="false"
             android:name=".activities.Settings" />

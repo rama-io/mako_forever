@@ -70,7 +70,6 @@ public class Main extends Activity {
             }
         });
 
-        final ListView appListRef = appList;
         final GestureDetector emptySpaceDetector = new GestureDetector(this,
                 new GestureDetector.SimpleOnGestureListener() {
                     @Override

@@ -19,10 +19,10 @@ public class Settings extends Activity {
         View root = findViewById(R.id.root);
         FontManager.apply(root, FontManager.getJersey25(this));
 
-//        Button btnAbout = (Button) findViewById(R.id.go_about);
-//        btnAbout.setOnClickListener(
-//            Intent intent = new Intent(SettingsActivity.this, AboutActivity.class);
-//            startActivity(intent);
-//        );
+        Button btnAbout = (Button) findViewById(R.id.go_about);
+        btnAbout.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { startActivity(new Intent(Settings.this, About.class)); } });
+
+        Button btnBack = (Button) findViewById(R.id.go_back);
+        btnBack.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { startActivity(new Intent(Settings.this, Main.class)); } });
     }
 }
