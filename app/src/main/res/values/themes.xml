@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.Mako" parent="@android:style/Theme.Black.NoTitleBar">
-        <item name="android:windowBackground">@color/bg_1</item>
-        <item name="android:textColor">@color/foreground</item>
+        <item name="android:windowBackground">@color/base</item>
+        <item name="android:textColor">@color/text</item>
     </style>
 
     <style name="BlockFlow">
@@ -16,7 +16,7 @@
     </style>
 
     <style name="HorizontalList_BG2" parent="HorizontalList">
-        <item name="android:background">@color/bg_2</item>
+        <item name="android:background">@color/surface_0</item>
         <item name="android:padding">16dp</item>
     </style>
 
@@ -25,12 +25,12 @@
     </style>
 
     <style name="VerticalList_BG2" parent="VerticalList">
-        <item name="android:background">@color/bg_2</item>
+        <item name="android:background">@color/surface_0</item>
         <item name="android:padding">16dp</item>
     </style>
 
     <style name="H1" parent="BlockFlow">
-        <item name="android:textColor">@color/h1</item>
+        <item name="android:textColor">@color/accent</item>
         <item name="android:textSize">@dimen/h1</item>
     </style>
 
@@ -39,7 +39,7 @@
     </style>
 
     <style name="H2" parent="BlockFlow">
-        <item name="android:textColor">@color/foreground</item>
+        <item name="android:textColor">@color/text</item>
         <item name="android:textSize">@dimen/h2</item>
     </style>
 
@@ -48,7 +48,7 @@
     </style>
 
     <style name="H3" parent="BlockFlow">
-        <item name="android:textColor">@color/foreground</item>
+        <item name="android:textColor">@color/text</item>
         <item name="android:textSize">@dimen/h3</item>
     </style>
 
@@ -57,12 +57,12 @@
     </style>
 
     <style name="Disclaimer" parent="BlockFlow">
-        <item name="android:textColor">@color/foreground</item>
+        <item name="android:textColor">@color/text</item>
         <item name="android:textSize">@dimen/h3</item>
     </style>
 
     <style name="Text" parent="BlockFlow">
-        <item name="android:textColor">@color/foreground</item>
+        <item name="android:textColor">@color/text</item>
         <item name="android:textSize">@dimen/text</item>
     </style>
 
@@ -71,32 +71,32 @@
     </style>
 
     <style name="Small" parent="BlockFlow">
-        <item name="android:textColor">@color/foreground</item>
+        <item name="android:textColor">@color/text</item>
         <item name="android:textSize">@dimen/small</item>
     </style>
 
     <style name="BTN" parent="BlockFlow">
         <item name="android:padding">16dp</item>
-        <item name="android:textColor">@color/bg_1</item>
+        <item name="android:textColor">@color/base</item>
         <item name="android:textSize">@dimen/text</item>
 <!--        <item name="android:textAllCaps">true</item>-->
     </style>
 
     <style name="BTN1" parent="BTN">
-        <item name="android:background">@color/button_1</item>
+        <item name="android:background">@color/accent</item>
     </style>
 
     <style name="BTN2" parent="BTN">
-        <item name="android:background">@color/button_2</item>
+        <item name="android:background">@color/accent_2</item>
     </style>
 
     <style name="BTN3" parent="BTN">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:background">@color/bg_3</item>
+        <item name="android:background">@color/surface_1</item>
     </style>
 
     <style name="BTN_danger" parent="BTN">
-        <item name="android:background">@color/danger</item>
+        <item name="android:background">@color/error</item>
     </style>
 
     <style name="BTN_range" parent="BlockFlow">
@@ -105,8 +105,8 @@
         <item name="android:paddingLeft">2dp</item>
         <item name="android:paddingRight">2dp</item>
         <item name="android:textSize">@dimen/small</item>
-        <item name="android:background">@color/button_2</item>
-        <item name="android:textColor">@color/bg_1</item>
+        <item name="android:background">@color/accent_2</item>
+        <item name="android:textColor">@color/base</item>
 <!--        <item name="android:textAllCaps">true</item>-->
         <item name="android:gravity">center</item>
     </style>
@@ -114,16 +114,16 @@
 <!--    <style name="RadioGroup" parent="VerticalListDivided_BG2" />-->
 
     <style name="Radio" parent="BlockFlow">
-        <item name="android:textColor">@color/foreground</item>
+        <item name="android:textColor">@color/text</item>
         <item name="android:textSize">@dimen/text</item>
     </style>
 
     <style name="Checkbox" parent="BlockFlow" />
 
     <style name="EditText" parent="BlockFlow">
-        <item name="android:textColor">@color/foreground</item>
+        <item name="android:textColor">@color/text</item>
         <item name="android:textSize">@dimen/text</item>
-        <item name="android:background">@color/input</item>
+        <item name="android:background">@color/surface_1</item>
         <item name="android:paddingTop">16dp</item>
         <item name="android:paddingBottom">16dp</item>
         <item name="android:paddingLeft">8dp</item>
@@ -142,7 +142,7 @@
         <item name="android:layout_width">24dp</item>
         <item name="android:layout_height">24dp</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:tint">@color/icon</item>
+        <item name="android:tint">@color/text</item>
     </style>
 
     <style name="Icon32">

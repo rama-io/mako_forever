@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root"
     android:layout_height="match_parent"
-    android:background="@color/bg_1"
+    android:background="@color/base"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
     android:paddingTop="32dp"
@@ -20,13 +20,13 @@
 
         <TextView
             android:id="@+id/date"
-            android:textColor="@color/foreground"
+            android:textColor="@color/text"
             android:textSize="14sp"
             style="@style/BlockFlow"/>
 
         <TextView
             android:id="@+id/battery"
-            android:textColor="@color/foreground"
+            android:textColor="@color/text"
             android:textSize="14sp"
             style="@style/BlockFlow"/>
 
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="18sp"
-            android:textColor="@color/foreground" />
+            android:textColor="@color/text" />
 
         <FrameLayout
             android:id="@+id/rename_btn"

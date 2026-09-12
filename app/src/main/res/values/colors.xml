@@ -1,32 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="h1">#EAE6DE</color>
-    <color name="foreground">#EAE6DF</color>
-    <color name="icon">#C8C2B8</color>
+    <resources>
+        <color name="text">#CBDECD</color>
+        <color name="base">#0E190E</color>
 
-    <color name="bg_1">#0E181A</color>
-    <color name="bg_2">#162A2E</color>
-    <color name="bg_3">#1E383D</color>
-    <color name="bg_4">#28484D</color>
-    <color name="bg_display">#081012</color>
+        <!-- Surfaces -->
+        <color name="surface_0">#2D3B24</color>
+        <color name="surface_1">#3A4D2E</color>
 
-    <color name="accent_1">#4DA8AC</color>
-    <color name="accent_2">#D4AF37</color>
-    <color name="accent_3">#C77D4D</color>
-    <color name="accent_4">#6A9FCF</color>
+        <!-- Text -->
+        <color name="subtle">#4D7A4E</color>
+        <color name="disabled">#3A4D2E</color>
 
-    <color name="disabled">#5D7A7C</color>
-    <color name="input">#0C1416</color>
+        <!-- UI -->
+        <color name="border">#3A4D2E</color>
 
-    <color name="button_1">#3A9DA0</color>
-    <color name="button_1_selected">#6BC1C4</color>
-    <color name="button_2">#C49B2E</color>
+        <!-- Accents -->
+        <color name="accent">#45995A</color>
+        <color name="accent_2">#7CCF8E</color>
+        <color name="accent_3">#DCD07C</color>
+        <color name="accent_4">#ABD68D</color>
+        <color name="accent_5">#8DE285</color>
 
-    <color name="danger">#B83A2D</color>
-    <color name="collapsible_header">#7A9495</color>
+        <!-- Semantic -->
+        <color name="success">#ABD68D</color>
+        <color name="warning">#DCD07C</color>
+        <color name="error">#DC6364</color>
+        <color name="info">#7CCF8E</color>
 
-    <color name="media_background">#5E9FA3</color>
-    <color name="progressbar">#31585B</color>
-    <color name="progressbar_2">#4A6E3A</color>
-    <color name="suggestion">#71ACC7</color>
-</resources>
+        <!-- Links -->
+        <color name="link">#7CCF8E</color>
+
+        <!-- ANSI Palette -->
+        <color name="black">#0E190E</color>
+        <color name="blue">#4D6F7A</color>
+        <color name="green">#45995A</color>
+        <color name="cyan">#4F8F82</color>
+        <color name="red">#B65354</color>
+        <color name="magenta">#8A5F82</color>
+        <color name="brown">#9A8350</color>
+        <color name="light_gray">#B5B9B5</color>
+
+        <color name="dark_gray">#1F2920</color>
+        <color name="light_blue">#6D9EAD</color>
+        <color name="light_green">#7CCF8E</color>
+        <color name="light_cyan">#72C4B3</color>
+        <color name="light_red">#DC6364</color>
+        <color name="light_magenta">#B77AA9</color>
+        <color name="yellow">#DCD07C</color>
+        <color name="white">#CBDECD</color>
+
+    </resources>

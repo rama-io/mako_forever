@@ -1,20 +1,12 @@
 package com.rama.mako_forever.managers;
 
 import android.os.Handler;
-import android.text.format.DateFormat;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-/**
- * Keeps the clock and date TextViews up to date.
- *
- * Follows the system's 12h/24h setting (via {@link DateFormat#is24HourFormat})
- * and shows "Weekday :: yyyy-MM-dd", mirroring the original app's default
- * clock/date look without exposing any of the format options as settings.
- */
 public class ClockManager {
 
     private static final long TICK_MS = 1000;

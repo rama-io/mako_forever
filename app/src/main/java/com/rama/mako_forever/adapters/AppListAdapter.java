@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rama.mako_forever.R;
@@ -19,18 +18,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-/**
- * A flat, plain {@link BaseAdapter} backing the home ListView: each row is
- * either a group header or an app. Kept as a single adapter (rather than
- * RecyclerView + LayoutManager) since RecyclerView isn't available at our
- * API 9 floor without pulling in an old support library.
- */
 public class AppListAdapter extends BaseAdapter {
 
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_APP = 1;
 
-    /** A group header row. */
     public static class HeaderRow {
         public final String groupId;
         public final String label;
@@ -52,7 +44,6 @@ public class AppListAdapter extends BaseAdapter {
         this.groupManager = groupManager;
     }
 
-    /** Re-reads installed apps and group state, rebuilding the row list. */
     public void refresh() {
         List<AppsProvider.AppEntry> allApps = appsProvider.getAll();
 

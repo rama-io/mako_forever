@@ -8,17 +8,10 @@ import android.widget.TextView;
 
 import java.util.Locale;
 
-/**
- * Shows "<percent>% :: <temperature>" below the date, e.g. "87% :: 24°C".
- *
- * Both values come from the sticky {@code ACTION_BATTERY_CHANGED} broadcast,
- * so - unlike weather - this needs no INTERNET or location permission.
- * Temperature is shown in Celsius; the raw extra is in tenths of a degree.
- */
 public class BatteryStatusManager {
 
     private static final String FAHRENHEIT_COUNTRIES =
-            ",US,BS,BZ,KY,PW,"; // matches mako's FAHRENHEIT_COUNTRIES set
+            ",US,BS,BZ,KY,PW,";
 
     private final Context context;
     private final TextView view;

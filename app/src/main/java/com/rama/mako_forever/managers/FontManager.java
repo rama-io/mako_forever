@@ -6,18 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/**
- * Loads the bundled Jersey 25 font (assets/fonts/jersey25_regular.otf) and
- * applies it to every TextView under a given view.
- *
- * {@code Typeface.createFromAsset} has existed since API 1, so this needs no
- * special handling for the API 9 floor.
- */
 public class FontManager {
 
     private static Typeface jersey25;
 
-    /** Loads (and caches) the Jersey 25 typeface. Falls back to the system default on failure. */
     public static Typeface getJersey25(Context context) {
         if (jersey25 == null) {
             try {
@@ -32,7 +24,6 @@ public class FontManager {
         return jersey25;
     }
 
-    /** Applies the typeface to {@code view} and, if it's a ViewGroup, all of its descendants. */
     public static void apply(View view, Typeface typeface) {
         if (view instanceof TextView) {
             ((TextView) view).setTypeface(typeface);

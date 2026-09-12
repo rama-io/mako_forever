@@ -2,18 +2,10 @@ package com.rama.mako_forever.managers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-/**
- * Thin SharedPreferences wrapper for the minimal build.
- *
- * Deliberately avoids {@code SharedPreferences#getStringSet}/{@code putStringSet}
- * since those were only added in API 11 - lists are instead stored as a single
- * comma-separated string so everything keeps working down to API 9.
- */
 public class PrefsManager {
 
     private static final String PREFS_NAME = "mako_forever";
@@ -36,8 +28,6 @@ public class PrefsManager {
         }
         return instance;
     }
-
-    // ---------------- generic helpers ----------------
 
     private String key(String... parts) {
         StringBuilder sb = new StringBuilder();
@@ -69,9 +59,6 @@ public class PrefsManager {
         return sb.toString();
     }
 
-    // ---------------- groups ----------------
-
-    /** All known group ids, always including the default group. */
     public List<String> getGroupIds() {
         LinkedHashSet<String> ids = new LinkedHashSet<String>();
         ids.add(DEFAULT_GROUP_ID);

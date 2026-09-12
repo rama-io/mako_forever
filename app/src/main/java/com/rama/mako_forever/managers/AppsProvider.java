@@ -5,34 +5,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.drawable.Drawable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Looks up launchable apps and launches them.
- *
- * This intentionally only uses {@link PackageManager}, which has existed since
- * API 1. The original Mako uses {@code LauncherApps} (API 21+) to also support
- * work-profile apps and pinned shortcuts, but that API isn't available on our
- * API 9 floor, so this minimal build only ever shows the apps of the current
- * user/profile.
- */
 public class AppsProvider {
 
-    /** A single launchable app. */
     public static class AppEntry {
         public final String packageName;
         public final String activityName;
         public final String label;
-        private final ResolveInfo resolveInfo;
 
         AppEntry(String packageName, String activityName, String label, ResolveInfo resolveInfo) {
             this.packageName = packageName;
             this.activityName = activityName;
             this.label = label;
-            this.resolveInfo = resolveInfo;
         }
     }
 
@@ -42,7 +29,6 @@ public class AppsProvider {
         this.context = context.getApplicationContext();
     }
 
-    /** Returns every app that shows up on the system launcher, sorted by label. */
     public List<AppEntry> getAll() {
         PackageManager pm = context.getPackageManager();
 
@@ -69,7 +55,6 @@ public class AppsProvider {
         return apps;
     }
 
-    /** Launches the app. Returns false if it could no longer be started. */
     public boolean launch(AppEntry app) {
         try {
             Intent intent = new Intent(Intent.ACTION_MAIN);
