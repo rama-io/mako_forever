@@ -45,4 +45,65 @@
         android:overScrollMode="never"
         android:scrollbars="none" />
 
+    <LinearLayout
+        android:id="@+id/menu_bar"
+        android:padding="4sp"
+        android:visibility="gone"
+        style="@style/HorizontalList_BG2">
+
+        <FrameLayout
+            android:id="@+id/multi_select_cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12sp">
+
+            <ImageView
+                android:src="@drawable/px_arrow_left"
+                style="@style/Icon24" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/selected_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:textColor="@color/foreground" />
+
+        <FrameLayout
+            android:id="@+id/rename_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12sp">
+
+            <ImageView
+                android:src="@drawable/px_edit"
+                style="@style/Icon24" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/move_to_group_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12sp">
+
+            <ImageView
+                android:src="@drawable/px_folder_enter"
+                style="@style/Icon24" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/app_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12sp">
+
+            <ImageView
+                android:id="@+id/app_settings_icon"
+                android:src="@drawable/px_cog"
+                style="@style/Icon24" />
+        </FrameLayout>
+
+    </LinearLayout>
+
 </LinearLayout>
