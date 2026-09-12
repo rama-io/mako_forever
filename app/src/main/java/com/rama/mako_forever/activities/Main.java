@@ -2,6 +2,9 @@ package com.rama.mako_forever.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.HapticFeedbackConstants;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -64,6 +67,26 @@ public class Main extends Activity {
                         ).show();
                     }
                 }
+            }
+        });
+
+        final ListView appListRef = appList;
+        final GestureDetector emptySpaceDetector = new GestureDetector(this,
+                new GestureDetector.SimpleOnGestureListener() {
+                    @Override
+                    public boolean onDown(MotionEvent event) {
+                        return true;
+                    }
+
+                    @Override
+                    public void onLongPress(MotionEvent event) {
+                        startActivity(new Intent(Main.this, Settings.class));
+                    }
+                });
+        appList.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                emptySpaceDetector.onTouchEvent(event);
+                return false;
             }
         });
     }

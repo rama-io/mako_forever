@@ -127,10 +127,9 @@
 <!--            android:name=".activities.AboutActivity"-->
 <!--            android:label="@string/activity_about_label" />-->
 <!--        -->
-<!--        <activity-->
-<!--            android:exported="false"-->
-<!--            android:name=".activities.SettingsActivity"-->
-<!--            android:label="@string/activity_settings_label" />-->
+        <activity
+            android:exported="false"
+            android:name=".activities.Settings" />
 
         <activity
             android:name=".activities.Main"

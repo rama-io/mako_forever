@@ -5,6 +5,6 @@
     android:layout_height="wrap_content"
     android:paddingTop="14dp"
     android:paddingBottom="6dp"
-    android:background="@color/bg"
+    android:background="@android:color/transparent"
     android:textColor="@color/header"
     android:textSize="14sp" />
