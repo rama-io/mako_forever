@@ -1,44 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
-    android:orientation="vertical">
+    android:background="@color/bg_1"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="32dp"
+    android:paddingBottom="32dp"
+    style="@style/VerticalList"
+    >
 
     <LinearLayout
         android:id="@+id/home_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="32dp"
-        android:paddingBottom="16dp">
+        style="@style/VerticalList">
 
         <TextView
             android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/h1"
-            android:textSize="44sp"
-            android:textStyle="bold" />
+            style="@style/H1"/>
 
         <TextView
             android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:textColor="@color/foreground"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            style="@style/BlockFlow"/>
 
         <TextView
             android:id="@+id/battery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:textColor="@color/foreground"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            style="@style/BlockFlow"/>
 
     </LinearLayout>
 
@@ -53,8 +43,6 @@
         android:dividerHeight="0dp"
         android:fadingEdge="none"
         android:overScrollMode="never"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
         android:scrollbars="none" />
 
 </LinearLayout>
