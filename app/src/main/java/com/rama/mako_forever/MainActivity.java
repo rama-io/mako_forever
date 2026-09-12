@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.rama.mako_forever.adapters.AppListAdapter;
 import com.rama.mako_forever.managers.AppsProvider;
+import com.rama.mako_forever.managers.BatteryStatusManager;
 import com.rama.mako_forever.managers.ClockManager;
 import com.rama.mako_forever.managers.FontManager;
 import com.rama.mako_forever.managers.GroupManager;
@@ -21,6 +22,7 @@ import com.rama.mako_forever.managers.GroupManager;
 public class MainActivity extends Activity {
 
     private ClockManager clockManager;
+    private BatteryStatusManager batteryStatusManager;
     private AppsProvider appsProvider;
     private GroupManager groupManager;
     private AppListAdapter adapter;
@@ -35,9 +37,11 @@ public class MainActivity extends Activity {
 
         TextView timeView = (TextView) findViewById(R.id.time);
         TextView dateView = (TextView) findViewById(R.id.date);
+        TextView batteryView = (TextView) findViewById(R.id.battery);
         ListView appList = (ListView) findViewById(R.id.app_list);
 
         clockManager = new ClockManager(timeView, dateView);
+        batteryStatusManager = new BatteryStatusManager(this, batteryView);
 
         appsProvider = new AppsProvider(this);
         groupManager = new GroupManager(this);
@@ -69,6 +73,7 @@ public class MainActivity extends Activity {
     protected void onResume() {
         super.onResume();
         clockManager.start();
+        batteryStatusManager.register();
         adapter.refresh();
     }
 
@@ -76,5 +81,6 @@ public class MainActivity extends Activity {
     protected void onPause() {
         super.onPause();
         clockManager.stop();
+        batteryStatusManager.unregister();
     }
 }

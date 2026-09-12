@@ -47,12 +47,18 @@ public class ClockManager {
         Calendar calendar = Calendar.getInstance();
         Locale locale = timeView.getResources().getConfiguration().locale;
 
-        boolean use24h = DateFormat.is24HourFormat(timeView.getContext());
-        String timePattern = use24h ? "HH:mm" : "hh:mm a";
+        String timePattern = "HH:mm";
         timeView.setText(new SimpleDateFormat(timePattern, locale).format(calendar.getTime()));
 
         String weekday = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, locale);
         String date = new SimpleDateFormat("yyyy-MM-dd", locale).format(calendar.getTime());
-        dateView.setText((weekday + " :: " + date).toUpperCase(locale));
+
+        int dayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
+        int totalDays = calendar.getActualMaximum(Calendar.DAY_OF_YEAR);
+        String weekOfYear = "w-" + calendar.get(Calendar.WEEK_OF_YEAR);
+        String yearDay = dayOfYear + "/" + totalDays;
+
+        String line = weekday + " :: " + date + " :: " + weekOfYear + " :: " + yearDay;
+        dateView.setText(line.toUpperCase(locale));
     }
 }

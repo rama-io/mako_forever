@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Melange Dark palette (matches Themes.MELANGE in bohio) -->
     <color name="bg">#161413</color>
     <color name="foreground">#ECE1D7</color>
     <color name="h1">#EBC06D</color>
