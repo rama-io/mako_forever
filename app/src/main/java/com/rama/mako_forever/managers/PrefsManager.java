@@ -70,7 +70,7 @@ public class PrefsManager {
         List<String> ids = getGroupIds();
         if (!ids.contains(groupId)) {
             ids.add(groupId);
-            prefs.edit().putString(key("groups", "ids"), joinCsv(ids)).apply();
+            prefs.edit().putString(key("groups", "ids"), joinCsv(ids)).commit();
         }
     }
 
@@ -82,7 +82,7 @@ public class PrefsManager {
     }
 
     public void setGroupLabel(String groupId, String label) {
-        prefs.edit().putString(key("group", groupId, "label"), label).apply();
+        prefs.edit().putString(key("group", groupId, "label"), label).commit();
     }
 
     public int getGroupOrder(String groupId) {
@@ -91,7 +91,7 @@ public class PrefsManager {
     }
 
     public void setGroupOrder(String groupId, int order) {
-        prefs.edit().putInt(key("group", groupId, "order"), order).apply();
+        prefs.edit().putInt(key("group", groupId, "order"), order).commit();
     }
 
     public boolean isGroupExpanded(String groupId) {
@@ -99,7 +99,7 @@ public class PrefsManager {
     }
 
     public void setGroupExpanded(String groupId, boolean expanded) {
-        prefs.edit().putBoolean(key("group", groupId, "expanded"), expanded).apply();
+        prefs.edit().putBoolean(key("group", groupId, "expanded"), expanded).commit();
     }
 
     /** Which group an app belongs to. Falls back to the default group. */
@@ -108,6 +108,6 @@ public class PrefsManager {
     }
 
     public void setAppGroupId(String packageName, String groupId) {
-        prefs.edit().putString(key("app", packageName, "group"), groupId).apply();
+        prefs.edit().putString(key("app", packageName, "group"), groupId).commit();
     }
 }

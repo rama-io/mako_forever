@@ -6,6 +6,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.text.DateFormatSymbols;
 
 public class ClockManager {
 
@@ -42,7 +43,8 @@ public class ClockManager {
         String timePattern = "HH:mm";
         timeView.setText(new SimpleDateFormat(timePattern, locale).format(calendar.getTime()));
 
-        String weekday = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, locale);
+        DateFormatSymbols symbols = new DateFormatSymbols(locale);
+        String weekday = symbols.getWeekdays()[calendar.get(Calendar.DAY_OF_WEEK)];
         String date = new SimpleDateFormat("yyyy-MM-dd", locale).format(calendar.getTime());
 
         int dayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
