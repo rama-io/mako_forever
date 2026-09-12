@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
     android:layout_height="match_parent"
     android:paddingLeft="20dp"
@@ -26,22 +27,58 @@
                     android:background="@drawable/mako"
                     android:layout_gravity="center" />
 
+                <View
+                    style="@style/SeparatorList"/>
+
                 <TextView
                     android:id="@+id/name_version"
+                    android:text="@string/app_name"
                     style="@style/H3_Center" />
+
+                <View
+                    style="@style/SeparatorList"/>
 
                 <TextView
                     android:id="@+id/app_description"
+                    android:text="@string/app_desc"
                     style="@style/Text_Center" />
 
-                <TextView
-                    android:text="@string/app_name"
-                    style="@style/H3" />
+                <View
+                    style="@style/SeparatorList"/>
 
                 <LinearLayout
                     android:id="@+id/claims"
                     android:gravity="center_horizontal"
-                    style="@style/VerticalList" />
+                    style="@style/VerticalList" >
+                    <com.rama.mako_forever.widgets.WdLabel
+                        app:text="@string/app_ads_desc"
+                        app:icon="@drawable/px_octagon_check"
+                        style="@style/BlockFlow"/>
+                    <View
+                        style="@style/SeparatorList"/>
+                    <com.rama.mako_forever.widgets.WdLabel
+                        app:text="@string/app_background_tasks_desc"
+                        app:icon="@drawable/px_octagon_check"
+                        style="@style/BlockFlow"/>
+                    <View
+                        style="@style/SeparatorList"/>
+                    <com.rama.mako_forever.widgets.WdLabel
+                        app:text="@string/app_trackers_desc"
+                        app:icon="@drawable/px_octagon_check"
+                        style="@style/BlockFlow"/>
+                    <View
+                        style="@style/SeparatorList"/>
+                    <com.rama.mako_forever.widgets.WdLabel
+                        app:text="@string/app_offline_desc"
+                        app:icon="@drawable/px_octagon_check"
+                        style="@style/BlockFlow"/>
+                    <View
+                        style="@style/SeparatorList"/>
+                    <com.rama.mako_forever.widgets.WdLabel
+                        app:text="@string/license_gpl3"
+                        app:icon="@drawable/px_octagon_check"
+                        style="@style/BlockFlow"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

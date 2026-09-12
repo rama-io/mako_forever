@@ -9,40 +9,65 @@ import android.widget.TextView;
 
 import com.rama.mako_forever.R;
 
-/**
- * A small icon + text row (e.g. "No Ads", "No Trackers"), ported from
- * bohio's Kotlin {@code WdLabel} for the About screen's claims list.
- *
- * Simplified from the original: since every instance here is built in code
- * (see About.java) rather than inflated from a layout, this drops the
- * custom-XML-attribute ("text"/"icon" attrs) shortcut - {@link #setText}
- * and {@link #setIcon} cover the same job.
- */
 public class WdLabel extends LinearLayout {
 
     private final ImageView iconImage;
     private final TextView iconText;
 
     public WdLabel(Context context) {
-        this(context, null);
+        this(context, null, 0);
     }
 
     public WdLabel(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        LayoutInflater.from(context).inflate(R.layout.wd_label, this, true);
+        this(context, attrs, 0);
+    }
+
+    public WdLabel(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+
+        LayoutInflater.from(context).inflate(
+                R.layout.wd_label,
+                this,
+                true
+        );
+
         iconImage = (ImageView) findViewById(R.id.icon_image);
         iconText = (TextView) findViewById(R.id.icon_text);
+
+        if (attrs != null) {
+            setAttrs(context, attrs);
+        }
+    }
+
+    private void setAttrs(Context context, AttributeSet attrs) {
+        for (int i = 0; i < attrs.getAttributeCount(); i++) {
+            String name = attrs.getAttributeName(i);
+            String value = attrs.getAttributeValue(i);
+
+            if ("text".equals(name)) {
+                int resId = attrs.getAttributeResourceValue(i, 0);
+
+                if (resId != 0) {
+                    iconText.setText(context.getString(resId));
+                } else {
+                    iconText.setText(value);
+                }
+
+            } else if ("icon".equals(name)) {
+                int resId = attrs.getAttributeResourceValue(i, 0);
+
+                if (resId != 0) {
+                    iconImage.setImageResource(resId);
+                }
+            }
+        }
     }
 
     public void setText(String text) {
         iconText.setText(text);
     }
 
-    public void setIcon(int drawableResId) {
-        iconImage.setImageResource(drawableResId);
-    }
-
-    public TextView getTextView() {
-        return iconText;
+    public void setIcon(int resId) {
+        iconImage.setImageResource(resId);
     }
 }
