@@ -9,4 +9,7 @@
     <string name="app_offline_desc">Works Offline</string>
     <string name="app_trackers_desc">No Trackers</string>
     <string name="license_gpl3" translatable="false">GPL 3.0</string>
+
+    <string name="settings_section_collapse_indicator" translatable="false">[-]</string>
+    <string name="settings_section_expand_indicator" translatable="false">[+]</string>
 </resources>

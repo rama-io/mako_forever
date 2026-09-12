@@ -110,4 +110,8 @@ public class PrefsManager {
     public void setAppGroupId(String packageName, String groupId) {
         prefs.edit().putString(key("app", packageName, "group"), groupId).commit();
     }
+
+    public boolean getBoolean( String key, boolean defaultValue ) { return prefs.getBoolean(key, defaultValue); }
+
+    public void setBoolean( String key, boolean value ) { prefs.edit() .putBoolean(key, value) .commit(); }
 }

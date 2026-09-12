@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
     android:layout_height="match_parent"
     android:paddingLeft="20dp"
@@ -18,6 +19,58 @@
         android:fadingEdge="none"
         android:scrollbars="none">
         <LinearLayout style="@style/VerticalList">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                style="@style/H2" />
+
+            <com.rama.mako_forever.widgets.WdCollapsibleSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:key="settings:section:system"
+                app:header="System"
+                app:defaultExpanded="true">
+
+                <Button
+                    android:id="@+id/activate_button"
+                    android:text="SET LANCHER AS DEFAULT"
+                    style="@style/BTN2" />
+
+                <View style="@style/SeparatorList"/>
+
+                <Button
+                    android:id="@+id/reset_button"
+                    android:text="REFRESH LAUNCHER"
+                    style="@style/BTN2" />
+
+                <View style="@style/SeparatorList"/>
+
+                <Button
+                    android:id="@+id/change_apps_button"
+                    android:text="EDIT APPS"
+                    style="@style/BTN2" />
+
+                <View style="@style/SeparatorList"/>
+
+                <com.rama.mako_forever.widgets.WdCheckbox
+                    android:id="@+id/prevent_home_screen_rotation"
+                    android:text="PREVENT SCREEN ROTATION"
+                    style="@style/Checkbox" />
+
+<!--                <LinearLayout style="@style/VerticalListDivided_BG2">-->
+
+<!--                    <TextView-->
+<!--                        android:text="@string/label_zoom"-->
+<!--                        style="@style/Text" />-->
+
+<!--                    <com.rama.bohio.widgets.WdRange-->
+<!--                        android:id="@+id/zoom"-->
+<!--                        app:valuesArray="@array/ui_scale_steps"-->
+<!--                        style="@style/BlockFlow" />-->
+
+<!--                </LinearLayout>-->
+            </com.rama.mako_forever.widgets.WdCollapsibleSection>
         </LinearLayout>
     </ScrollView>
     <View

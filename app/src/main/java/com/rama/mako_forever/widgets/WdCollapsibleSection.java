@@ -1,0 +1,180 @@
+package com.rama.mako_forever.widgets;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.util.AttributeSet;
+import android.view.HapticFeedbackConstants;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.rama.mako_forever.R;
+import com.rama.mako_forever.managers.PrefsManager;
+
+public class WdCollapsibleSection extends LinearLayout {
+
+    private LinearLayout header;
+    private TextView indicator;
+    private TextView labelView;
+    private LinearLayout content;
+
+    private String key;
+    private boolean defaultExpanded = true;
+
+    private final PrefsManager prefs;
+
+    public WdCollapsibleSection(Context context) {
+        this(context, null);
+    }
+
+    public WdCollapsibleSection(Context context, AttributeSet attrs) {
+        super(context, attrs);
+
+        prefs = PrefsManager.getInstance(context);
+
+        setOrientation(VERTICAL);
+
+        LayoutInflater.from(context).inflate(
+                R.layout.wd_collapsible_section,
+                this,
+                true
+        );
+
+        header = (LinearLayout) findViewById(R.id.section_header);
+        indicator = (TextView) findViewById(R.id.section_indicator);
+        labelView = (TextView) findViewById(R.id.section_label);
+        content = (LinearLayout) findViewById(R.id.section_content);
+
+        if (attrs != null) {
+            TypedArray ta = context.obtainStyledAttributes(
+                    attrs,
+                    R.styleable.WdCollapsibleSection
+            );
+
+            String headerText = ta.getString(
+                    R.styleable.WdCollapsibleSection_header
+            );
+
+            if (headerText == null) {
+                headerText = "";
+            }
+
+            labelView.setText(headerText);
+
+            key = ta.getString(
+                    R.styleable.WdCollapsibleSection_key
+            );
+
+            defaultExpanded = ta.getBoolean(
+                    R.styleable.WdCollapsibleSection_defaultExpanded,
+                    true
+            );
+
+            ta.recycle();
+        }
+
+        applyState(loadState());
+
+        header.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(
+                        HapticFeedbackConstants.KEYBOARD_TAP
+                );
+
+                boolean next = !isExpanded();
+
+                applyState(next);
+                saveState(next);
+            }
+        });
+
+        header.setFocusable(true);
+        header.setFocusableInTouchMode(false);
+
+        header.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(
+                    View v,
+                    int keyCode,
+                    KeyEvent event
+            ) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN
+                        && (keyCode == KeyEvent.KEYCODE_ENTER
+                        || keyCode == KeyEvent.KEYCODE_DPAD_CENTER)) {
+
+                    v.performHapticFeedback(
+                            HapticFeedbackConstants.KEYBOARD_TAP
+                    );
+
+                    boolean next = !isExpanded();
+
+                    applyState(next);
+                    saveState(next);
+
+                    return true;
+                }
+
+                return false;
+            }
+        });
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+
+        int count = getChildCount();
+
+        for (int i = count - 1; i >= 0; i--) {
+            View child = getChildAt(i);
+
+            if (child.getId() != R.id.section_root) {
+                removeView(child);
+                content.addView(child, 0);
+            }
+        }
+    }
+
+    public void addItem(View view) {
+        content.addView(view);
+    }
+
+    public void clearItems() {
+        content.removeAllViews();
+    }
+
+    private boolean isExpanded() {
+        return content.getVisibility() == View.VISIBLE;
+    }
+
+    private void applyState(boolean expanded) {
+        if (expanded) {
+            content.setVisibility(View.VISIBLE);
+            indicator.setText(
+                    R.string.settings_section_collapse_indicator
+            );
+        } else {
+            content.setVisibility(View.GONE);
+            indicator.setText(
+                    R.string.settings_section_expand_indicator
+            );
+        }
+    }
+
+    private void saveState(boolean expanded) {
+        if (key != null) {
+            prefs.setBoolean(key, expanded);
+        }
+    }
+
+    private boolean loadState() {
+        if (key != null) {
+            return prefs.getBoolean(key, defaultExpanded);
+        }
+
+        return defaultExpanded;
+    }
+}
