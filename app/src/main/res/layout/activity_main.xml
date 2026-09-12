@@ -39,10 +39,10 @@
         android:layout_weight="1"
         android:background="@android:color/transparent"
         android:cacheColorHint="@android:color/transparent"
+        android:overScrollMode="never"
+        android:fadingEdge="none"
         android:divider="@null"
         android:dividerHeight="0dp"
-        android:fadingEdge="none"
-        android:overScrollMode="never"
         android:scrollbars="none" />
 
     <LinearLayout
