@@ -118,7 +118,7 @@
 
                 <RadioGroup
                     android:id="@+id/theme_group"
-                    style="@style/VerticalListDivided" />
+                    style="@style/VerticalListDivided_BG2" />
             </com.rama.mako_forever.widgets.WdCollapsibleSection>
         </LinearLayout>
     </ScrollView>
