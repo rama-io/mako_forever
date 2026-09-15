@@ -6,7 +6,11 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.HapticFeedbackConstants;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,6 +65,31 @@ public class Main extends Activity implements AppListAdapter.Listener {
         adapter.setListener(this);
 
         appList.setAdapter(adapter);
+
+        // The blank area below the last row isn't a child view, so no row
+        // listener can fire there. A GestureDetector on the ListView covers it:
+        // ViewGroup only consults its own touch listener when no child consumed
+        // the event, so this fires for empty space and never for a real row.
+        final ListView appListRef = appList;
+        final GestureDetector emptySpaceDetector = new GestureDetector(this,
+                new GestureDetector.SimpleOnGestureListener() {
+                    @Override
+                    public void onLongPress(MotionEvent event) {
+                        if (adapter.isMultiSelectMode()) return;
+                        int position = appListRef.pointToPosition(
+                                (int) event.getX(), (int) event.getY());
+                        if (position == AdapterView.INVALID_POSITION) {
+                            appListRef.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+                            onOpenSettingsRequested();
+                        }
+                    }
+                });
+        appList.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                emptySpaceDetector.onTouchEvent(event);
+                return false; // let the ListView keep scrolling normally
+            }
+        });
 
         menuBar = findViewById(R.id.menu_bar);
         selectedCountView = (TextView) findViewById(R.id.selected_count);
