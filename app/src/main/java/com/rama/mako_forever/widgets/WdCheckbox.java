@@ -1,6 +1,7 @@
 package com.rama.mako_forever.widgets;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.CheckBox;
@@ -36,17 +37,14 @@ public class WdCheckbox extends FrameLayout {
     }
 
     private void setAttrs(Context context, AttributeSet attrs) {
-        for (int i = 0; i < attrs.getAttributeCount(); i++) {
-            String name = attrs.getAttributeName(i);
-
-            if ("text".equals(name)) {
-                int resId = attrs.getAttributeResourceValue(i, 0);
-
-                if (resId != 0) {
-                    checkBox.setText(context.getString(resId));
-                }
-            }
+        // getAttributeResourceValue() only works for "@string/..." references;
+        // obtainStyledAttributes()+getText() resolves literal inline strings too.
+        TypedArray ta = context.obtainStyledAttributes(attrs, new int[] { android.R.attr.text });
+        CharSequence text = ta.getText(0);
+        if (text != null) {
+            checkBox.setText(text);
         }
+        ta.recycle();
     }
 
     public void setText(String text) {

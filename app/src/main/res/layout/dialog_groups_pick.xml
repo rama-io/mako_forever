@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="16sp"
+    android:background="@color/base"
+    android:focusableInTouchMode="true"
+    style="@style/VerticalList">
+
+    <TextView
+        android:text="Move to group"
+        style="@style/H2_center" />
+
+    <View style="@style/SeparatorList"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <RadioGroup
+            android:id="@+id/groups"
+            style="@style/VerticalList_BG2" />
+    </ScrollView>
+
+    <View style="@style/SeparatorList"/>
+
+    <Button
+        android:id="@+id/close_button"
+        android:text="CANCEL"
+        style="@style/BTN1" />
+</LinearLayout>

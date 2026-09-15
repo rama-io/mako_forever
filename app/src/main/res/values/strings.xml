@@ -12,4 +12,10 @@
 
     <string name="settings_section_collapse_indicator" translatable="false">[-]</string>
     <string name="settings_section_expand_indicator" translatable="false">[+]</string>
+
+    <string name="multi_select_count">%1$d selected</string>
+    <string name="new_group_header">New Group</string>
+    <string name="toast_group_label_updated">Group renamed</string>
+    <string name="toast_select_target_group">Select a group to move apps into</string>
+    <string name="toast_unable_open_settings">Unable to open settings</string>
 </resources>

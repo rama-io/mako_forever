@@ -71,6 +71,53 @@
 
 <!--                </LinearLayout>-->
             </com.rama.mako_forever.widgets.WdCollapsibleSection>
+
+            <View style="@style/SeparatorList"/>
+
+            <com.rama.mako_forever.widgets.WdCollapsibleSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:key="settings:section:groups"
+                app:header="Groups"
+                app:defaultExpanded="true">
+
+                <LinearLayout
+                    android:id="@+id/groups_container"
+                    style="@style/VerticalListDivided" />
+
+                <View style="@style/SeparatorList"/>
+
+                <Button
+                    android:id="@+id/add_group_button"
+                    android:text="+ ADD GROUP"
+                    style="@style/BTN1" />
+
+                <View style="@style/SeparatorList"/>
+
+                <com.rama.mako_forever.widgets.WdCheckbox
+                    android:id="@+id/collapse_groups_on_home"
+                    android:text="COLLAPSE GROUPS ON HOME"
+                    style="@style/Checkbox" />
+
+                <com.rama.mako_forever.widgets.WdCheckbox
+                    android:id="@+id/only_one_group_open"
+                    android:text="ONLY ONE GROUP OPEN"
+                    style="@style/Checkbox" />
+            </com.rama.mako_forever.widgets.WdCollapsibleSection>
+
+            <View style="@style/SeparatorList"/>
+
+            <com.rama.mako_forever.widgets.WdCollapsibleSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:key="settings:section:appearance"
+                app:header="Appearance"
+                app:defaultExpanded="false">
+
+                <RadioGroup
+                    android:id="@+id/theme_group"
+                    style="@style/VerticalList" />
+            </com.rama.mako_forever.widgets.WdCollapsibleSection>
         </LinearLayout>
     </ScrollView>
     <View

@@ -29,6 +29,16 @@
         <item name="android:padding">16dp</item>
     </style>
 
+    <style name="VerticalListDivided" parent="VerticalList">
+        <item name="android:showDividers">middle</item>
+        <item name="android:divider">@drawable/list_divider</item>
+    </style>
+
+    <style name="HorizontalListDivided" parent="HorizontalList">
+        <item name="android:showDividers">middle</item>
+        <item name="android:divider">@drawable/list_divider</item>
+    </style>
+
     <style name="H1" parent="BlockFlow">
         <item name="android:textColor">@color/accent</item>
         <item name="android:textSize">@dimen/h1</item>

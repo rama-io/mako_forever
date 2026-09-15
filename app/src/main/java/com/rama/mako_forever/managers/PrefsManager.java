@@ -2,6 +2,9 @@ package com.rama.mako_forever.managers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.rama.mako_forever.objects.PrefTheme;
+
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -12,6 +15,10 @@ public class PrefsManager {
 
     public static final String DEFAULT_GROUP_ID = "ungrouped";
     public static final String DEFAULT_GROUP_LABEL = "Apps";
+
+    private static final String KEY_THEME = "settings:theme";
+    private static final String KEY_COLLAPSE_ON_HOME = "settings:collapse_groups_on_home";
+    private static final String KEY_ONLY_ONE_GROUP_OPEN = "settings:only_one_group_open";
 
     private static PrefsManager instance;
 
@@ -109,6 +116,76 @@ public class PrefsManager {
 
     public void setAppGroupId(String packageName, String groupId) {
         prefs.edit().putString(key("app", packageName, "group"), groupId).commit();
+    }
+
+    /** Per-app display-name override. Returns null if the app hasn't been renamed. */
+    public String getCustomName(String packageName) {
+        return prefs.getString(key("app", packageName, "label"), null);
+    }
+
+    public void setCustomName(String packageName, String label) {
+        prefs.edit().putString(key("app", packageName, "label"), label).commit();
+    }
+
+    public void clearCustomName(String packageName) {
+        prefs.edit().remove(key("app", packageName, "label")).commit();
+    }
+
+    /** Removes a group and all of its stored metadata. Apps must be reassigned first. */
+    public void removeGroupId(String groupId) {
+        if (DEFAULT_GROUP_ID.equals(groupId)) return;
+        List<String> ids = getGroupIds();
+        ids.remove(groupId);
+        prefs.edit()
+                .putString(key("groups", "ids"), joinCsv(ids))
+                .remove(key("group", groupId, "label"))
+                .remove(key("group", groupId, "order"))
+                .remove(key("group", groupId, "expanded"))
+                .remove(key("group", groupId, "visible"))
+                .commit();
+    }
+
+    public boolean isGroupVisible(String groupId) {
+        return prefs.getBoolean(key("group", groupId, "visible"), true);
+    }
+
+    public void setGroupVisible(String groupId, boolean visible) {
+        prefs.edit().putBoolean(key("group", groupId, "visible"), visible).commit();
+    }
+
+    /** Pinned groups stay open: they ignore collapse-on-home and one-group-open. */
+    public boolean isGroupKeepExpanded(String groupId) {
+        return prefs.getBoolean(key("group", groupId, "keep_expanded"), false);
+    }
+
+    public void setGroupKeepExpanded(String groupId, boolean value) {
+        prefs.edit().putBoolean(key("group", groupId, "keep_expanded"), value).commit();
+    }
+
+    // ---------------- app-wide settings ----------------
+
+    public String getTheme() {
+        return prefs.getString(KEY_THEME, PrefTheme.DEFAULT);
+    }
+
+    public void setTheme(String themeId) {
+        prefs.edit().putString(KEY_THEME, themeId).commit();
+    }
+
+    public boolean shouldCollapseGroupsOnHome() {
+        return getBoolean(KEY_COLLAPSE_ON_HOME, false);
+    }
+
+    public void setCollapseGroupsOnHome(boolean value) {
+        setBoolean(KEY_COLLAPSE_ON_HOME, value);
+    }
+
+    public boolean isOnlyOneGroupOpenEnabled() {
+        return getBoolean(KEY_ONLY_ONE_GROUP_OPEN, false);
+    }
+
+    public void setOnlyOneGroupOpenEnabled(boolean value) {
+        setBoolean(KEY_ONLY_ONE_GROUP_OPEN, value);
     }
 
     public boolean getBoolean( String key, boolean defaultValue ) { return prefs.getBoolean(key, defaultValue); }
