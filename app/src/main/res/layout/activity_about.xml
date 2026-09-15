@@ -32,14 +32,14 @@
                     android:layout_gravity="center" />
 
                 <View
-                    style="@style/SeparatorList"/>
+                    style="@style/SeparatorListHorizontal"/>
 
                 <TextView
                     android:id="@+id/name_version"
                     style="@style/H3_Center" />
 
                 <View
-                    style="@style/SeparatorList"/>
+                    style="@style/SeparatorListHorizontal"/>
 
                 <TextView
                     android:id="@+id/app_description"
@@ -47,7 +47,7 @@
                     style="@style/Text_Center" />
 
                 <View
-                    style="@style/SeparatorList"/>
+                    style="@style/SeparatorListHorizontal"/>
 
                 <LinearLayout
                     android:id="@+id/claims"
@@ -58,25 +58,25 @@
                         app:icon="@drawable/px_octagon_check"
                         style="@style/BlockFlow"/>
                     <View
-                        style="@style/SeparatorList"/>
+                        style="@style/SeparatorListHorizontal"/>
                     <com.rama.mako_forever.widgets.WdLabel
                         app:text="@string/app_background_tasks_desc"
                         app:icon="@drawable/px_octagon_check"
                         style="@style/BlockFlow"/>
                     <View
-                        style="@style/SeparatorList"/>
+                        style="@style/SeparatorListHorizontal"/>
                     <com.rama.mako_forever.widgets.WdLabel
                         app:text="@string/app_trackers_desc"
                         app:icon="@drawable/px_octagon_check"
                         style="@style/BlockFlow"/>
                     <View
-                        style="@style/SeparatorList"/>
+                        style="@style/SeparatorListHorizontal"/>
                     <com.rama.mako_forever.widgets.WdLabel
                         app:text="@string/app_offline_desc"
                         app:icon="@drawable/px_octagon_check"
                         style="@style/BlockFlow"/>
                     <View
-                        style="@style/SeparatorList"/>
+                        style="@style/SeparatorListHorizontal"/>
                     <com.rama.mako_forever.widgets.WdLabel
                         app:text="@string/license_gpl3"
                         app:icon="@drawable/px_octagon_check"

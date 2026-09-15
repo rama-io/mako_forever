@@ -21,7 +21,7 @@
                 style="@style/Icon24" />
         </FrameLayout>
 
-        <View style="@style/SeparatorList"/>
+        <View style="@style/SeparatorListHorizontal"/>
 
         <TextView
             android:id="@+id/icon_text"

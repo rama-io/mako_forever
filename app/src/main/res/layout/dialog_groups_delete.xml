@@ -3,11 +3,14 @@
     android:padding="16sp"
     android:background="@color/base"
     android:focusableInTouchMode="true"
+    android:layout_width="match_parent"
     style="@style/VerticalList">
 
     <TextView
         android:text="Are you sure you want to delete this group?"
         style="@style/H2_center" />
+
+    <View style="@style/SeparatorListVertical"/>
 
     <TextView
         android:id="@+id/group_name"
@@ -15,10 +18,14 @@
         android:padding="@dimen/space_between_elements"
         style="@style/Text_Center" />
 
+    <View style="@style/SeparatorListVertical"/>
+
     <TextView
         android:text="Your apps will go to the following group:"
         android:gravity="center"
         style="@style/Disclaimer" />
+
+    <View style="@style/SeparatorListVertical"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,13 +34,17 @@
 
         <RadioGroup
             android:id="@+id/groups"
-            style="@style/VerticalList_BG2" />
+            style="@style/VerticalListDivided_BG2" />
     </ScrollView>
+
+    <View style="@style/SeparatorListVertical"/>
 
     <Button
         android:id="@+id/yes_button"
         android:text="DELETE GROUP"
         style="@style/BTN_danger" />
+
+    <View style="@style/SeparatorListVertical"/>
 
     <Button
         android:id="@+id/no_button"

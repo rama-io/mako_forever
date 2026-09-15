@@ -34,6 +34,11 @@
         <item name="android:divider">@drawable/list_divider</item>
     </style>
 
+    <style name="VerticalListDivided_BG2" parent="VerticalListDivided">
+        <item name="android:background">@color/surface_0</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
     <style name="HorizontalListDivided" parent="HorizontalList">
         <item name="android:showDividers">middle</item>
         <item name="android:divider">@drawable/list_divider</item>
@@ -133,7 +138,7 @@
     <style name="EditText" parent="BlockFlow">
         <item name="android:textColor">@color/text</item>
         <item name="android:textSize">@dimen/text</item>
-        <item name="android:background">@color/surface_1</item>
+        <item name="android:background">@color/base</item>
         <item name="android:paddingTop">16dp</item>
         <item name="android:paddingBottom">16dp</item>
         <item name="android:paddingLeft">8dp</item>
@@ -173,13 +178,18 @@
         <item name="android:layout_marginBottom">16dp</item>
     </style>
 
-    <style name="SeparatorList">
+    <style name="SeparatorListHorizontal">
         <item name="android:layout_width">@dimen/space_between_elements</item>
         <item name="android:layout_height">@dimen/space_between_elements</item>
     </style>
 
-    <style name="SeparatorListSmall">
+    <style name="SeparatorListHorizontalSmall">
         <item name="android:layout_width">@dimen/space_between_elements_small</item>
         <item name="android:layout_height">@dimen/space_between_elements_small</item>
+    </style>
+
+    <style name="SeparatorListVertical">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/space_between_elements</item>
     </style>
 </resources>

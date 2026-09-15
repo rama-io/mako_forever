@@ -9,7 +9,7 @@
         android:text="Move to group"
         style="@style/H2_center" />
 
-    <View style="@style/SeparatorList"/>
+     <View style="@style/SeparatorListVertical"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,10 +18,10 @@
 
         <RadioGroup
             android:id="@+id/groups"
-            style="@style/VerticalList_BG2" />
+            style="@style/VerticalListDivided_BG2" />
     </ScrollView>
 
-    <View style="@style/SeparatorList"/>
+     <View style="@style/SeparatorListVertical"/>
 
     <Button
         android:id="@+id/close_button"
