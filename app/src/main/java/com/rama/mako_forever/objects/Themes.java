@@ -56,7 +56,7 @@ public final class Themes {
             0xFFCBDECD, // text
             0xFF0E190E, // base
             0xFF31362F, // surface_0
-            0xFF3A4D2E, // surface_1
+            0xFF44523D, // surface_1
             0xFF4D7A4E, // subtle
             0xFF3A4D2E, // disabled
             0xFF3A4D2E, // border
