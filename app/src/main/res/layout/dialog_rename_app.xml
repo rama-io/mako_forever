@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="16sp"
+    android:background="@color/base"
+    android:focusableInTouchMode="true"
+    style="@style/VerticalList">
+
+    <TextView
+        android:text="Rename App"
+        style="@style/H2_center" />
+
+     <View style="@style/SeparatorListVertical"/>
+
+    <LinearLayout style="@style/HorizontalList_BG2">
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:focusableInTouchMode="true"
+            style="@style/EditText" />
+
+        <FrameLayout
+            android:id="@+id/yes_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12sp">
+
+            <ImageView
+                android:src="@drawable/px_disk"
+                style="@style/Icon24" />
+        </FrameLayout>
+    </LinearLayout>
+
+     <View style="@style/SeparatorListVertical"/>
+
+    <Button
+        android:id="@+id/reset_button"
+        android:text="RESET"
+        style="@style/BTN_danger" />
+
+     <View style="@style/SeparatorListVertical"/>
+
+    <Button
+        android:id="@+id/no_button"
+        android:text="CANCEL"
+        style="@style/BTN1" />
+</LinearLayout>

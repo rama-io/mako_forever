@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId 'com.rama.mako_forever'
-        minSdk 9
+        minSdk 5
         targetSdk sdk_version
 
         versionCode 1

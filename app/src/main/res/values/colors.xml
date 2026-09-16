@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <resources>
+        <color name="text">#CBDECD</color>
+        <color name="base">#0E190E</color>
+
+        <!-- Surfaces -->
+        <color name="surface_0">#2D3B24</color>
+        <color name="surface_1">#3A4D2E</color>
+
+        <!-- Text -->
+        <color name="subtle">#4D7A4E</color>
+        <color name="disabled">#3A4D2E</color>
+
+        <!-- UI -->
+        <color name="border">#3A4D2E</color>
+
+        <!-- Accents -->
+        <color name="accent">#45995A</color>
+        <color name="accent_2">#7CCF8E</color>
+        <color name="accent_3">#DCD07C</color>
+        <color name="accent_4">#ABD68D</color>
+        <color name="accent_5">#8DE285</color>
+
+        <!-- Semantic -->
+        <color name="success">#ABD68D</color>
+        <color name="warning">#DCD07C</color>
+        <color name="error">#DC6364</color>
+        <color name="info">#7CCF8E</color>
+
+        <!-- Links -->
+        <color name="link">#7CCF8E</color>
+
+        <!-- ANSI Palette -->
+        <color name="black">#0E190E</color>
+        <color name="blue">#4D6F7A</color>
+        <color name="green">#45995A</color>
+        <color name="cyan">#4F8F82</color>
+        <color name="red">#B65354</color>
+        <color name="magenta">#8A5F82</color>
+        <color name="brown">#9A8350</color>
+        <color name="light_gray">#B5B9B5</color>
+
+        <color name="dark_gray">#1F2920</color>
+        <color name="light_blue">#6D9EAD</color>
+        <color name="light_green">#7CCF8E</color>
+        <color name="light_cyan">#72C4B3</color>
+        <color name="light_red">#DC6364</color>
+        <color name="light_magenta">#B77AA9</color>
+        <color name="yellow">#DCD07C</color>
+        <color name="white">#CBDECD</color>
+
+    </resources>

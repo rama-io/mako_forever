@@ -1,0 +1,94 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/app_row"
+    android:background="@color/surface_1"
+    android:padding="@dimen/space_between_elements"
+    style="@style/VerticalList">
+
+    <LinearLayout style="@style/HorizontalList">
+
+        <FrameLayout
+            android:id="@+id/toggle_visibility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="12sp">
+
+            <ImageView
+                android:id="@+id/toggle_visibility_img"
+                android:src="@drawable/px_eye"
+                style="@style/Icon24" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/toggle_keep_expanded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="12sp">
+
+            <ImageView
+                android:id="@+id/toggle_keep_expanded_img"
+                android:src="@drawable/px_pin_outline"
+                style="@style/Icon24" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/ascend_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="12sp">
+
+            <ImageView
+                android:src="@drawable/px_chevron_up"
+                style="@style/Icon24" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/descend_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="12sp">
+
+            <ImageView
+                android:src="@drawable/px_chevron_down"
+                style="@style/Icon24" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:visibility="gone"
+            android:id="@+id/save_changes_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="12sp">
+
+            <ImageView
+                android:src="@drawable/px_disk"
+                style="@style/Icon24" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/delete_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="12sp">
+
+            <ImageView
+                android:src="@drawable/px_times"
+                style="@style/Icon24" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/HorizontalList">
+
+        <EditText
+            android:id="@+id/group_name"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/EditText" />
+    </LinearLayout>
+</LinearLayout>
