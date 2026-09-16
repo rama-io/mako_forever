@@ -3,6 +3,7 @@ package com.rama.mako_forever.activities;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -21,6 +22,7 @@ import com.rama.mako_forever.managers.PrefsManager;
 import com.rama.mako_forever.managers.ThemeManager;
 import com.rama.mako_forever.objects.Themes;
 import com.rama.mako_forever.widgets.WdCheckbox;
+import com.rama.mako_forever.widgets.WdCollapsibleSection;
 import com.rama.mako_forever.widgets.WdRadio;
 import com.rama.mako_forever.widgets.WdRadioGroup;
 
@@ -47,6 +49,10 @@ public class Settings extends Activity {
         setupGroupsSection();
         setupAppearanceSection();
         ThemeManager.applyTheme(this, root);
+        
+        if (Build.VERSION.SDK_INT < 11) {
+            findViewById(R.id.themes_section).setVisibility(View.GONE);
+        }
 
         Button btnAbout = findViewById(R.id.go_about);
         btnAbout.setOnClickListener(new View.OnClickListener() {

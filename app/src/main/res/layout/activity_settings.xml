@@ -110,6 +110,7 @@
             <View style="@style/SeparatorListVertical"/>
 
             <com.rama.mako_forever.widgets.WdCollapsibleSection
+                android:id="@+id/themes_section"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:key="settings:section:appearance"
