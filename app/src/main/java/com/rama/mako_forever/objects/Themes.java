@@ -261,7 +261,6 @@ public final class Themes {
             0xFF000303 // link
     );
 
-    /** All built-in palettes, in the order they're offered in Settings. */
     public static List<Palette> all() {
         List<Palette> list = new ArrayList<Palette>();
         list.add(RAMA);

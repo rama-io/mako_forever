@@ -109,7 +109,6 @@ public class PrefsManager {
         prefs.edit().putBoolean(key("group", groupId, "expanded"), expanded).commit();
     }
 
-    /** Which group an app belongs to. Falls back to the default group. */
     public String getAppGroupId(String packageName) {
         return prefs.getString(key("app", packageName, "group"), DEFAULT_GROUP_ID);
     }
@@ -118,7 +117,6 @@ public class PrefsManager {
         prefs.edit().putString(key("app", packageName, "group"), groupId).commit();
     }
 
-    /** Per-app display-name override. Returns null if the app hasn't been renamed. */
     public String getCustomName(String packageName) {
         return prefs.getString(key("app", packageName, "label"), null);
     }
@@ -131,7 +129,6 @@ public class PrefsManager {
         prefs.edit().remove(key("app", packageName, "label")).commit();
     }
 
-    /** Removes a group and all of its stored metadata. Apps must be reassigned first. */
     public void removeGroupId(String groupId) {
         if (DEFAULT_GROUP_ID.equals(groupId)) return;
         List<String> ids = getGroupIds();
@@ -153,7 +150,6 @@ public class PrefsManager {
         prefs.edit().putBoolean(key("group", groupId, "visible"), visible).commit();
     }
 
-    /** Pinned groups stay open: they ignore collapse-on-home and one-group-open. */
     public boolean isGroupKeepExpanded(String groupId) {
         return prefs.getBoolean(key("group", groupId, "keep_expanded"), false);
     }
@@ -161,8 +157,6 @@ public class PrefsManager {
     public void setGroupKeepExpanded(String groupId, boolean value) {
         prefs.edit().putBoolean(key("group", groupId, "keep_expanded"), value).commit();
     }
-
-    // ---------------- app-wide settings ----------------
 
     public String getTheme() {
         return prefs.getString(KEY_THEME, PrefTheme.DEFAULT);

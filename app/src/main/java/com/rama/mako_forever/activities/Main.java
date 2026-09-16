@@ -24,6 +24,8 @@ import com.rama.mako_forever.managers.FontManager;
 import com.rama.mako_forever.managers.GroupManager;
 import com.rama.mako_forever.managers.PrefsManager;
 import com.rama.mako_forever.managers.ThemeManager;
+import com.rama.mako_forever.widgets.WdRadio;
+import com.rama.mako_forever.widgets.WdRadioGroup;
 
 import java.util.List;
 
@@ -51,10 +53,10 @@ public class Main extends Activity implements AppListAdapter.Listener {
         View root = findViewById(R.id.root);
         FontManager.apply(root, FontManager.getJersey25(this));
 
-        TextView timeView = (TextView) findViewById(R.id.time);
-        TextView dateView = (TextView) findViewById(R.id.date);
-        TextView batteryView = (TextView) findViewById(R.id.battery);
-        ListView appList = (ListView) findViewById(R.id.app_list);
+        TextView timeView = findViewById(R.id.time);
+        TextView dateView = findViewById(R.id.date);
+        TextView batteryView = findViewById(R.id.battery);
+        ListView appList = findViewById(R.id.app_list);
 
         clockManager = new ClockManager(timeView, dateView);
         batteryStatusManager = new BatteryStatusManager(this, batteryView);
@@ -66,10 +68,6 @@ public class Main extends Activity implements AppListAdapter.Listener {
 
         appList.setAdapter(adapter);
 
-        // The blank area below the last row isn't a child view, so no row
-        // listener can fire there. A GestureDetector on the ListView covers it:
-        // ViewGroup only consults its own touch listener when no child consumed
-        // the event, so this fires for empty space and never for a real row.
         final ListView appListRef = appList;
         final GestureDetector emptySpaceDetector = new GestureDetector(this,
                 new GestureDetector.SimpleOnGestureListener() {
@@ -87,12 +85,12 @@ public class Main extends Activity implements AppListAdapter.Listener {
         appList.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 emptySpaceDetector.onTouchEvent(event);
-                return false; // let the ListView keep scrolling normally
+                return false;
             }
         });
 
         menuBar = findViewById(R.id.menu_bar);
-        selectedCountView = (TextView) findViewById(R.id.selected_count);
+        selectedCountView = findViewById(R.id.selected_count);
         renameButton = findViewById(R.id.rename_btn);
         appSettingsButton = findViewById(R.id.app_settings);
         View moveToGroupButton = findViewById(R.id.move_to_group_button);
@@ -143,11 +141,6 @@ public class Main extends Activity implements AppListAdapter.Listener {
         ThemeManager.applyTheme(this, findViewById(R.id.root));
     }
 
-    /**
-     * Pressing HOME while already on the launcher re-delivers the intent
-     * rather than recreating the activity, so the collapse has to happen here
-     * too - not just in onResume.
-     */
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -204,7 +197,7 @@ public class Main extends Activity implements AppListAdapter.Listener {
         View view = getLayoutInflater().inflate(R.layout.dialog_rename_app, null);
         FontManager.apply(view, FontManager.getJersey25(this));
 
-        final android.widget.EditText input = (android.widget.EditText) view.findViewById(R.id.edit_text);
+        final android.widget.EditText input = view.findViewById(R.id.edit_text);
         View yesButton = view.findViewById(R.id.yes_button);
         View resetButton = view.findViewById(R.id.reset_button);
         View noButton = view.findViewById(R.id.no_button);
@@ -248,8 +241,7 @@ public class Main extends Activity implements AppListAdapter.Listener {
         View view = getLayoutInflater().inflate(R.layout.dialog_groups_pick, null);
         FontManager.apply(view, FontManager.getJersey25(this));
 
-        final android.widget.RadioGroup radioGroup =
-                (android.widget.RadioGroup) view.findViewById(R.id.groups);
+        final WdRadioGroup radioGroup = view.findViewById(R.id.groups);
         View closeButton = view.findViewById(R.id.close_button);
 
         final android.app.AlertDialog dialog = new android.app.AlertDialog.Builder(this)
@@ -260,7 +252,7 @@ public class Main extends Activity implements AppListAdapter.Listener {
         List<String> groupIds = groupManager.getGroupIds();
         for (int i = 0; i < groupIds.size(); i++) {
             final String groupId = groupIds.get(i);
-            android.widget.RadioButton radio = new android.widget.RadioButton(this);
+            WdRadio radio = new WdRadio(this);
             radio.setText(groupManager.getGroupLabel(groupId));
             radio.setTextColor(getResources().getColor(R.color.text));
             radioGroup.addView(radio);
@@ -282,8 +274,6 @@ public class Main extends Activity implements AppListAdapter.Listener {
         dialog.show();
     }
 
-    // ---------------- screen rotation lock ----------------
-
     private void applyRotationLock() {
         boolean prevent = PrefsManager.getInstance(this).getBoolean(PREF_PREVENT_ROTATION, false);
         if (!prevent) {
@@ -291,8 +281,6 @@ public class Main extends Activity implements AppListAdapter.Listener {
             return;
         }
 
-        // SCREEN_ORIENTATION_LOCKED needs API 18+; locking to the device's
-        // *current* orientation instead works the same way back to API 1.
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);

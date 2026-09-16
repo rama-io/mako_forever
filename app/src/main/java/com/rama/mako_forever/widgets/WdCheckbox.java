@@ -41,8 +41,8 @@ public class WdCheckbox extends LinearLayout {
 
         inflate(context, R.layout.wd_checkbox, this);
 
-        check = (ImageView) findViewById(R.id.check);
-        textView = (TextView) findViewById(R.id.text);
+        check = findViewById(R.id.check);
+        textView = findViewById(R.id.text);
 
         setClickable(true);
         setFocusable(true);
@@ -69,10 +69,6 @@ public class WdCheckbox extends LinearLayout {
 
         updateCheck();
     }
-
-    // ------------------------------------------------------------
-    // Public API
-    // ------------------------------------------------------------
 
     public void setText(String text) {
         textView.setText(text);
@@ -118,10 +114,6 @@ public class WdCheckbox extends LinearLayout {
         this.listener = listener;
     }
 
-    // ------------------------------------------------------------
-    // Appearance
-    // ------------------------------------------------------------
-
     private void updateCheck() {
 
         check.setVisibility(
@@ -139,10 +131,6 @@ public class WdCheckbox extends LinearLayout {
         updateCheck();
         textView.setEnabled(enabled);
     }
-
-    // ------------------------------------------------------------
-    // Click behavior
-    // ------------------------------------------------------------
 
     @Override
     public boolean performClick() {
@@ -192,10 +180,6 @@ public class WdCheckbox extends LinearLayout {
                 && y < getHeight();
     }
 
-    // ------------------------------------------------------------
-    // Keyboard / DPAD
-    // ------------------------------------------------------------
-
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
 
@@ -213,10 +197,6 @@ public class WdCheckbox extends LinearLayout {
 
         return super.onKeyUp(keyCode, event);
     }
-
-    // ------------------------------------------------------------
-    // Accessibility
-    // ------------------------------------------------------------
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
@@ -249,10 +229,6 @@ public class WdCheckbox extends LinearLayout {
 
         invalidate();
     }
-
-    // ------------------------------------------------------------
-    // State saving
-    // ------------------------------------------------------------
 
     @Override
     protected Parcelable onSaveInstanceState() {
@@ -324,10 +300,6 @@ public class WdCheckbox extends LinearLayout {
                     }
                 };
     }
-
-    // ------------------------------------------------------------
-    // Listener
-    // ------------------------------------------------------------
 
     public interface OnCheckedChangeListener {
         void onCheckedChanged(boolean isChecked);

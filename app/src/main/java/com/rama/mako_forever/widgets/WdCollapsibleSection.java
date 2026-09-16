@@ -42,10 +42,10 @@ public class WdCollapsibleSection extends LinearLayout {
                 true
         );
 
-        header = (LinearLayout) findViewById(R.id.section_header);
-        indicator = (TextView) findViewById(R.id.section_indicator);
-        labelView = (TextView) findViewById(R.id.section_label);
-        content = (LinearLayout) findViewById(R.id.section_content);
+        header = findViewById(R.id.section_header);
+        indicator = findViewById(R.id.section_indicator);
+        labelView = findViewById(R.id.section_label);
+        content = findViewById(R.id.section_content);
 
         if (attrs != null) {
             TypedArray ta = context.obtainStyledAttributes(

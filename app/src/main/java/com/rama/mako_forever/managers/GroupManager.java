@@ -22,7 +22,6 @@ public class GroupManager {
         List<String> ids = new ArrayList<String>(prefs.getGroupIds());
         Collections.sort(ids, new Comparator<String>() {
             public int compare(String a, String b) {
-                // Pinned groups float to the top, then normal display order.
                 boolean pinnedA = prefs.isGroupKeepExpanded(a);
                 boolean pinnedB = prefs.isGroupKeepExpanded(b);
                 if (pinnedA != pinnedB) return pinnedA ? -1 : 1;
@@ -41,8 +40,6 @@ public class GroupManager {
     }
 
     public boolean isGroupExpanded(String groupId) {
-        // A pinned group always reads as expanded, so it can't be collapsed by
-        // a header tap, by collapse-on-home, or by the one-group-open rule.
         return prefs.isGroupKeepExpanded(groupId) || prefs.isGroupExpanded(groupId);
     }
 
@@ -53,15 +50,9 @@ public class GroupManager {
     public void toggleGroupKeepExpanded(String groupId) {
         boolean pinned = !prefs.isGroupKeepExpanded(groupId);
         prefs.setGroupKeepExpanded(groupId, pinned);
-        // Pinning should visibly open the group straight away.
         if (pinned) prefs.setGroupExpanded(groupId, true);
     }
 
-    /**
-     * Toggles a group open/closed. Pinned groups aren't collapsible. When
-     * "only one group open" is on, expanding one collapses all other
-     * non-pinned groups.
-     */
     public void toggleGroupExpanded(String groupId) {
         if (prefs.isGroupKeepExpanded(groupId)) return;
 
@@ -79,10 +70,6 @@ public class GroupManager {
         }
     }
 
-    /**
-     * Collapses every non-pinned group. Returns true if anything changed, so
-     * callers can skip a redundant refresh.
-     */
     public boolean collapseAllGroups() {
         boolean changed = false;
         List<String> ids = getGroupIds();
@@ -121,7 +108,6 @@ public class GroupManager {
         prefs.setAppGroupId(packageName, groupId);
     }
 
-    /** Creates a new group, appending " 2", " 3"... if the label is already taken. */
     public String createGroup(String baseLabel) {
         String id = "group_" + System.currentTimeMillis();
         String label = generateUniqueLabel(baseLabel);
@@ -134,7 +120,6 @@ public class GroupManager {
         return id;
     }
 
-    /** Reassigns every app currently in {@code groupId} to {@code newGroupId}, then removes it. */
     public void deleteGroup(String groupId, String newGroupId) {
         if (PrefsManager.DEFAULT_GROUP_ID.equals(groupId)) return;
 
@@ -150,15 +135,12 @@ public class GroupManager {
         reindexOrder();
     }
 
-    /** Moves a group up (direction -1) or down (direction +1) in display order. */
     public void moveGroup(String groupId, int direction) {
         List<String> ordered = getGroupIds();
         int index = ordered.indexOf(groupId);
         int targetIndex = index + direction;
         if (index < 0 || targetIndex < 0 || targetIndex >= ordered.size()) return;
 
-        // Normalize to explicit sequential order values first, so groups that
-        // never had an order set (new ones, ties) can actually be reordered.
         for (int i = 0; i < ordered.size(); i++) {
             prefs.setGroupOrder(ordered.get(i), i);
         }
@@ -168,7 +150,6 @@ public class GroupManager {
         prefs.setGroupOrder(otherId, index);
     }
 
-    /** The label to display for an app: its custom name if renamed, else its system label. */
     public String getAppLabel(AppsProvider.AppEntry app) {
         String custom = prefs.getCustomName(app.packageName);
         return custom != null ? custom : app.label;

@@ -27,11 +27,6 @@ public class WdRadio extends LinearLayout {
 
     private OnCheckedChangeListener listener;
 
-    /*
-     * Used internally by WdRadioGroup.
-     * This is separate from the public listener so the
-     * group does not interfere with the user's listener.
-     */
     private InternalOnCheckedChangeListener internalListener;
 
     public WdRadio(Context context) {
@@ -48,8 +43,8 @@ public class WdRadio extends LinearLayout {
 
         inflate(context, R.layout.wd_radio, this);
 
-        check = (ImageView) findViewById(R.id.check);
-        textView = (TextView) findViewById(R.id.text);
+        check = findViewById(R.id.check);
+        textView = findViewById(R.id.text);
 
         setClickable(true);
         setFocusable(true);
@@ -76,10 +71,6 @@ public class WdRadio extends LinearLayout {
 
         updateCheck();
     }
-
-    // ------------------------------------------------------------
-    // Public API
-    // ------------------------------------------------------------
 
     public void setText(String text) {
         textView.setText(text);
@@ -117,12 +108,6 @@ public class WdRadio extends LinearLayout {
         }
     }
 
-    /*
-     * Radios do not toggle themselves off.
-     *
-     * unchecked -> checked
-     * checked   -> checked
-     */
     public void performRadioClick() {
 
         if (!isEnabled()) {
@@ -140,10 +125,6 @@ public class WdRadio extends LinearLayout {
         this.listener = listener;
     }
 
-    // ------------------------------------------------------------
-    // Internal group API
-    // ------------------------------------------------------------
-
     void setInternalCheckedChangeListener(
             InternalOnCheckedChangeListener listener) {
 
@@ -157,10 +138,6 @@ public class WdRadio extends LinearLayout {
                 boolean checked
         );
     }
-
-    // ------------------------------------------------------------
-    // Appearance
-    // ------------------------------------------------------------
 
     private void updateCheck() {
 
@@ -183,10 +160,6 @@ public class WdRadio extends LinearLayout {
     public void setTextColor(int color) {
         textView.setTextColor(color);
     }
-
-    // ------------------------------------------------------------
-    // Click behavior
-    // ------------------------------------------------------------
 
     @Override
     public boolean performClick() {
@@ -236,10 +209,6 @@ public class WdRadio extends LinearLayout {
                 && y < getHeight();
     }
 
-    // ------------------------------------------------------------
-    // Keyboard / DPAD
-    // ------------------------------------------------------------
-
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
 
@@ -257,10 +226,6 @@ public class WdRadio extends LinearLayout {
 
         return super.onKeyUp(keyCode, event);
     }
-
-    // ------------------------------------------------------------
-    // Accessibility
-    // ------------------------------------------------------------
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
@@ -293,10 +258,6 @@ public class WdRadio extends LinearLayout {
 
         invalidate();
     }
-
-    // ------------------------------------------------------------
-    // State saving
-    // ------------------------------------------------------------
 
     @Override
     protected Parcelable onSaveInstanceState() {
@@ -370,10 +331,6 @@ public class WdRadio extends LinearLayout {
                     }
                 };
     }
-
-    // ------------------------------------------------------------
-    // Listener
-    // ------------------------------------------------------------
 
     public interface OnCheckedChangeListener {
 

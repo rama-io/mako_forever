@@ -37,7 +37,7 @@ public class About extends Activity {
             e.printStackTrace();
         }
 
-        Button btnBack = (Button) findViewById(R.id.go_back);
+        Button btnBack = findViewById(R.id.go_back);
         btnBack.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { startActivity(new Intent(About.this, Settings.class)); } });
     }
 }

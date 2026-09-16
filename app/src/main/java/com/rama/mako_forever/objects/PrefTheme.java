@@ -1,6 +1,5 @@
 package com.rama.mako_forever.objects;
 
-/** Stored theme identifiers. Custom themes are intentionally not supported. */
 public final class PrefTheme {
 
     private PrefTheme() {}

@@ -27,8 +27,8 @@ public class WdLabel extends LinearLayout {
                 true
         );
 
-        iconImage = (ImageView) findViewById(R.id.icon_image);
-        iconText = (TextView) findViewById(R.id.icon_text);
+        iconImage = findViewById(R.id.icon_image);
+        iconText = findViewById(R.id.icon_text);
 
         if (attrs != null) {
             setAttrs(context, attrs);

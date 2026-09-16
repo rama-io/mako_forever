@@ -8,7 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.rama.mako_forever.R;
+
 public class WdRadioGroup extends LinearLayout {
+
+    private LinearLayout radioContainer;
 
     private int checkedId = -1;
 
@@ -18,21 +22,29 @@ public class WdRadioGroup extends LinearLayout {
 
     public WdRadioGroup(Context context) {
         super(context);
-        init();
+        init(context);
     }
 
     public WdRadioGroup(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(context);
     }
 
-    private void init() {
+    private void init(Context context) {
+
         setOrientation(VERTICAL);
-    }
 
-    // ------------------------------------------------------------
-    // Public API
-    // ------------------------------------------------------------
+        radioContainer = new LinearLayout(context);
+        radioContainer.setOrientation(VERTICAL);
+
+        super.addView(
+                radioContainer,
+                new LinearLayout.LayoutParams(
+                        LayoutParams.MATCH_PARENT,
+                        LayoutParams.WRAP_CONTENT
+                )
+        );
+    }
 
     public int getCheckedRadioButtonId() {
         return checkedId;
@@ -60,6 +72,7 @@ public class WdRadioGroup extends LinearLayout {
         protectFromCheckedChange = true;
 
         if (checkedId != -1) {
+
             View oldView = findViewById(checkedId);
 
             if (oldView instanceof WdRadio) {
@@ -93,86 +106,6 @@ public class WdRadioGroup extends LinearLayout {
         setCheckedId(-1);
     }
 
-    public void setOnCheckedChangeListener(
-            OnCheckedChangeListener listener) {
-
-        this.listener = listener;
-    }
-
-    // ------------------------------------------------------------
-    // Child management
-    // ------------------------------------------------------------
-
-    @Override
-    public void addView(
-            View child,
-            int index,
-            ViewGroup.LayoutParams params) {
-
-        super.addView(child, index, params);
-
-        if (child instanceof WdRadio) {
-            WdRadio radio = (WdRadio) child;
-
-            radio.setInternalCheckedChangeListener(
-                    new WdRadio.InternalOnCheckedChangeListener() {
-
-                        @Override
-                        public void onCheckedChanged(
-                                WdRadio radio,
-                                boolean checked) {
-
-                            if (protectFromCheckedChange) {
-                                return;
-                            }
-
-                            if (checked) {
-                                check(radio.getId());
-                            } else if (checkedId == radio.getId()) {
-                                /*
-                                 * A radio cannot normally be unchecked
-                                 * by the user. This handles programmatic
-                                 * changes safely.
-                                 */
-                                protectFromCheckedChange = true;
-                                radio.setChecked(true);
-                                protectFromCheckedChange = false;
-                            }
-                        }
-                    }
-            );
-
-            if (radio.isChecked()) {
-                check(radio.getId());
-            }
-        }
-    }
-
-    @Override
-    protected void onFinishInflate() {
-
-        super.onFinishInflate();
-
-        /*
-         * Find the initially checked radio after all XML
-         * children have been inflated.
-         */
-        for (int i = 0; i < getChildCount(); i++) {
-
-            View child = getChildAt(i);
-
-            if (child instanceof WdRadio) {
-
-                WdRadio radio = (WdRadio) child;
-
-                if (radio.isChecked()) {
-                    check(radio.getId());
-                    break;
-                }
-            }
-        }
-    }
-
     private void setCheckedId(int id) {
 
         if (checkedId == id) {
@@ -189,9 +122,89 @@ public class WdRadioGroup extends LinearLayout {
         }
     }
 
-    // ------------------------------------------------------------
-    // State saving
-    // ------------------------------------------------------------
+    public void setOnCheckedChangeListener(
+            OnCheckedChangeListener listener) {
+
+        this.listener = listener;
+    }
+
+    @Override
+    public void addView(
+            View child,
+            int index,
+            ViewGroup.LayoutParams params) {
+
+        if (child == radioContainer) {
+            super.addView(child, index, params);
+            return;
+        }
+
+        if (!(child instanceof WdRadio)) {
+            return;
+        }
+
+        final WdRadio radio = (WdRadio) child;
+
+        if (radioContainer.getChildCount() > 0) {
+
+            radioContainer.addView(
+                    createDivider()
+            );
+        }
+
+        radioContainer.addView(
+                radio,
+                params
+        );
+
+        radio.setInternalCheckedChangeListener(
+                new WdRadio.InternalOnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(
+                            WdRadio radio,
+                            boolean checked) {
+
+                        if (protectFromCheckedChange) {
+                            return;
+                        }
+
+                        if (checked) {
+                            check(radio.getId());
+
+                        } else if (
+                                checkedId == radio.getId()) {
+
+                            protectFromCheckedChange = true;
+
+                            radio.setChecked(true);
+
+                            protectFromCheckedChange = false;
+                        }
+                    }
+                }
+        );
+
+        if (radio.isChecked()) {
+            check(radio.getId());
+        }
+    }
+
+    private View createDivider() {
+
+        View divider = new View(getContext());
+
+        divider.setLayoutParams(
+                new LinearLayout.LayoutParams(
+                        LayoutParams.MATCH_PARENT,
+                        getResources().getDimensionPixelSize(
+                                R.dimen.space_between_elements
+                        )
+                )
+        );
+
+        return divider;
+    }
 
     @Override
     protected Parcelable onSaveInstanceState() {
@@ -257,19 +270,18 @@ public class WdRadioGroup extends LinearLayout {
                     @Override
                     public SavedState createFromParcel(
                             Parcel in) {
+
                         return new SavedState(in);
                     }
 
                     @Override
-                    public SavedState[] newArray(int size) {
+                    public SavedState[] newArray(
+                            int size) {
+
                         return new SavedState[size];
                     }
                 };
     }
-
-    // ------------------------------------------------------------
-    // Listener
-    // ------------------------------------------------------------
 
     public interface OnCheckedChangeListener {
 

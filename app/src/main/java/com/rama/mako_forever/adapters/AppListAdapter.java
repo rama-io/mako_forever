@@ -21,24 +21,17 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * A flat, plain {@link BaseAdapter} backing the home ListView: each row is
- * either a group header or an app. Also owns multi-select state, since (as
- * in mako) selection lives per-row and needs to survive list rebuilds.
- */
 public class AppListAdapter extends BaseAdapter {
 
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_APP = 1;
 
-    /** Callbacks for things that need Activity-level context (dialogs, toasts, the menu bar). */
     public interface Listener {
         void onAppLaunchFailed();
         void onOpenSettingsRequested();
         void onSelectionChanged(boolean active, int count);
     }
 
-    /** A group header row. */
     public static class HeaderRow {
         public final String groupId;
         public final String label;
@@ -68,8 +61,6 @@ public class AppListAdapter extends BaseAdapter {
         this.listener = listener;
     }
 
-    // ---------------- multi-select ----------------
-
     public boolean isMultiSelectMode() {
         return multiSelectMode;
     }
@@ -82,7 +73,6 @@ public class AppListAdapter extends BaseAdapter {
         return new HashSet<String>(selectedPackages);
     }
 
-    /** Returns the selected app if exactly one is selected, else null. */
     public AppsProvider.AppEntry getSingleSelectedApp() {
         if (selectedPackages.size() != 1) return null;
         String pkg = selectedPackages.iterator().next();
@@ -133,9 +123,6 @@ public class AppListAdapter extends BaseAdapter {
         if (listener != null) listener.onSelectionChanged(multiSelectMode, selectedPackages.size());
     }
 
-    // ---------------- data ----------------
-
-    /** Re-reads installed apps and group state, rebuilding the row list. */
     public void refresh() {
         List<AppsProvider.AppEntry> allApps = appsProvider.getAll();
 
@@ -211,12 +198,11 @@ public class AppListAdapter extends BaseAdapter {
 
         final String groupId = header.groupId;
 
-        TextView label = (TextView) view.findViewById(R.id.header_text);
+        TextView label = view.findViewById(R.id.header_text);
         label.setTypeface(FontManager.getJersey25(context));
 
         boolean pinned = groupManager.isGroupKeepExpanded(groupId);
         boolean expanded = groupManager.isGroupExpanded(groupId);
-        // A pinned group can't be collapsed, so it shows no +/- affordance.
         String indicator = pinned ? "" : (expanded ? "\u2212 " : "+ ");
         label.setText(indicator + header.label.toUpperCase(Locale.getDefault()));
 
@@ -241,19 +227,17 @@ public class AppListAdapter extends BaseAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.list_item_app, parent, false);
         }
 
-        final TextView label = (TextView) view.findViewById(R.id.app_label);
+        final TextView label = view.findViewById(R.id.app_label);
         label.setTypeface(FontManager.getJersey25(context));
         label.setText(groupManager.getAppLabel(app));
 
         View emptySpace = view.findViewById(R.id.empty_space);
-        ImageView selectionCheck = (ImageView) view.findViewById(R.id.selection_check);
+        ImageView selectionCheck = view.findViewById(R.id.selection_check);
 
         if (!multiSelectMode) {
             selectionCheck.setVisibility(View.GONE);
         } else {
             boolean isSelected = selectedPackages.contains(app.packageName);
-            // No View.setAlpha() here (API 11+) - visibility toggling is the
-            // API-9-safe way to show which rows are selected.
             selectionCheck.setVisibility(isSelected ? View.VISIBLE : View.INVISIBLE);
         }
 

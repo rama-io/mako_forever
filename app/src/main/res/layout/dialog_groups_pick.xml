@@ -16,7 +16,7 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <RadioGroup
+        <com.rama.mako_forever.widgets.WdRadioGroup
             android:id="@+id/groups"
             style="@style/VerticalListDivided_BG2" />
     </ScrollView>

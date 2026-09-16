@@ -12,26 +12,12 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.rama.mako_forever.R;
-import com.rama.mako_forever.objects.PrefTheme;
 import com.rama.mako_forever.objects.Themes;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Recolours a view hierarchy at runtime to the selected built-in theme.
- *
- * Ported from bohio's ThemeManager with two changes for this app: only the
- * built-in palettes are supported (no custom themes), and no API 21+ tint
- * APIs are used - {@code setColorFilter} replaces {@code imageTintList} so
- * this still works on the API 9 floor.
- *
- * How it works: it builds a lookup of "every colour any known palette uses"
- * to "the equivalent colour in the target palette", then walks the tree
- * remapping text colours, image tints and solid backgrounds. Colours that
- * aren't part of any palette (e.g. transparent) are left untouched.
- */
 public final class ThemeManager {
 
     private ThemeManager() {}
@@ -44,7 +30,6 @@ public final class ThemeManager {
         return paletteFor(PrefsManager.getInstance(context).getTheme());
     }
 
-    /** Applies the saved theme (and the app font) to {@code root} and all of its children. */
     public static void applyTheme(Context context, View root) {
         Themes.Palette palette = currentPalette(context);
         Map<Integer, Integer> colorMap = buildColorMap(context, palette);
@@ -101,10 +86,6 @@ public final class ThemeManager {
 
     @SuppressWarnings("deprecation") private static int getColorDrawableColor(ColorDrawable drawable) { try { return (Integer) ColorDrawable.class .getMethod("getColor") .invoke(drawable); } catch (Exception e) { return Integer.MIN_VALUE; } }
 
-    /**
-     * Maps every colour used by any built-in palette (plus the compiled-in
-     * colors.xml defaults) onto the corresponding slot of {@code target}.
-     */
     private static Map<Integer, Integer> buildColorMap(Context context, Themes.Palette target) {
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         List<Themes.Palette> all = Themes.all();
@@ -130,8 +111,6 @@ public final class ThemeManager {
             map.put(p.link, target.link);
         }
 
-        // The XML defaults resolve to the RAMA palette, but map them explicitly
-        // so a colours.xml edit can't silently break theming.
         android.content.res.Resources res = context.getResources();
         map.put(res.getColor(R.color.text), target.text);
         map.put(res.getColor(R.color.base), target.base);
