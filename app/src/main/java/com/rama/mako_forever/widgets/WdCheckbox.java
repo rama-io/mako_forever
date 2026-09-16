@@ -37,13 +37,17 @@ public class WdCheckbox extends FrameLayout {
     }
 
     private void setAttrs(Context context, AttributeSet attrs) {
-        // getAttributeResourceValue() only works for "@string/..." references;
-        // obtainStyledAttributes()+getText() resolves literal inline strings too.
-        TypedArray ta = context.obtainStyledAttributes(attrs, new int[] { android.R.attr.text });
+        TypedArray ta = context.obtainStyledAttributes(
+                attrs,
+                new int[] { android.R.attr.text }
+        );
+
         CharSequence text = ta.getText(0);
+
         if (text != null) {
-            checkBox.setText(text);
+            setText(text.toString());
         }
+
         ta.recycle();
     }
 

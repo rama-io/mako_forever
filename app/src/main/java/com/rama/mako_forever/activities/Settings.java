@@ -170,17 +170,26 @@ public class Settings extends Activity {
 
         for (int i = 0; i < palettes.size(); i++) {
             final Themes.Palette palette = palettes.get(i);
+
             RadioButton radio = new RadioButton(this);
+
+            // Give every dynamically-created RadioButton its own stable ID.
+            radio.setId(1000 + i);
+
             radio.setText(palette.label);
             radio.setTextColor(getResources().getColor(R.color.text));
             radio.setChecked(palette.id.equals(currentTheme));
+
             themeGroup.addView(radio);
 
             radio.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     prefs.setTheme(palette.id);
-                    // Re-theme this screen immediately so the choice is visible.
-                    ThemeManager.applyTheme(Settings.this, findViewById(R.id.root));
+
+                    ThemeManager.applyTheme(
+                            Settings.this,
+                            findViewById(R.id.root)
+                    );
                 }
             });
         }

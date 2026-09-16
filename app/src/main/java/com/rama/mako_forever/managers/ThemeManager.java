@@ -61,31 +61,45 @@ public final class ThemeManager {
         }
     }
 
-    private static void applyToView(View view, Themes.Palette palette, Map<Integer, Integer> map) {
+    private static void applyToView(
+            View view,
+            Themes.Palette palette,
+            Map<Integer, Integer> map) {
+
         if (view instanceof TextView) {
             TextView textView = (TextView) view;
+
             if (view instanceof RadioButton || view instanceof CheckBox) {
-                // buttonTintList is API 21+, so the box/dot itself keeps the
-                // platform colour here; only the label is themed.
                 textView.setTextColor(palette.text);
             } else {
                 Integer mapped = map.get(textView.getCurrentTextColor());
-                if (mapped != null) textView.setTextColor(mapped);
+
+                if (mapped != null) {
+                    textView.setTextColor(mapped);
+                }
             }
         }
 
         if (view instanceof ImageView) {
-            // No imageTintList on API 9 - a SRC_IN colour filter is equivalent
-            // for the flat single-colour vector icons this app uses.
-            ((ImageView) view).setColorFilter(palette.text, PorterDuff.Mode.SRC_IN);
+            ((ImageView) view).setColorFilter(
+                    palette.text,
+                    PorterDuff.Mode.SRC_IN
+            );
         }
 
         Drawable background = view.getBackground();
+
         if (background instanceof ColorDrawable) {
-            Integer mapped = map.get(((ColorDrawable) background).getColor());
-            if (mapped != null) view.setBackgroundColor(mapped);
+            int color = getColorDrawableColor((ColorDrawable) background);
+            Integer mapped = map.get(color);
+
+            if (mapped != null) {
+                view.setBackgroundColor(mapped);
+            }
         }
     }
+
+    @SuppressWarnings("deprecation") private static int getColorDrawableColor(ColorDrawable drawable) { try { return (Integer) ColorDrawable.class .getMethod("getColor") .invoke(drawable); } catch (Exception e) { return Integer.MIN_VALUE; } }
 
     /**
      * Maps every colour used by any built-in palette (plus the compiled-in
