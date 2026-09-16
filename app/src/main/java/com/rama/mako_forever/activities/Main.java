@@ -10,6 +10,7 @@ import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -205,9 +206,13 @@ public class Main extends Activity implements AppListAdapter.Listener {
         input.setText(groupManager.getAppLabel(app));
         input.setSelection(input.getText().length());
 
-        final android.app.AlertDialog dialog = new android.app.AlertDialog.Builder(this)
-                .setView(view)
-                .create();
+        final android.app.Dialog dialog =
+                new android.app.Dialog(
+                        this,
+                        R.style.AppDialog
+                );
+
+        dialog.setContentView(view);
 
         yesButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -244,10 +249,13 @@ public class Main extends Activity implements AppListAdapter.Listener {
         final WdRadioGroup radioGroup = view.findViewById(R.id.groups);
         View closeButton = view.findViewById(R.id.close_button);
 
-        final android.app.AlertDialog dialog = new android.app.AlertDialog.Builder(this)
-                .setView(view)
-                .setCancelable(true)
-                .create();
+        final android.app.Dialog dialog =
+                new android.app.Dialog(
+                        this,
+                        R.style.AppDialog
+                );
+
+        dialog.setContentView(view);
 
         List<String> groupIds = groupManager.getGroupIds();
         for (int i = 0; i < groupIds.size(); i++) {

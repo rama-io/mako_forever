@@ -1,7 +1,7 @@
 package com.rama.mako_forever.activities;
 
 import android.app.Activity;
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -332,10 +332,13 @@ public class Settings extends Activity {
             }
         });
 
-        final AlertDialog dialog = new AlertDialog.Builder(this)
-                .setView(view)
-                .setCancelable(true)
-                .create();
+        final Dialog dialog = new Dialog(
+                this,
+                R.style.AppDialog
+        );
+
+        dialog.setContentView(view);
+        dialog.setCancelable(true);
 
         yesButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

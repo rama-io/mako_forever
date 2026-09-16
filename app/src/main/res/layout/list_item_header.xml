@@ -4,7 +4,7 @@
     android:paddingTop="@dimen/space_between_elements"
     android:paddingBottom="@dimen/space_between_elements"
     android:background="@android:color/transparent"
-    android:textColor="@color/disabled"
+    android:textColor="@color/accent"
     android:textSize="16sp"
     android:focusable="false"
     android:clickable="false"
