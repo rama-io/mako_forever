@@ -116,7 +116,7 @@
                 app:header="Themes"
                 app:defaultExpanded="false">
 
-                <RadioGroup
+                <com.rama.mako_forever.widgets.WdRadioGroup
                     android:id="@+id/theme_group"
                     style="@style/VerticalListDivided_BG2" />
             </com.rama.mako_forever.widgets.WdCollapsibleSection>

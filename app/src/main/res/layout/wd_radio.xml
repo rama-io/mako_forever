@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/HorizontalList_BG2">
+    style="@style/HorizontalList">
 
     <FrameLayout
-        android:id="@+id/box"
+        android:id="@+id/radio"
         android:layout_width="24sp"
         android:layout_height="24sp"
         android:padding="3sp"
-        android:background="@drawable/px_box">
+        android:background="@drawable/px_circle">
 
         <ImageView
             android:id="@+id/check"

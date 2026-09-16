@@ -23,6 +23,8 @@ import com.rama.mako_forever.managers.PrefsManager;
 import com.rama.mako_forever.managers.ThemeManager;
 import com.rama.mako_forever.objects.Themes;
 import com.rama.mako_forever.widgets.WdCheckbox;
+import com.rama.mako_forever.widgets.WdRadio;
+import com.rama.mako_forever.widgets.WdRadioGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -163,7 +165,7 @@ public class Settings extends Activity {
 
     private void setupAppearanceSection() {
         final PrefsManager prefs = PrefsManager.getInstance(this);
-        RadioGroup themeGroup = (RadioGroup) findViewById(R.id.theme_group);
+        WdRadioGroup themeGroup = (WdRadioGroup) findViewById(R.id.theme_group);
 
         String currentTheme = prefs.getTheme();
         List<Themes.Palette> palettes = Themes.all();
@@ -171,7 +173,7 @@ public class Settings extends Activity {
         for (int i = 0; i < palettes.size(); i++) {
             final Themes.Palette palette = palettes.get(i);
 
-            RadioButton radio = new RadioButton(this);
+            WdRadio radio = new WdRadio(this);
 
             // Give every dynamically-created RadioButton its own stable ID.
             radio.setId(1000 + i);
