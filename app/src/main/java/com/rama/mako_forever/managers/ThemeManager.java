@@ -81,6 +81,8 @@ public final class ThemeManager {
             if (mapped != null) {
                 view.setBackgroundColor(mapped);
             }
+        } else if (background != null) {
+            background.mutate().setColorFilter(palette.text, PorterDuff.Mode.SRC_IN);
         }
     }
 

@@ -261,6 +261,7 @@ public class Main extends Activity implements AppListAdapter.Listener {
         for (int i = 0; i < groupIds.size(); i++) {
             final String groupId = groupIds.get(i);
             WdRadio radio = new WdRadio(this);
+            radio.setId(3000 + i);
             radio.setText(groupManager.getGroupLabel(groupId));
             radio.setTextColor(getResources().getColor(R.color.text));
             radioGroup.addView(radio);

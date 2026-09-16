@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.rama.mako_forever.R;
 import com.rama.mako_forever.managers.FontManager;
+import com.rama.mako_forever.managers.ThemeManager;
 
 public class About extends Activity {
     @Override
@@ -20,6 +21,7 @@ public class About extends Activity {
 
         View root = findViewById(R.id.root);
         FontManager.apply(root, FontManager.getJersey25(this));
+        ThemeManager.applyTheme(this, root);
 
         TextView appName = findViewById(R.id.name_version);
 

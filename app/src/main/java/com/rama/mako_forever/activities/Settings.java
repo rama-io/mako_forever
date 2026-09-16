@@ -318,6 +318,7 @@ public class Settings extends Activity {
         for (int i = 0; i < targetGroups.size(); i++) {
             String targetId = targetGroups.get(i);
             WdRadio radio = new WdRadio(this);
+            radio.setId(2000 + i);
             radio.setText(groupManager.getGroupLabel(targetId));
             radio.setTextColor(getResources().getColor(R.color.text));
             radioGroup.addView(radio);
