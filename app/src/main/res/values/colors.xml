@@ -16,10 +16,6 @@
 
     <!-- Accents -->
     <color name="accent">#45995A</color>
-    <color name="accent_2">#7CCF8E</color>
-    <color name="accent_3">#DCD07C</color>
-    <color name="accent_4">#ABD68D</color>
-    <color name="accent_5">#8DE285</color>
 
     <!-- Semantic -->
     <color name="success">#ABD68D</color>

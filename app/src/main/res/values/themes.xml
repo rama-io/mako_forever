@@ -110,15 +110,6 @@
         <item name="android:background">@color/accent</item>
     </style>
 
-    <style name="BTN2" parent="BTN">
-        <item name="android:background">@color/accent_2</item>
-    </style>
-
-    <style name="BTN3" parent="BTN">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:background">@color/surface_1</item>
-    </style>
-
     <style name="BTN_danger" parent="BTN">
         <item name="android:background">@color/error</item>
     </style>
@@ -129,7 +120,7 @@
         <item name="android:paddingLeft">2dp</item>
         <item name="android:paddingRight">2dp</item>
         <item name="android:textSize">@dimen/small</item>
-        <item name="android:background">@color/accent_2</item>
+        <item name="android:background">@color/accent</item>
         <item name="android:textColor">@color/base</item>
         <!--        <item name="android:textAllCaps">true</item>-->
         <item name="android:gravity">center</item>

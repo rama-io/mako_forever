@@ -4,6 +4,7 @@
     android:id="@+id/root"
     style="@style/VerticalList"
     android:layout_height="match_parent"
+    android:background="@color/base"
     android:paddingLeft="20dp"
     android:paddingTop="32dp"
     android:paddingRight="20dp"
@@ -31,8 +32,8 @@
                     android:layout_height="120dp"
                     android:layout_gravity="center"
                     android:background="@drawable/px_box"
-                    android:tint="@color/accent"
-                    >
+                    android:tint="@color/accent">
+
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

@@ -155,10 +155,6 @@ public final class ThemeManager {
             map.put(p.disabled, target.disabled);
             map.put(p.border, target.border);
             map.put(p.accent, target.accent);
-            map.put(p.accent_2, target.accent_2);
-            map.put(p.accent_3, target.accent_3);
-            map.put(p.accent_4, target.accent_4);
-            map.put(p.accent_5, target.accent_5);
             map.put(p.success, target.success);
             map.put(p.warning, target.warning);
             map.put(p.error, target.error);
@@ -174,10 +170,6 @@ public final class ThemeManager {
         map.put(res.getColor(R.color.disabled), target.disabled);
         map.put(res.getColor(R.color.border), target.border);
         map.put(res.getColor(R.color.accent), target.accent);
-        map.put(res.getColor(R.color.accent_2), target.accent_2);
-        map.put(res.getColor(R.color.accent_3), target.accent_3);
-        map.put(res.getColor(R.color.accent_4), target.accent_4);
-        map.put(res.getColor(R.color.accent_5), target.accent_5);
         map.put(res.getColor(R.color.success), target.success);
         map.put(res.getColor(R.color.warning), target.warning);
         map.put(res.getColor(R.color.error), target.error);
