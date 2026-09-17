@@ -203,7 +203,11 @@ public class AppListAdapter extends BaseAdapter {
 
         boolean pinned = groupManager.isGroupKeepExpanded(groupId);
         boolean expanded = groupManager.isGroupExpanded(groupId);
-        String indicator = pinned ? "" : (expanded ? "\u2212 " : "+ ");
+        String symbol = pinned ? "" : (context.getString(
+                expanded ? R.string.settings_section_collapse_indicator
+                         : R.string.settings_section_expand_indicator
+        ) + " ");
+        String indicator = symbol + "------ ";
         label.setText(indicator + header.label.toUpperCase(Locale.getDefault()));
 
         if (pinned) {

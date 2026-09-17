@@ -14,7 +14,7 @@ public class PrefsManager {
     private static final String PREFS_NAME = "mako_forever";
 
     public static final String DEFAULT_GROUP_ID = "ungrouped";
-    public static final String DEFAULT_GROUP_LABEL = "Apps";
+    public static final String DEFAULT_GROUP_LABEL = "Default";
 
     private static final String KEY_THEME = "settings:theme";
     private static final String KEY_COLLAPSE_ON_HOME = "settings:collapse_groups_on_home";

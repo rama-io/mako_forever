@@ -25,6 +25,9 @@
                 android:text="Settings"
                 style="@style/H2" />
 
+            <View
+                style="@style/SeparatorListVertical"/>
+
             <com.rama.mako_forever.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,6 +75,9 @@
 <!--                </LinearLayout>-->
             </com.rama.mako_forever.widgets.WdCollapsibleSection>
 
+            <View
+                style="@style/SeparatorListVertical"/>
+
             <com.rama.mako_forever.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -107,7 +113,9 @@
 
             </com.rama.mako_forever.widgets.WdCollapsibleSection>
 
-            <View style="@style/SeparatorListVertical"/>
+            <View
+                android:id="@+id/themes_separator"
+                style="@style/SeparatorListVertical"/>
 
             <com.rama.mako_forever.widgets.WdCollapsibleSection
                 android:id="@+id/themes_section"
@@ -131,7 +139,7 @@
         style="@style/BTN2"
     />
     <View
-        style="@style/SeparatorListHorizontal"/>
+        style="@style/SeparatorListVertical"/>
     <Button
         android:id="@+id/go_back"
         android:text="GO BACK"

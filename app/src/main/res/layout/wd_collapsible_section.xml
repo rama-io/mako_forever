@@ -8,8 +8,6 @@
         android:id="@+id/section_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16sp"
-        android:paddingBottom="16sp"
         android:gravity="center_vertical"
         android:clickable="true"
         android:focusable="true"
@@ -31,7 +29,9 @@
             style="@style/H3" />
     </LinearLayout>
 
-    <View style="@style/SeparatorListHorizontal"/>
+    <View
+        android:id="@+id/section_content_separator"
+        style="@style/SeparatorListVertical"/>
 
     <LinearLayout
         android:id="@+id/section_content"

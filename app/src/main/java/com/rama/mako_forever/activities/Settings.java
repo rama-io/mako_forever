@@ -52,6 +52,7 @@ public class Settings extends Activity {
         
         if (Build.VERSION.SDK_INT < 11) {
             findViewById(R.id.themes_section).setVisibility(View.GONE);
+            findViewById(R.id.themes_separator).setVisibility(View.GONE);
         }
 
         Button btnAbout = findViewById(R.id.go_about);

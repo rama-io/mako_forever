@@ -19,6 +19,7 @@ public class WdCollapsibleSection extends LinearLayout {
     private TextView indicator;
     private TextView labelView;
     private LinearLayout content;
+    private View contentSeparator;
 
     private String key;
     private boolean defaultExpanded = true;
@@ -46,6 +47,7 @@ public class WdCollapsibleSection extends LinearLayout {
         indicator = findViewById(R.id.section_indicator);
         labelView = findViewById(R.id.section_label);
         content = findViewById(R.id.section_content);
+        contentSeparator = findViewById(R.id.section_content_separator);
 
         if (attrs != null) {
             TypedArray ta = context.obtainStyledAttributes(
@@ -153,11 +155,13 @@ public class WdCollapsibleSection extends LinearLayout {
     private void applyState(boolean expanded) {
         if (expanded) {
             content.setVisibility(View.VISIBLE);
+            contentSeparator.setVisibility(View.VISIBLE);
             indicator.setText(
                     R.string.settings_section_collapse_indicator
             );
         } else {
             content.setVisibility(View.GONE);
+            contentSeparator.setVisibility(View.GONE);
             indicator.setText(
                     R.string.settings_section_expand_indicator
             );
