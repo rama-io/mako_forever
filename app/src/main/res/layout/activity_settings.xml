@@ -61,16 +61,6 @@
                     android:text="Prevent screen rotation"
                     style="@style/Checkbox" />
 
-                <com.rama.mako_forever.widgets.WdCheckbox
-                    android:id="@+id/show_api_indicators"
-                    android:text="Show min/target API levels"
-                    style="@style/Checkbox" />
-
-                <com.rama.mako_forever.widgets.WdCheckbox
-                    android:id="@+id/show_app_size"
-                    android:text="Show app size"
-                    style="@style/Checkbox" />
-
 <!--                <LinearLayout style="@style/VerticalListDivided_BG2">-->
 
 <!--                    <TextView-->
@@ -138,6 +128,25 @@
                 <com.rama.mako_forever.widgets.WdRadioGroup
                     android:id="@+id/theme_group"
                     style="@style/VerticalListDivided_BG2" />
+            </com.rama.mako_forever.widgets.WdCollapsibleSection>
+
+            <View style="@style/SeparatorListVertical"/>
+
+            <com.rama.mako_forever.widgets.WdCollapsibleSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:key="settings:section:apps"
+                app:header="Applications"
+                app:defaultExpanded="true">
+                <com.rama.mako_forever.widgets.WdCheckbox
+                    android:id="@+id/show_api_indicators"
+                    android:text="Show min/target API levels"
+                    style="@style/Checkbox" />
+
+                <com.rama.mako_forever.widgets.WdCheckbox
+                    android:id="@+id/show_app_size"
+                    android:text="Show app size"
+                    style="@style/Checkbox" />
             </com.rama.mako_forever.widgets.WdCollapsibleSection>
         </LinearLayout>
     </ScrollView>
