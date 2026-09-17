@@ -2,6 +2,7 @@ package com.rama.mako_forever.adapters;
 
 import android.content.Context;
 import android.os.Build;
+import android.text.format.Formatter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,15 +33,24 @@ public class AppListAdapter extends BaseAdapter {
 
     public interface Listener {
         void onAppLaunchFailed();
+
         void onOpenSettingsRequested();
-        void onSelectionChanged(boolean active, int count);
+
+        void onSelectionChanged(
+                boolean active,
+                int count
+        );
     }
 
     public static class HeaderRow {
+
         public final String groupId;
         public final String label;
 
-        HeaderRow(String groupId, String label) {
+        HeaderRow(
+                String groupId,
+                String label) {
+
             this.groupId = groupId;
             this.label = label;
         }
@@ -49,13 +59,22 @@ public class AppListAdapter extends BaseAdapter {
     private final Context context;
     private final AppsProvider appsProvider;
     private final GroupManager groupManager;
-    private final List<Object> items = new ArrayList<Object>();
-    private final Set<String> selectedPackages = new HashSet<String>();
+
+    private final List<Object> items =
+            new ArrayList<Object>();
+
+    private final Set<String> selectedPackages =
+            new HashSet<String>();
 
     private boolean multiSelectMode = false;
+
     private Listener listener;
 
-    public AppListAdapter(Context context, AppsProvider appsProvider, GroupManager groupManager) {
+    public AppListAdapter(
+            Context context,
+            AppsProvider appsProvider,
+            GroupManager groupManager) {
+
         this.context = context;
         this.appsProvider = appsProvider;
         this.groupManager = groupManager;
@@ -74,87 +93,165 @@ public class AppListAdapter extends BaseAdapter {
     }
 
     public Set<String> getSelectedPackages() {
-        return new HashSet<String>(selectedPackages);
+        return new HashSet<String>(
+                selectedPackages
+        );
     }
 
     public AppsProvider.AppEntry getSingleSelectedApp() {
-        if (selectedPackages.size() != 1) return null;
-        String pkg = selectedPackages.iterator().next();
-        List<AppsProvider.AppEntry> all = appsProvider.getAll();
-        for (int i = 0; i < all.size(); i++) {
-            if (all.get(i).packageName.equals(pkg)) return all.get(i);
+
+        if (selectedPackages.size() != 1) {
+            return null;
         }
+
+        String packageName =
+                selectedPackages.iterator().next();
+
+        List<AppsProvider.AppEntry> all =
+                appsProvider.getAll();
+
+        for (int i = 0; i < all.size(); i++) {
+
+            AppsProvider.AppEntry app = all.get(i);
+
+            if (app.packageName.equals(packageName)) {
+                return app;
+            }
+        }
+
         return null;
     }
 
     public void exitMultiSelectMode() {
+
         multiSelectMode = false;
+
         selectedPackages.clear();
+
         notifySelectionChanged();
+
         refresh();
     }
 
-    public void moveSelectedAppsToGroup(String groupId) {
-        for (String pkg : selectedPackages) {
-            groupManager.moveAppToGroup(pkg, groupId);
+    public void moveSelectedAppsToGroup(
+            String groupId) {
+
+        for (String packageName : selectedPackages) {
+            groupManager.moveAppToGroup(
+                    packageName,
+                    groupId
+            );
         }
+
         exitMultiSelectMode();
     }
 
-    private void enterMultiSelectMode(String packageName) {
+    private void enterMultiSelectMode(
+            String packageName) {
+
         multiSelectMode = true;
+
         selectedPackages.clear();
         selectedPackages.add(packageName);
+
         notifySelectionChanged();
+
         refresh();
     }
 
-    private void toggleSelection(String packageName) {
+    private void toggleSelection(
+            String packageName) {
+
         if (selectedPackages.contains(packageName)) {
+
             selectedPackages.remove(packageName);
+
             if (selectedPackages.isEmpty()) {
                 exitMultiSelectMode();
                 return;
             }
+
         } else {
+
             selectedPackages.add(packageName);
         }
+
         notifySelectionChanged();
+
         refresh();
     }
 
     private void notifySelectionChanged() {
-        if (listener != null) listener.onSelectionChanged(multiSelectMode, selectedPackages.size());
+
+        if (listener != null) {
+            listener.onSelectionChanged(
+                    multiSelectMode,
+                    selectedPackages.size()
+            );
+        }
     }
 
     public void refresh() {
-        List<AppsProvider.AppEntry> allApps = appsProvider.getAll();
+
+        List<AppsProvider.AppEntry> allApps =
+                appsProvider.getAll();
 
         Map<String, List<AppsProvider.AppEntry>> byGroup =
                 new HashMap<String, List<AppsProvider.AppEntry>>();
 
         for (int i = 0; i < allApps.size(); i++) {
-            AppsProvider.AppEntry app = allApps.get(i);
-            String groupId = groupManager.getAppGroupId(app.packageName);
-            List<AppsProvider.AppEntry> bucket = byGroup.get(groupId);
+
+            AppsProvider.AppEntry app =
+                    allApps.get(i);
+
+            String groupId =
+                    groupManager.getAppGroupId(
+                            app.packageName
+                    );
+
+            List<AppsProvider.AppEntry> bucket =
+                    byGroup.get(groupId);
+
             if (bucket == null) {
-                bucket = new ArrayList<AppsProvider.AppEntry>();
-                byGroup.put(groupId, bucket);
+
+                bucket =
+                        new ArrayList<AppsProvider.AppEntry>();
+
+                byGroup.put(
+                        groupId,
+                        bucket
+                );
             }
+
             bucket.add(app);
         }
 
         items.clear();
-        List<String> groupIds = groupManager.getGroupIds();
+
+        List<String> groupIds =
+                groupManager.getGroupIds();
 
         for (int i = 0; i < groupIds.size(); i++) {
+
             String groupId = groupIds.get(i);
-            if (!groupManager.isGroupVisible(groupId)) continue;
 
-            List<AppsProvider.AppEntry> apps = byGroup.get(groupId);
-            if (apps == null || apps.isEmpty()) continue;
+            if (!groupManager.isGroupVisible(groupId)) {
+                continue;
+            }
 
-            items.add(new HeaderRow(groupId, groupManager.getGroupLabel(groupId)));
+            List<AppsProvider.AppEntry> apps =
+                    byGroup.get(groupId);
+
+            if (apps == null || apps.isEmpty()) {
+                continue;
+            }
+
+            items.add(
+                    new HeaderRow(
+                            groupId,
+                            groupManager.getGroupLabel(groupId)
+                    )
+            );
 
             if (groupManager.isGroupExpanded(groupId)) {
                 items.addAll(apps);
@@ -164,14 +261,17 @@ public class AppListAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    @Override
     public int getCount() {
         return items.size();
     }
 
+    @Override
     public Object getItem(int position) {
         return items.get(position);
     }
 
+    @Override
     public long getItemId(int position) {
         return position;
     }
@@ -183,133 +283,358 @@ public class AppListAdapter extends BaseAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        return items.get(position) instanceof HeaderRow ? TYPE_HEADER : TYPE_APP;
+
+        return items.get(position) instanceof HeaderRow
+                ? TYPE_HEADER
+                : TYPE_APP;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    @Override
+    public View getView(
+            int position,
+            View convertView,
+            ViewGroup parent) {
+
         Object item = items.get(position);
+
         if (item instanceof HeaderRow) {
-            return getHeaderView((HeaderRow) item, convertView, parent);
+
+            return getHeaderView(
+                    (HeaderRow) item,
+                    convertView,
+                    parent
+            );
         }
-        return getAppView((AppsProvider.AppEntry) item, convertView, parent);
+
+        return getAppView(
+                (AppsProvider.AppEntry) item,
+                convertView,
+                parent
+        );
     }
 
-    private View getHeaderView(HeaderRow header, View convertView, ViewGroup parent) {
+    private View getHeaderView(
+            HeaderRow header,
+            View convertView,
+            ViewGroup parent) {
+
         View view = convertView;
+
         if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.list_item_header, parent, false);
+
+            view = LayoutInflater.from(context).inflate(
+                    R.layout.list_item_header,
+                    parent,
+                    false
+            );
         }
 
-        final String groupId = header.groupId;
+        final String groupId =
+                header.groupId;
 
-        TextView label = view.findViewById(R.id.header_text);
-        label.setTypeface(FontManager.getJersey25(context));
+        TextView label = view.findViewById(
+                        R.id.header_text
+                );
 
-        boolean pinned = groupManager.isGroupKeepExpanded(groupId);
-        boolean expanded = groupManager.isGroupExpanded(groupId);
-        String symbol = pinned ? "" : (context.getString(
-                expanded ? R.string.settings_section_collapse_indicator
-                         : R.string.settings_section_expand_indicator
-        ) + " ");
-        String indicator = symbol + "------ ";
-        label.setText(indicator + header.label.toUpperCase(Locale.getDefault()));
+        label.setTypeface(
+                FontManager.getJersey25(context)
+        );
+
+        boolean pinned =
+                groupManager.isGroupKeepExpanded(
+                        groupId
+                );
+
+        boolean expanded =
+                groupManager.isGroupExpanded(
+                        groupId
+                );
+
+        String symbol =
+                pinned
+                        ? ""
+                        : (
+                        context.getString(
+                                expanded
+                                        ? R.string.settings_section_collapse_indicator
+                                        : R.string.settings_section_expand_indicator
+                        ) + " "
+                );
+
+        String indicator =
+                symbol + "------ ";
+
+        label.setText(
+                indicator
+                        + header.label.toUpperCase(
+                        Locale.getDefault()
+                )
+        );
 
         if (pinned) {
+
             view.setOnClickListener(null);
             view.setClickable(false);
+
         } else {
-            view.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    groupManager.toggleGroupExpanded(groupId);
-                    refresh();
-                }
-            });
+
+            view.setOnClickListener(
+                    new View.OnClickListener() {
+
+                        public void onClick(View v) {
+
+                            groupManager.toggleGroupExpanded(
+                                    groupId
+                            );
+
+                            refresh();
+                        }
+                    }
+            );
         }
 
         return view;
     }
 
-    private View getAppView(final AppsProvider.AppEntry app, View convertView, ViewGroup parent) {
+    private View getAppView(
+            final AppsProvider.AppEntry app,
+            View convertView,
+            ViewGroup parent) {
+
         View view = convertView;
+
         if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.list_item_app, parent, false);
+
+            view = LayoutInflater.from(context).inflate(
+                    R.layout.list_item_app,
+                    parent,
+                    false
+            );
         }
 
-        final TextView label = view.findViewById(R.id.app_label);
-        label.setTypeface(FontManager.getJersey25(context));
-        label.setText(groupManager.getAppLabel(app));
+        final TextView label = view.findViewById(
+                        R.id.app_label
+                );
 
-        View emptySpace = view.findViewById(R.id.empty_space);
-        ImageView selectionCheck = view.findViewById(R.id.selection_check);
+        label.setTypeface(
+                FontManager.getJersey25(context)
+        );
+
+        label.setText(
+                groupManager.getAppLabel(app)
+        );
+
+        View emptySpace =
+                view.findViewById(
+                        R.id.empty_space
+                );
+
+        ImageView selectionCheck = view.findViewById(
+                        R.id.selection_check
+                );
 
         if (!multiSelectMode) {
-            selectionCheck.setVisibility(View.GONE);
+
+            selectionCheck.setVisibility(
+                    View.GONE
+            );
+
         } else {
-            boolean isSelected = selectedPackages.contains(app.packageName);
-            selectionCheck.setVisibility(isSelected ? View.VISIBLE : View.INVISIBLE);
+
+            boolean isSelected =
+                    selectedPackages.contains(
+                            app.packageName
+                    );
+
+            selectionCheck.setVisibility(
+                    isSelected
+                            ? View.VISIBLE
+                            : View.INVISIBLE
+            );
         }
 
-        LinearLayout apiRow = view.findViewById(R.id.api);
-        if (PrefsManager.getInstance(context).hasApiIndicatorsVisible()) {
-            TextView minApiText = view.findViewById(R.id.min_api);
-            TextView apiSeparator = view.findViewById(R.id.api_separator);
-            TextView targetApiText = view.findViewById(R.id.target_api);
+        LinearLayout apiRow = view.findViewById(
+                        R.id.api
+                );
 
-            apiRow.setVisibility(View.VISIBLE);
-            minApiText.setText(String.valueOf(app.getMinSdkVersion()));
-            targetApiText.setText(String.valueOf(app.getTargetSdkVersion()));
+        if (PrefsManager
+                .getInstance(context)
+                .hasApiIndicatorsVisible()) {
 
-            // A target below the running platform's own level is a real staleness
-            // signal (the app was never updated for newer OS behavior changes) -
-            // highlight it the same way mako does.
-            boolean isOutdatedTarget = app.getTargetSdkVersion() < Build.VERSION.SDK_INT;
-            int apiColor = isOutdatedTarget
-                    ? ThemeManager.currentPalette(context).error
-                    : ThemeManager.currentPalette(context).disabled;
+            TextView minApiText = view.findViewById(
+                            R.id.min_api
+                    );
+
+            TextView apiSeparator = view.findViewById(
+                            R.id.api_separator
+                    );
+
+            TextView targetApiText = view.findViewById(
+                            R.id.target_api
+                    );
+
+            apiRow.setVisibility(
+                    View.VISIBLE
+            );
+
+            minApiText.setText(
+                    String.valueOf(
+                            app.getMinSdkVersion()
+                    )
+            );
+
+            targetApiText.setText(
+                    String.valueOf(
+                            app.getTargetSdkVersion()
+                    )
+            );
+
+            boolean isOutdatedTarget =
+                    app.getTargetSdkVersion()
+                            < Build.VERSION.SDK_INT;
+
+            int apiColor =
+                    isOutdatedTarget
+                            ? ThemeManager
+                            .currentPalette(context)
+                            .error
+                            : ThemeManager
+                            .currentPalette(context)
+                            .disabled;
 
             minApiText.setTextColor(apiColor);
             apiSeparator.setTextColor(apiColor);
             targetApiText.setTextColor(apiColor);
+
         } else {
-            apiRow.setVisibility(View.GONE);
+
+            apiRow.setVisibility(
+                    View.GONE
+            );
         }
 
-        View.OnClickListener launchOrToggle = new View.OnClickListener() {
-            public void onClick(View v) {
-                if (multiSelectMode) {
-                    toggleSelection(app.packageName);
-                } else if (!appsProvider.launch(app)) {
-                    if (listener != null) listener.onAppLaunchFailed();
-                }
-            }
-        };
-        view.setOnClickListener(launchOrToggle);
-        label.setOnClickListener(launchOrToggle);
-        emptySpace.setOnClickListener(launchOrToggle);
+        TextView appSize = view.findViewById(
+                        R.id.app_size
+                );
 
-        View.OnLongClickListener selectOnLongPress = new View.OnLongClickListener() {
-            public boolean onLongClick(View v) {
-                if (multiSelectMode) {
-                    toggleSelection(app.packageName);
-                } else {
-                    enterMultiSelectMode(app.packageName);
-                }
-                return true;
-            }
-        };
-        view.setOnLongClickListener(selectOnLongPress);
-        label.setOnLongClickListener(selectOnLongPress);
+        final long APP_SIZE_WARNING_BYTES =
+                200L * 1024L * 1024L;
 
-        emptySpace.setOnLongClickListener(new View.OnLongClickListener() {
-            public boolean onLongClick(View v) {
-                if (multiSelectMode) {
-                    toggleSelection(app.packageName);
-                } else if (listener != null) {
-                    listener.onOpenSettingsRequested();
+        long sizeBytes =
+                appsProvider.getAppSizeBytes(app);
+
+        appSize.setVisibility(
+                View.VISIBLE
+        );
+
+        appSize.setText(
+                Formatter.formatShortFileSize(
+                        context,
+                        sizeBytes
+                )
+        );
+
+        int sizeColor;
+
+        if (sizeBytes > APP_SIZE_WARNING_BYTES) {
+
+            sizeColor =
+                    ThemeManager
+                            .currentPalette(context)
+                            .error;
+
+        } else {
+
+            sizeColor =
+                    ThemeManager
+                            .currentPalette(context)
+                            .text;
+        }
+
+        appSize.setTextColor(sizeColor);
+
+        View.OnClickListener launchOrToggle =
+                new View.OnClickListener() {
+
+                    public void onClick(View v) {
+
+                        if (multiSelectMode) {
+
+                            toggleSelection(
+                                    app.packageName
+                            );
+
+                        } else if (!appsProvider.launch(app)) {
+
+                            if (listener != null) {
+                                listener.onAppLaunchFailed();
+                            }
+                        }
+                    }
+                };
+
+        view.setOnClickListener(
+                launchOrToggle
+        );
+
+        label.setOnClickListener(
+                launchOrToggle
+        );
+
+        emptySpace.setOnClickListener(
+                launchOrToggle
+        );
+
+        View.OnLongClickListener selectOnLongPress =
+                new View.OnLongClickListener() {
+
+                    public boolean onLongClick(View v) {
+
+                        if (multiSelectMode) {
+
+                            toggleSelection(
+                                    app.packageName
+                            );
+
+                        } else {
+
+                            enterMultiSelectMode(
+                                    app.packageName
+                            );
+                        }
+
+                        return true;
+                    }
+                };
+
+        view.setOnLongClickListener(
+                selectOnLongPress
+        );
+
+        label.setOnLongClickListener(
+                selectOnLongPress
+        );
+
+        emptySpace.setOnLongClickListener(
+                new View.OnLongClickListener() {
+
+                    public boolean onLongClick(View v) {
+
+                        if (multiSelectMode) {
+
+                            toggleSelection(
+                                    app.packageName
+                            );
+
+                        } else if (listener != null) {
+
+                            listener.onOpenSettingsRequested();
+                        }
+
+                        return true;
+                    }
                 }
-                return true;
-            }
-        });
+        );
 
         return view;
     }
