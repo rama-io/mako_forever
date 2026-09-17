@@ -18,6 +18,7 @@ android {
     buildTypes {
         release {
             minifyEnabled true
+            shrinkResources true
             vcsInfo.include = false
 
             signingConfig signingConfigs.getByName('debug')
@@ -27,6 +28,7 @@ android {
             applicationIdSuffix '.beta'
             versionNameSuffix '-beta'
             minifyEnabled true
+            shrinkResources true
 
             signingConfig signingConfigs.getByName('debug')
         }
@@ -67,11 +69,8 @@ android {
 androidComponents {
     onVariants(selector().all()) { variant ->
         variant.outputs.each { output ->
-            output.outputFileName.set(
-                    output.versionName.map { name ->
-                        "mako_zero_${name}.apk"
-                    }
-            )
+            output.outputFileName.set(output.versionName.map { name -> "mako_zero_${name}.apk"
+            })
         }
     }
 }
