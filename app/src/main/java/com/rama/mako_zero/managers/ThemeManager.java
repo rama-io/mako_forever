@@ -1,4 +1,4 @@
-package com.rama.mako_forever.managers;
+package com.rama.mako_zero.managers;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.rama.mako_forever.R;
-import com.rama.mako_forever.objects.Themes;
+import com.rama.mako_zero.R;
+import com.rama.mako_zero.objects.Themes;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.rama.mako_forever.widgets;
+package com.rama.mako_zero.widgets;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -16,9 +16,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.rama.mako_forever.R;
+import com.rama.mako_zero.R;
 
-public class WdRadio extends LinearLayout {
+public class WdCheckbox extends LinearLayout {
 
     private ImageView check;
     private TextView textView;
@@ -27,21 +27,19 @@ public class WdRadio extends LinearLayout {
 
     private OnCheckedChangeListener listener;
 
-    private InternalOnCheckedChangeListener internalListener;
-
-    public WdRadio(Context context) {
+    public WdCheckbox(Context context) {
         super(context);
         init(context, null);
     }
 
-    public WdRadio(Context context, AttributeSet attrs) {
+    public WdCheckbox(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
     private void init(Context context, AttributeSet attrs) {
 
-        inflate(context, R.layout.wd_radio, this);
+        inflate(context, R.layout.wd_checkbox, this);
 
         check = findViewById(R.id.check);
         textView = findViewById(R.id.text);
@@ -93,36 +91,20 @@ public class WdRadio extends LinearLayout {
         if (listener != null) {
             listener.onCheckedChanged(checked);
         }
-
-        if (internalListener != null) {
-            internalListener.onCheckedChanged(this, checked);
-        }
     }
 
-    public void performRadioClick() {
+    public void toggle() {
 
         if (!isEnabled()) {
             return;
         }
 
-        if (!checked) {
-            setChecked(true);
-        }
+        setChecked(!checked);
     }
 
     public void setOnCheckedChangeListener(OnCheckedChangeListener listener) {
 
         this.listener = listener;
-    }
-
-    void setInternalCheckedChangeListener(InternalOnCheckedChangeListener listener) {
-
-        this.internalListener = listener;
-    }
-
-    interface InternalOnCheckedChangeListener {
-
-        void onCheckedChanged(WdRadio radio, boolean checked);
     }
 
     private void updateCheck() {
@@ -139,16 +121,12 @@ public class WdRadio extends LinearLayout {
         textView.setEnabled(enabled);
     }
 
-    public void setTextColor(int color) {
-        textView.setTextColor(color);
-    }
-
     @Override
     public boolean performClick() {
 
         super.performClick();
 
-        performRadioClick();
+        toggle();
 
         return true;
     }
@@ -210,7 +188,7 @@ public class WdRadio extends LinearLayout {
 
         super.onInitializeAccessibilityNodeInfo(info);
 
-        info.setClassName("android.widget.RadioButton");
+        info.setClassName("android.widget.CheckBox");
         info.setCheckable(true);
         info.setChecked(checked);
 
@@ -299,7 +277,6 @@ public class WdRadio extends LinearLayout {
     }
 
     public interface OnCheckedChangeListener {
-
         void onCheckedChanged(boolean isChecked);
     }
 }

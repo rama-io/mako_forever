@@ -1,4 +1,4 @@
-package com.rama.mako_forever.managers;
+package com.rama.mako_zero.managers;
 
 import android.content.ComponentName;
 import android.content.Context;

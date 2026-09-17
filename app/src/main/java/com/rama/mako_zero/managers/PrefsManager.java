@@ -1,9 +1,9 @@
-package com.rama.mako_forever.managers;
+package com.rama.mako_zero.managers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.rama.mako_forever.objects.PrefTheme;
+import com.rama.mako_zero.objects.PrefTheme;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;

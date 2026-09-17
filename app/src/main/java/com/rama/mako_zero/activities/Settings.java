@@ -1,4 +1,4 @@
-package com.rama.mako_forever.activities;
+package com.rama.mako_zero.activities;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -15,16 +15,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rama.mako_forever.R;
-import com.rama.mako_forever.managers.FontManager;
-import com.rama.mako_forever.managers.GroupManager;
-import com.rama.mako_forever.managers.PrefsManager;
-import com.rama.mako_forever.managers.ThemeManager;
-import com.rama.mako_forever.objects.Themes;
-import com.rama.mako_forever.widgets.WdCheckbox;
-import com.rama.mako_forever.widgets.WdCollapsibleSection;
-import com.rama.mako_forever.widgets.WdRadio;
-import com.rama.mako_forever.widgets.WdRadioGroup;
+import com.rama.mako_zero.R;
+import com.rama.mako_zero.managers.FontManager;
+import com.rama.mako_zero.managers.GroupManager;
+import com.rama.mako_zero.managers.PrefsManager;
+import com.rama.mako_zero.managers.ThemeManager;
+import com.rama.mako_zero.objects.Themes;
+import com.rama.mako_zero.widgets.WdCheckbox;
+import com.rama.mako_zero.widgets.WdRadio;
+import com.rama.mako_zero.widgets.WdRadioGroup;
 
 import java.util.ArrayList;
 import java.util.List;

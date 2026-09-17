@@ -1,4 +1,4 @@
-package com.rama.mako_forever.widgets;
+package com.rama.mako_zero.widgets;
 
 import android.content.Context;
 import android.os.Parcel;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.rama.mako_forever.R;
+import com.rama.mako_zero.R;
 
 public class WdRadioGroup extends LinearLayout {
 

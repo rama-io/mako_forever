@@ -1,4 +1,4 @@
-package com.rama.mako_forever.adapters;
+package com.rama.mako_zero.adapters;
 
 import android.content.Context;
 import android.os.Build;
@@ -11,12 +11,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.rama.mako_forever.R;
-import com.rama.mako_forever.managers.AppsProvider;
-import com.rama.mako_forever.managers.FontManager;
-import com.rama.mako_forever.managers.GroupManager;
-import com.rama.mako_forever.managers.PrefsManager;
-import com.rama.mako_forever.managers.ThemeManager;
+import com.rama.mako_zero.R;
+import com.rama.mako_zero.managers.AppsProvider;
+import com.rama.mako_zero.managers.FontManager;
+import com.rama.mako_zero.managers.GroupManager;
+import com.rama.mako_zero.managers.PrefsManager;
+import com.rama.mako_zero.managers.ThemeManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;

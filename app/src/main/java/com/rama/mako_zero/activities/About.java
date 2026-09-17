@@ -1,4 +1,4 @@
-package com.rama.mako_forever.activities;
+package com.rama.mako_zero.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,9 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.rama.mako_forever.R;
-import com.rama.mako_forever.managers.FontManager;
-import com.rama.mako_forever.managers.ThemeManager;
+import com.rama.mako_zero.R;
+import com.rama.mako_zero.managers.FontManager;
+import com.rama.mako_zero.managers.ThemeManager;
 
 public class About extends Activity {
     @Override

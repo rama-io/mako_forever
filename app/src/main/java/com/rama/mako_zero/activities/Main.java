@@ -1,4 +1,4 @@
-package com.rama.mako_forever.activities;
+package com.rama.mako_zero.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,23 +10,22 @@ import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rama.mako_forever.R;
-import com.rama.mako_forever.adapters.AppListAdapter;
-import com.rama.mako_forever.managers.AppsProvider;
-import com.rama.mako_forever.managers.BatteryStatusManager;
-import com.rama.mako_forever.managers.ClockManager;
-import com.rama.mako_forever.managers.FontManager;
-import com.rama.mako_forever.managers.GroupManager;
-import com.rama.mako_forever.managers.PrefsManager;
-import com.rama.mako_forever.managers.ThemeManager;
-import com.rama.mako_forever.widgets.WdRadio;
-import com.rama.mako_forever.widgets.WdRadioGroup;
+import com.rama.mako_zero.R;
+import com.rama.mako_zero.adapters.AppListAdapter;
+import com.rama.mako_zero.managers.AppsProvider;
+import com.rama.mako_zero.managers.BatteryStatusManager;
+import com.rama.mako_zero.managers.ClockManager;
+import com.rama.mako_zero.managers.FontManager;
+import com.rama.mako_zero.managers.GroupManager;
+import com.rama.mako_zero.managers.PrefsManager;
+import com.rama.mako_zero.managers.ThemeManager;
+import com.rama.mako_zero.widgets.WdRadio;
+import com.rama.mako_zero.widgets.WdRadioGroup;
 
 import java.util.List;
 

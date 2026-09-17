@@ -54,35 +54,35 @@
                     style="@style/VerticalList"
                     android:gravity="center_horizontal">
 
-                    <com.rama.mako_forever.widgets.WdLabel
+                    <com.rama.mako_zero.widgets.WdLabel
                         style="@style/BlockFlow"
                         app:icon="@drawable/px_octagon_check"
                         app:text="@string/app_ads_desc" />
 
                     <View style="@style/SeparatorListHorizontal" />
 
-                    <com.rama.mako_forever.widgets.WdLabel
+                    <com.rama.mako_zero.widgets.WdLabel
                         style="@style/BlockFlow"
                         app:icon="@drawable/px_octagon_check"
                         app:text="@string/app_background_tasks_desc" />
 
                     <View style="@style/SeparatorListHorizontal" />
 
-                    <com.rama.mako_forever.widgets.WdLabel
+                    <com.rama.mako_zero.widgets.WdLabel
                         style="@style/BlockFlow"
                         app:icon="@drawable/px_octagon_check"
                         app:text="@string/app_trackers_desc" />
 
                     <View style="@style/SeparatorListHorizontal" />
 
-                    <com.rama.mako_forever.widgets.WdLabel
+                    <com.rama.mako_zero.widgets.WdLabel
                         style="@style/BlockFlow"
                         app:icon="@drawable/px_octagon_check"
                         app:text="@string/app_offline_desc" />
 
                     <View style="@style/SeparatorListHorizontal" />
 
-                    <com.rama.mako_forever.widgets.WdLabel
+                    <com.rama.mako_zero.widgets.WdLabel
                         style="@style/BlockFlow"
                         app:icon="@drawable/px_octagon_check"
                         app:text="@string/license_gpl3" />

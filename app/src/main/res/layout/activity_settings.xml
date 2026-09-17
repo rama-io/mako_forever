@@ -30,7 +30,7 @@
 
             <View style="@style/SeparatorListVertical" />
 
-            <com.rama.mako_forever.widgets.WdCollapsibleSection
+            <com.rama.mako_zero.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:defaultExpanded="true"
@@ -58,7 +58,7 @@
 
                 <View style="@style/SeparatorListVertical" />
 
-                <com.rama.mako_forever.widgets.WdCheckbox
+                <com.rama.mako_zero.widgets.WdCheckbox
                     android:id="@+id/prevent_home_screen_rotation"
                     style="@style/Checkbox"
                     android:text="Prevent screen rotation" />
@@ -75,25 +75,25 @@
                 <!--                        style="@style/BlockFlow" />-->
 
                 <!--                </LinearLayout>-->
-            </com.rama.mako_forever.widgets.WdCollapsibleSection>
+            </com.rama.mako_zero.widgets.WdCollapsibleSection>
 
             <View style="@style/SeparatorListVertical" />
 
-            <com.rama.mako_forever.widgets.WdCollapsibleSection
+            <com.rama.mako_zero.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:defaultExpanded="true"
                 app:header="Groups"
                 app:key="settings:section:groups">
 
-                <com.rama.mako_forever.widgets.WdCheckbox
+                <com.rama.mako_zero.widgets.WdCheckbox
                     android:id="@+id/collapse_groups_on_home"
                     style="@style/Checkbox"
                     android:text="Collapse groups when returning home" />
 
                 <View style="@style/SeparatorListVertical" />
 
-                <com.rama.mako_forever.widgets.WdCheckbox
+                <com.rama.mako_zero.widgets.WdCheckbox
                     android:id="@+id/only_one_group_open"
                     style="@style/Checkbox"
                     android:text="Auto-collapse other groups" />
@@ -112,13 +112,13 @@
                     style="@style/BTN2"
                     android:text="+ ADD GROUP" />
 
-            </com.rama.mako_forever.widgets.WdCollapsibleSection>
+            </com.rama.mako_zero.widgets.WdCollapsibleSection>
 
             <View
                 android:id="@+id/themes_separator"
                 style="@style/SeparatorListVertical" />
 
-            <com.rama.mako_forever.widgets.WdCollapsibleSection
+            <com.rama.mako_zero.widgets.WdCollapsibleSection
                 android:id="@+id/themes_section"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -126,30 +126,30 @@
                 app:header="Themes"
                 app:key="settings:section:appearance">
 
-                <com.rama.mako_forever.widgets.WdRadioGroup
+                <com.rama.mako_zero.widgets.WdRadioGroup
                     android:id="@+id/theme_group"
                     style="@style/VerticalListDivided_BG2" />
-            </com.rama.mako_forever.widgets.WdCollapsibleSection>
+            </com.rama.mako_zero.widgets.WdCollapsibleSection>
 
             <View style="@style/SeparatorListVertical" />
 
-            <com.rama.mako_forever.widgets.WdCollapsibleSection
+            <com.rama.mako_zero.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:defaultExpanded="true"
                 app:header="Applications"
                 app:key="settings:section:apps">
 
-                <com.rama.mako_forever.widgets.WdCheckbox
+                <com.rama.mako_zero.widgets.WdCheckbox
                     android:id="@+id/show_api_indicators"
                     style="@style/Checkbox"
                     android:text="Show min/target API levels" />
 
-                <com.rama.mako_forever.widgets.WdCheckbox
+                <com.rama.mako_zero.widgets.WdCheckbox
                     android:id="@+id/show_app_size"
                     style="@style/Checkbox"
                     android:text="Show app size" />
-            </com.rama.mako_forever.widgets.WdCollapsibleSection>
+            </com.rama.mako_zero.widgets.WdCollapsibleSection>
         </LinearLayout>
     </ScrollView>
 

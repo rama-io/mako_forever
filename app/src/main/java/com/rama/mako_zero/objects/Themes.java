@@ -1,4 +1,4 @@
-package com.rama.mako_forever.objects;
+package com.rama.mako_zero.objects;
 
 import java.util.ArrayList;
 import java.util.List;
