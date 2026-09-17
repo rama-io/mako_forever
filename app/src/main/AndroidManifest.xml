@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_HIDDEN_PROFILES" />
 
-    <!-- PREVENT THIS PERMISSIONS TO EVER BE ADDED -->
+    <!-- PREVENT THESE PERMISSIONS TO EVER BE ADDED -->
     <uses-permission
         android:name="android.permission.INTERNET"
         tools:node="remove" />
@@ -83,7 +83,7 @@
     <uses-permission
         android:name="android.permission.BLUETOOTH_ADVERTISE"
         tools:node="remove" />
-    <!-- PREVENT THIS PERMISSIONS TO EVER BE ADDED -->
+    <!-- PREVENT THESE PERMISSIONS TO EVER BE ADDED -->
 
     <queries>
         <intent>
@@ -98,29 +98,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mako">
-
-        <!--        <receiver-->
-        <!--            android:name=".receivers.AppUninstallReceiver"-->
-        <!--            android:exported="true">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="android.intent.action.PACKAGE_REMOVED" />-->
-        <!--                <action android:name="android.intent.action.PACKAGE_FULLY_REMOVED" />-->
-
-        <!--                <data android:scheme="package" />-->
-        <!--            </intent-filter>-->
-        <!--        </receiver>-->
-
-        <!--        <activity-->
-        <!--            android:name=".activities.ConfirmPinShortcutActivity"-->
-        <!--            android:autoRemoveFromRecents="true"-->
-        <!--            android:excludeFromRecents="true"-->
-        <!--            android:exported="true"-->
-        <!--            android:taskAffinity=""-->
-        <!--            android:theme="@android:style/Theme.DeviceDefault.Dialog">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="android.content.pm.action.CONFIRM_PIN_SHORTCUT" />-->
-        <!--            </intent-filter>-->
-        <!--        </activity>-->
 
         <activity
             android:name=".activities.About"
