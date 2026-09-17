@@ -3,8 +3,10 @@ package com.rama.mako_forever.managers;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.os.Build;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +17,24 @@ public class AppsProvider {
         public final String packageName;
         public final String activityName;
         public final String label;
+        private final ApplicationInfo applicationInfo;
 
         AppEntry(String packageName, String activityName, String label, ResolveInfo resolveInfo) {
             this.packageName = packageName;
             this.activityName = activityName;
             this.label = label;
+            this.applicationInfo = resolveInfo.activityInfo.applicationInfo;
+        }
+
+        public int getMinSdkVersion() {
+            if (Build.VERSION.SDK_INT >= 24) {
+                return applicationInfo.minSdkVersion;
+            }
+            return 0;
+        }
+
+        public int getTargetSdkVersion() {
+            return applicationInfo.targetSdkVersion;
         }
     }
 

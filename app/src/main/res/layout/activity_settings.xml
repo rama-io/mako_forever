@@ -61,6 +61,11 @@
                     android:text="Prevent screen rotation"
                     style="@style/Checkbox" />
 
+                <com.rama.mako_forever.widgets.WdCheckbox
+                    android:id="@+id/show_api_indicators"
+                    android:text="Show min/target API levels"
+                    style="@style/Checkbox" />
+
 <!--                <LinearLayout style="@style/VerticalListDivided_BG2">-->
 
 <!--                    <TextView-->

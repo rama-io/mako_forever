@@ -1,17 +1,21 @@
 package com.rama.mako_forever.adapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rama.mako_forever.R;
 import com.rama.mako_forever.managers.AppsProvider;
 import com.rama.mako_forever.managers.FontManager;
 import com.rama.mako_forever.managers.GroupManager;
+import com.rama.mako_forever.managers.PrefsManager;
+import com.rama.mako_forever.managers.ThemeManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -243,6 +247,31 @@ public class AppListAdapter extends BaseAdapter {
         } else {
             boolean isSelected = selectedPackages.contains(app.packageName);
             selectionCheck.setVisibility(isSelected ? View.VISIBLE : View.INVISIBLE);
+        }
+
+        LinearLayout apiRow = view.findViewById(R.id.api);
+        if (PrefsManager.getInstance(context).hasApiIndicatorsVisible()) {
+            TextView minApiText = view.findViewById(R.id.min_api);
+            TextView apiSeparator = view.findViewById(R.id.api_separator);
+            TextView targetApiText = view.findViewById(R.id.target_api);
+
+            apiRow.setVisibility(View.VISIBLE);
+            minApiText.setText(String.valueOf(app.getMinSdkVersion()));
+            targetApiText.setText(String.valueOf(app.getTargetSdkVersion()));
+
+            // A target below the running platform's own level is a real staleness
+            // signal (the app was never updated for newer OS behavior changes) -
+            // highlight it the same way mako does.
+            boolean isOutdatedTarget = app.getTargetSdkVersion() < Build.VERSION.SDK_INT;
+            int apiColor = isOutdatedTarget
+                    ? ThemeManager.currentPalette(context).error
+                    : ThemeManager.currentPalette(context).disabled;
+
+            minApiText.setTextColor(apiColor);
+            apiSeparator.setTextColor(apiColor);
+            targetApiText.setTextColor(apiColor);
+        } else {
+            apiRow.setVisibility(View.GONE);
         }
 
         View.OnClickListener launchOrToggle = new View.OnClickListener() {

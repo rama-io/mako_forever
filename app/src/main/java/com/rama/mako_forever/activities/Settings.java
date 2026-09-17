@@ -108,6 +108,16 @@ public class Settings extends Activity {
                         .setBoolean(Main.PREF_PREVENT_ROTATION, isChecked);
             }
         });
+
+        final WdCheckbox showApiIndicators = findViewById(R.id.show_api_indicators);
+        showApiIndicators.setChecked(
+                PrefsManager.getInstance(this).hasApiIndicatorsVisible()
+        );
+        showApiIndicators.setOnCheckedChangeListener(new WdCheckbox.OnCheckedChangeListener() {
+            public void onCheckedChanged(boolean isChecked) {
+                PrefsManager.getInstance(Settings.this).setApiIndicatorsVisible(isChecked);
+            }
+        });
     }
 
     private void setLauncherAsDefault() {
