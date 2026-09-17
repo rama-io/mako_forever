@@ -5,8 +5,8 @@
 
     <FrameLayout
         android:id="@+id/radio"
-        android:layout_width="24sp"
-        android:layout_height="24sp"
+        android:layout_width="18sp"
+        android:layout_height="18sp"
         android:padding="3sp"
         android:background="@drawable/px_circle">
 
