@@ -25,6 +25,6 @@
 
     <Button
         android:id="@+id/close_button"
-        style="@style/BTN1"
+        style="@style/BTN"
         android:text="CANCEL" />
 </LinearLayout>

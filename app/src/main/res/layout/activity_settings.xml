@@ -180,6 +180,6 @@
 
     <Button
         android:id="@+id/go_back"
-        style="@style/BTN1"
+        style="@style/BTN"
         android:text="GO BACK" />
 </LinearLayout>

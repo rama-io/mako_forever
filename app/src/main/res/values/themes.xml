@@ -103,13 +103,8 @@
         <item name="android:padding">16dp</item>
         <item name="android:textColor">@color/base</item>
         <item name="android:textSize">@dimen/text</item>
-        <!--        <item name="android:textAllCaps">true</item>-->
-    </style>
-
-    <style name="BTN1" parent="BTN">
         <item name="android:background">@color/accent</item>
     </style>
-
     <style name="BTN_danger" parent="BTN">
         <item name="android:background">@color/error</item>
     </style>
