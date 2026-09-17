@@ -1,11 +1,14 @@
 package com.rama.mako_zero.managers;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -49,6 +52,10 @@ public final class ThemeManager {
 
     private static void applyToView(View view, Themes.Palette palette, Map<Integer, Integer> map) {
 
+        if (view instanceof AbsListView) {
+            ((AbsListView) view).setSelector(buildSelector(palette));
+        }
+
         if (view instanceof TextView) {
             TextView textView = (TextView) view;
 
@@ -79,6 +86,24 @@ public final class ThemeManager {
         } else if (background != null) {
             background.mutate().setColorFilter(palette.text, PorterDuff.Mode.SRC_IN);
         }
+    }
+
+    private static Drawable buildSelector(Themes.Palette palette) {
+        int highlight = withAlpha(palette.accent, 110);
+
+        StateListDrawable selector = new StateListDrawable();
+        selector.addState(new int[]{android.R.attr.state_pressed}, new ColorDrawable(highlight));
+
+//        if (android.os.Build.VERSION.SDK_INT >= 14) {
+            selector.addState(new int[]{android.R.attr.state_focused}, new ColorDrawable(highlight));
+//        }
+
+        selector.addState(new int[]{}, new ColorDrawable(Color.TRANSPARENT));
+        return selector;
+    }
+
+    private static int withAlpha(int color, int alpha) {
+        return (color & 0x00FFFFFF) | (alpha << 24);
     }
 
     @SuppressWarnings("deprecation")
