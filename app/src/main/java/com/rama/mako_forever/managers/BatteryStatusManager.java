@@ -10,8 +10,7 @@ import java.util.Locale;
 
 public class BatteryStatusManager {
 
-    private static final String FAHRENHEIT_COUNTRIES =
-            ",US,BS,BZ,KY,PW,";
+    private static final String FAHRENHEIT_COUNTRIES = ",US,BS,BZ,KY,PW,";
 
     private final Context context;
     private final TextView view;

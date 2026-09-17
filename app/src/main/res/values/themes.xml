@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="Theme.Mako" parent="@android:style/Theme.Black.NoTitleBar">
         <item name="android:windowBackground">@color/base</item>
         <item name="android:textColor">@color/text</item>
@@ -102,7 +103,7 @@
         <item name="android:padding">16dp</item>
         <item name="android:textColor">@color/base</item>
         <item name="android:textSize">@dimen/text</item>
-<!--        <item name="android:textAllCaps">true</item>-->
+        <!--        <item name="android:textAllCaps">true</item>-->
     </style>
 
     <style name="BTN1" parent="BTN">
@@ -130,7 +131,7 @@
         <item name="android:textSize">@dimen/small</item>
         <item name="android:background">@color/accent_2</item>
         <item name="android:textColor">@color/base</item>
-<!--        <item name="android:textAllCaps">true</item>-->
+        <!--        <item name="android:textAllCaps">true</item>-->
         <item name="android:gravity">center</item>
     </style>
 

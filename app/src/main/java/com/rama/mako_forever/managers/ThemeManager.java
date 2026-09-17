@@ -20,7 +20,8 @@ import java.util.Map;
 
 public final class ThemeManager {
 
-    private ThemeManager() {}
+    private ThemeManager() {
+    }
 
     public static Themes.Palette paletteFor(String themeId) {
         return Themes.byId(themeId);
@@ -46,10 +47,7 @@ public final class ThemeManager {
         }
     }
 
-    private static void applyToView(
-            View view,
-            Themes.Palette palette,
-            Map<Integer, Integer> map) {
+    private static void applyToView(View view, Themes.Palette palette, Map<Integer, Integer> map) {
 
         if (view instanceof TextView) {
             TextView textView = (TextView) view;
@@ -66,10 +64,7 @@ public final class ThemeManager {
         }
 
         if (view instanceof ImageView) {
-            ((ImageView) view).setColorFilter(
-                    palette.text,
-                    PorterDuff.Mode.SRC_IN
-            );
+            ((ImageView) view).setColorFilter(palette.text, PorterDuff.Mode.SRC_IN);
         }
 
         Drawable background = view.getBackground();
@@ -86,7 +81,14 @@ public final class ThemeManager {
         }
     }
 
-    @SuppressWarnings("deprecation") private static int getColorDrawableColor(ColorDrawable drawable) { try { return (Integer) ColorDrawable.class .getMethod("getColor") .invoke(drawable); } catch (Exception e) { return Integer.MIN_VALUE; } }
+    @SuppressWarnings("deprecation")
+    private static int getColorDrawableColor(ColorDrawable drawable) {
+        try {
+            return (Integer) ColorDrawable.class.getMethod("getColor").invoke(drawable);
+        } catch (Exception e) {
+            return Integer.MIN_VALUE;
+        }
+    }
 
     private static Map<Integer, Integer> buildColorMap(Context context, Themes.Palette target) {
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();

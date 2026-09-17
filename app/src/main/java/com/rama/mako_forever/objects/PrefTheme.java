@@ -2,7 +2,8 @@ package com.rama.mako_forever.objects;
 
 public final class PrefTheme {
 
-    private PrefTheme() {}
+    private PrefTheme() {
+    }
 
     public static final String RAMA = "rama";
     public static final String TEYIN = "teyin";

@@ -37,11 +37,7 @@ public class WdCollapsibleSection extends LinearLayout {
 
         setOrientation(VERTICAL);
 
-        LayoutInflater.from(context).inflate(
-                R.layout.wd_collapsible_section,
-                this,
-                true
-        );
+        LayoutInflater.from(context).inflate(R.layout.wd_collapsible_section, this, true);
 
         header = findViewById(R.id.section_header);
         indicator = findViewById(R.id.section_indicator);
@@ -50,14 +46,9 @@ public class WdCollapsibleSection extends LinearLayout {
         contentSeparator = findViewById(R.id.section_content_separator);
 
         if (attrs != null) {
-            TypedArray ta = context.obtainStyledAttributes(
-                    attrs,
-                    R.styleable.WdCollapsibleSection
-            );
+            TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.WdCollapsibleSection);
 
-            String headerText = ta.getString(
-                    R.styleable.WdCollapsibleSection_header
-            );
+            String headerText = ta.getString(R.styleable.WdCollapsibleSection_header);
 
             if (headerText == null) {
                 headerText = "";
@@ -65,14 +56,9 @@ public class WdCollapsibleSection extends LinearLayout {
 
             labelView.setText(headerText);
 
-            key = ta.getString(
-                    R.styleable.WdCollapsibleSection_key
-            );
+            key = ta.getString(R.styleable.WdCollapsibleSection_key);
 
-            defaultExpanded = ta.getBoolean(
-                    R.styleable.WdCollapsibleSection_defaultExpanded,
-                    true
-            );
+            defaultExpanded = ta.getBoolean(R.styleable.WdCollapsibleSection_defaultExpanded, true);
 
             ta.recycle();
         }
@@ -82,9 +68,7 @@ public class WdCollapsibleSection extends LinearLayout {
         header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                v.performHapticFeedback(
-                        HapticFeedbackConstants.KEYBOARD_TAP
-                );
+                v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
 
                 boolean next = !isExpanded();
 
@@ -98,18 +82,10 @@ public class WdCollapsibleSection extends LinearLayout {
 
         header.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            public boolean onKey(
-                    View v,
-                    int keyCode,
-                    KeyEvent event
-            ) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN
-                        && (keyCode == KeyEvent.KEYCODE_ENTER
-                        || keyCode == KeyEvent.KEYCODE_DPAD_CENTER)) {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN && (keyCode == KeyEvent.KEYCODE_ENTER || keyCode == KeyEvent.KEYCODE_DPAD_CENTER)) {
 
-                    v.performHapticFeedback(
-                            HapticFeedbackConstants.KEYBOARD_TAP
-                    );
+                    v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
 
                     boolean next = !isExpanded();
 
@@ -156,15 +132,11 @@ public class WdCollapsibleSection extends LinearLayout {
         if (expanded) {
             content.setVisibility(View.VISIBLE);
             contentSeparator.setVisibility(View.VISIBLE);
-            indicator.setText(
-                    R.string.settings_section_collapse_indicator
-            );
+            indicator.setText(R.string.settings_section_collapse_indicator);
         } else {
             content.setVisibility(View.GONE);
             contentSeparator.setVisibility(View.GONE);
-            indicator.setText(
-                    R.string.settings_section_expand_indicator
-            );
+            indicator.setText(R.string.settings_section_expand_indicator);
         }
     }
 

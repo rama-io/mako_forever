@@ -2,166 +2,168 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
+    style="@style/VerticalList"
     android:layout_height="match_parent"
     android:paddingLeft="20dp"
-    android:paddingRight="20dp"
     android:paddingTop="32dp"
-    android:paddingBottom="32dp"
-    style="@style/VerticalList">
+    android:paddingRight="20dp"
+    android:paddingBottom="32dp">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:fillViewport="true"
         android:background="@android:color/transparent"
         android:cacheColorHint="@android:color/transparent"
-        android:overScrollMode="never"
         android:fadingEdge="none"
+        android:fillViewport="true"
+        android:overScrollMode="never"
         android:scrollbars="none">
+
         <LinearLayout style="@style/VerticalList">
+
             <TextView
+                style="@style/H2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Settings"
-                style="@style/H2" />
+                android:text="Settings" />
 
-            <View
-                style="@style/SeparatorListVertical"/>
+            <View style="@style/SeparatorListVertical" />
 
             <com.rama.mako_forever.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:key="settings:section:system"
+                app:defaultExpanded="true"
                 app:header="System"
-                app:defaultExpanded="true">
+                app:key="settings:section:system">
 
                 <Button
                     android:id="@+id/activate_button"
-                    android:text="SET LANCHER AS DEFAULT"
-                    style="@style/BTN2" />
+                    style="@style/BTN2"
+                    android:text="SET LANCHER AS DEFAULT" />
 
-                <View style="@style/SeparatorListVertical"/>
+                <View style="@style/SeparatorListVertical" />
 
                 <Button
                     android:id="@+id/reset_button"
-                    android:text="REFRESH LAUNCHER"
-                    style="@style/BTN2" />
+                    style="@style/BTN2"
+                    android:text="REFRESH LAUNCHER" />
 
-                <View style="@style/SeparatorListVertical"/>
+                <View style="@style/SeparatorListVertical" />
 
                 <Button
                     android:id="@+id/change_apps_button"
-                    android:text="EDIT APPS"
-                    style="@style/BTN2" />
+                    style="@style/BTN2"
+                    android:text="EDIT APPS" />
 
-                <View style="@style/SeparatorListVertical"/>
+                <View style="@style/SeparatorListVertical" />
 
                 <com.rama.mako_forever.widgets.WdCheckbox
                     android:id="@+id/prevent_home_screen_rotation"
-                    android:text="Prevent screen rotation"
-                    style="@style/Checkbox" />
+                    style="@style/Checkbox"
+                    android:text="Prevent screen rotation" />
 
-<!--                <LinearLayout style="@style/VerticalListDivided_BG2">-->
+                <!--                <LinearLayout style="@style/VerticalListDivided_BG2">-->
 
-<!--                    <TextView-->
-<!--                        android:text="@string/label_zoom"-->
-<!--                        style="@style/Text" />-->
+                <!--                    <TextView-->
+                <!--                        android:text="@string/label_zoom"-->
+                <!--                        style="@style/Text" />-->
 
-<!--                    <com.rama.bohio.widgets.WdRange-->
-<!--                        android:id="@+id/zoom"-->
-<!--                        app:valuesArray="@array/ui_scale_steps"-->
-<!--                        style="@style/BlockFlow" />-->
+                <!--                    <com.rama.bohio.widgets.WdRange-->
+                <!--                        android:id="@+id/zoom"-->
+                <!--                        app:valuesArray="@array/ui_scale_steps"-->
+                <!--                        style="@style/BlockFlow" />-->
 
-<!--                </LinearLayout>-->
+                <!--                </LinearLayout>-->
             </com.rama.mako_forever.widgets.WdCollapsibleSection>
 
-            <View
-                style="@style/SeparatorListVertical"/>
+            <View style="@style/SeparatorListVertical" />
 
             <com.rama.mako_forever.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:key="settings:section:groups"
+                app:defaultExpanded="true"
                 app:header="Groups"
-                app:defaultExpanded="true">
+                app:key="settings:section:groups">
 
                 <com.rama.mako_forever.widgets.WdCheckbox
                     android:id="@+id/collapse_groups_on_home"
-                    android:text="Collapse groups when returning home"
-                    style="@style/Checkbox" />
+                    style="@style/Checkbox"
+                    android:text="Collapse groups when returning home" />
 
-                <View style="@style/SeparatorListVertical"/>
+                <View style="@style/SeparatorListVertical" />
 
                 <com.rama.mako_forever.widgets.WdCheckbox
                     android:id="@+id/only_one_group_open"
-                    android:text="Auto-collapse other groups"
-                    style="@style/Checkbox" />
+                    style="@style/Checkbox"
+                    android:text="Auto-collapse other groups" />
 
-                <View style="@style/Separator"/>
+                <View style="@style/Separator" />
 
                 <LinearLayout
                     android:id="@+id/groups_container"
-                    android:focusableInTouchMode="true"
-                    style="@style/VerticalListDivided_BG2" />
+                    style="@style/VerticalListDivided_BG2"
+                    android:focusableInTouchMode="true" />
 
-                <View style="@style/SeparatorListVertical"/>
+                <View style="@style/SeparatorListVertical" />
 
                 <Button
                     android:id="@+id/add_group_button"
-                    android:text="+ ADD GROUP"
-                    style="@style/BTN2" />
+                    style="@style/BTN2"
+                    android:text="+ ADD GROUP" />
 
             </com.rama.mako_forever.widgets.WdCollapsibleSection>
 
             <View
                 android:id="@+id/themes_separator"
-                style="@style/SeparatorListVertical"/>
+                style="@style/SeparatorListVertical" />
 
             <com.rama.mako_forever.widgets.WdCollapsibleSection
                 android:id="@+id/themes_section"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:key="settings:section:appearance"
+                app:defaultExpanded="false"
                 app:header="Themes"
-                app:defaultExpanded="false">
+                app:key="settings:section:appearance">
 
                 <com.rama.mako_forever.widgets.WdRadioGroup
                     android:id="@+id/theme_group"
                     style="@style/VerticalListDivided_BG2" />
             </com.rama.mako_forever.widgets.WdCollapsibleSection>
 
-            <View style="@style/SeparatorListVertical"/>
+            <View style="@style/SeparatorListVertical" />
 
             <com.rama.mako_forever.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:key="settings:section:apps"
+                app:defaultExpanded="true"
                 app:header="Applications"
-                app:defaultExpanded="true">
+                app:key="settings:section:apps">
+
                 <com.rama.mako_forever.widgets.WdCheckbox
                     android:id="@+id/show_api_indicators"
-                    android:text="Show min/target API levels"
-                    style="@style/Checkbox" />
+                    style="@style/Checkbox"
+                    android:text="Show min/target API levels" />
 
                 <com.rama.mako_forever.widgets.WdCheckbox
                     android:id="@+id/show_app_size"
-                    android:text="Show app size"
-                    style="@style/Checkbox" />
+                    style="@style/Checkbox"
+                    android:text="Show app size" />
             </com.rama.mako_forever.widgets.WdCollapsibleSection>
         </LinearLayout>
     </ScrollView>
-    <View
-        style="@style/Separator"/>
+
+    <View style="@style/Separator" />
+
     <Button
         android:id="@+id/go_about"
-        android:text="ABOUT"
         style="@style/BTN2"
-    />
-    <View
-        style="@style/SeparatorListVertical"/>
+        android:text="ABOUT" />
+
+    <View style="@style/SeparatorListVertical" />
+
     <Button
         android:id="@+id/go_back"
-        android:text="GO BACK"
         style="@style/BTN1"
-        />
+        android:text="GO BACK" />
 </LinearLayout>

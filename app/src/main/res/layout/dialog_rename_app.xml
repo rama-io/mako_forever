@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="16sp"
+    style="@style/VerticalList"
     android:background="@color/base"
     android:focusableInTouchMode="true"
-    style="@style/VerticalList">
+    android:padding="16sp">
 
     <TextView
-        android:text="Rename App"
-        style="@style/H2_center" />
+        style="@style/H2_center"
+        android:text="Rename App" />
 
-     <View style="@style/SeparatorListVertical"/>
+    <View style="@style/SeparatorListVertical" />
 
     <LinearLayout style="@style/HorizontalList_BG2">
 
         <EditText
             android:id="@+id/edit_text"
+            style="@style/EditText"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:focusableInTouchMode="true"
-            style="@style/EditText" />
+            android:focusableInTouchMode="true" />
 
         <FrameLayout
             android:id="@+id/yes_button"
@@ -28,22 +28,22 @@
             android:padding="12sp">
 
             <ImageView
-                android:src="@drawable/px_disk"
-                style="@style/Icon24" />
+                style="@style/Icon24"
+                android:src="@drawable/px_disk" />
         </FrameLayout>
     </LinearLayout>
 
-     <View style="@style/SeparatorListVertical"/>
+    <View style="@style/SeparatorListVertical" />
 
     <Button
         android:id="@+id/reset_button"
-        android:text="RESET"
-        style="@style/BTN_danger" />
+        style="@style/BTN_danger"
+        android:text="RESET" />
 
-     <View style="@style/SeparatorListVertical"/>
+    <View style="@style/SeparatorListVertical" />
 
     <Button
         android:id="@+id/no_button"
-        android:text="CANCEL"
-        style="@style/BTN1" />
+        style="@style/BTN1"
+        android:text="CANCEL" />
 </LinearLayout>

@@ -3,32 +3,32 @@
 
     <LinearLayout
         android:id="@+id/root"
-        android:padding="8dp"
+        style="@style/HorizontalList"
         android:background="@color/surface_0"
-        style="@style/HorizontalList">
+        android:padding="8dp">
 
         <FrameLayout
             android:id="@+id/icon_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:background="@color/surface_1">
+            android:background="@color/surface_1"
+            android:padding="12dp">
 
             <ImageView
                 android:id="@+id/icon_image"
+                style="@style/Icon24"
                 android:contentDescription="@null"
-                android:tint="@color/accent"
-                style="@style/Icon24" />
+                android:tint="@color/accent" />
         </FrameLayout>
 
-        <View style="@style/SeparatorListHorizontal"/>
+        <View style="@style/SeparatorListHorizontal" />
 
         <TextView
             android:id="@+id/icon_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@color/text" />
+            android:textColor="@color/text"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </merge>

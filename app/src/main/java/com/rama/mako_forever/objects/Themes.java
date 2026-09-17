@@ -49,11 +49,10 @@ public final class Themes {
         }
     }
 
-    private Themes() {}
+    private Themes() {
+    }
 
-    public static final Palette RAMA = new Palette(
-            PrefTheme.RAMA, "Rama",
-            0xFFCBDECD, // text
+    public static final Palette RAMA = new Palette(PrefTheme.RAMA, "Rama", 0xFFCBDECD, // text
             0xFF0E190E, // base
             0xFF31362F, // surface_0
             0xFF44523D, // surface_1
@@ -72,9 +71,7 @@ public final class Themes {
             0xFF7CCF8E // link
     );
 
-    public static final Palette TEYIN = new Palette(
-            PrefTheme.TEYIN, "Teyin",
-            0xFFEAE6DF, // text
+    public static final Palette TEYIN = new Palette(PrefTheme.TEYIN, "Teyin", 0xFFEAE6DF, // text
             0xFF0E181A, // base
             0xFF1E383D, // surface_0
             0xFF28484D, // surface_1
@@ -93,9 +90,7 @@ public final class Themes {
             0xFF6A9FCF // link
     );
 
-    public static final Palette MAKO = new Palette(
-            PrefTheme.MAKO, "Mako",
-            0xFFCCCCCC, // text
+    public static final Palette MAKO = new Palette(PrefTheme.MAKO, "Mako", 0xFFCCCCCC, // text
             0xFF141417, // base
             0xFF24313B, // surface_0
             0xFF2E324D, // surface_1
@@ -114,9 +109,7 @@ public final class Themes {
             0xFF71ACC7 // link
     );
 
-    public static final Palette MELANGE = new Palette(
-            PrefTheme.MELANGE, "Melange Dark",
-            0xFFECE1D7, // text
+    public static final Palette MELANGE = new Palette(PrefTheme.MELANGE, "Melange Dark", 0xFFECE1D7, // text
             0xFF161413, // base
             0xFF322B24, // surface_0
             0xFF4D463E, // surface_1
@@ -135,9 +128,7 @@ public final class Themes {
             0xFF8CBBA3 // link
     );
 
-    public static final Palette CATPPUCCIN_MOCHA = new Palette(
-            PrefTheme.CATPPUCCIN_MOCHA, "Catppuccin Mocha",
-            0xFFCDD6F4, // text
+    public static final Palette CATPPUCCIN_MOCHA = new Palette(PrefTheme.CATPPUCCIN_MOCHA, "Catppuccin Mocha", 0xFFCDD6F4, // text
             0xFF1E1E2E, // base
             0xFF45475A, // surface_0
             0xFF585B70, // surface_1
@@ -156,9 +147,7 @@ public final class Themes {
             0xFF89DCEB // link
     );
 
-    public static final Palette CATPPUCCIN_LATTE = new Palette(
-            PrefTheme.CATPPUCCIN_LATTE, "Catppuccin Latte",
-            0xFF4C4F69, // text
+    public static final Palette CATPPUCCIN_LATTE = new Palette(PrefTheme.CATPPUCCIN_LATTE, "Catppuccin Latte", 0xFF4C4F69, // text
             0xFFEFF1F5, // base
             0xFFBCC0CC, // surface_0
             0xFFBCC0CD, // surface_1
@@ -177,9 +166,7 @@ public final class Themes {
             0xFF04A5E5 // link
     );
 
-    public static final Palette DRACULA = new Palette(
-            PrefTheme.DRACULA, "Dracula",
-            0xFFF8F8F2, // text
+    public static final Palette DRACULA = new Palette(PrefTheme.DRACULA, "Dracula", 0xFFF8F8F2, // text
             0xFF282A36, // base
             0xFF424450, // surface_0
             0xFF4F5163, // surface_1
@@ -198,9 +185,7 @@ public final class Themes {
             0xFF8BE9FB // link
     );
 
-    public static final Palette TOKYO_NIGHT = new Palette(
-            PrefTheme.TOKYO_NIGHT, "Tokyo Night",
-            0xFFC0CAF5, // text
+    public static final Palette TOKYO_NIGHT = new Palette(PrefTheme.TOKYO_NIGHT, "Tokyo Night", 0xFFC0CAF5, // text
             0xFF1A1B26, // base
             0xFF292E42, // surface_0
             0xFF2E324D, // surface_1
@@ -219,9 +204,7 @@ public final class Themes {
             0xFF73DACA // link
     );
 
-    public static final Palette MONO_DARK = new Palette(
-            PrefTheme.MONO_DARK, "Mono Dark",
-            0xFFFFFFF9, // text
+    public static final Palette MONO_DARK = new Palette(PrefTheme.MONO_DARK, "Mono Dark", 0xFFFFFFF9, // text
             0xFF040100, // base
             0xFF040101, // surface_0
             0xFF040200, // surface_1
@@ -240,9 +223,7 @@ public final class Themes {
             0xFFFFFAFA // link
     );
 
-    public static final Palette MONO_LIGHT = new Palette(
-            PrefTheme.MONO_LIGHT, "Mono Light",
-            0xFF000040, // text
+    public static final Palette MONO_LIGHT = new Palette(PrefTheme.MONO_LIGHT, "Mono Light", 0xFF000040, // text
             0xFFFFFFFF, // base
             0xFFFFFEFF, // surface_0
             0xFFFEFFFF, // surface_1

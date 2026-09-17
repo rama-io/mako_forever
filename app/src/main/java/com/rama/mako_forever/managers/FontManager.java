@@ -13,10 +13,7 @@ public class FontManager {
     public static Typeface getJersey25(Context context) {
         if (jersey25 == null) {
             try {
-                jersey25 = Typeface.createFromAsset(
-                        context.getApplicationContext().getAssets(),
-                        "fonts/jersey25_regular.otf"
-                );
+                jersey25 = Typeface.createFromAsset(context.getApplicationContext().getAssets(), "fonts/jersey25_regular.otf");
             } catch (Exception e) {
                 jersey25 = Typeface.DEFAULT;
             }

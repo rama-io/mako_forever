@@ -21,11 +21,7 @@ public class WdLabel extends LinearLayout {
     public WdLabel(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        LayoutInflater.from(context).inflate(
-                R.layout.wd_label,
-                this,
-                true
-        );
+        LayoutInflater.from(context).inflate(R.layout.wd_label, this, true);
 
         iconImage = findViewById(R.id.icon_image);
         iconText = findViewById(R.id.icon_text);

@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/app_row"
+    style="@style/VerticalList"
     android:background="@color/surface_1"
-    android:padding="@dimen/space_between_elements"
-    style="@style/VerticalList">
+    android:padding="@dimen/space_between_elements">
 
     <LinearLayout style="@style/HorizontalList">
 
@@ -15,8 +15,8 @@
 
             <ImageView
                 android:id="@+id/toggle_visibility_img"
-                android:src="@drawable/px_eye"
-                style="@style/Icon24" />
+                style="@style/Icon24"
+                android:src="@drawable/px_eye" />
         </FrameLayout>
 
         <FrameLayout
@@ -28,8 +28,8 @@
 
             <ImageView
                 android:id="@+id/toggle_keep_expanded_img"
-                android:src="@drawable/px_pin_outline"
-                style="@style/Icon24" />
+                style="@style/Icon24"
+                android:src="@drawable/px_pin_outline" />
         </FrameLayout>
 
         <FrameLayout
@@ -40,8 +40,8 @@
             android:padding="12sp">
 
             <ImageView
-                android:src="@drawable/px_chevron_up"
-                style="@style/Icon24" />
+                style="@style/Icon24"
+                android:src="@drawable/px_chevron_up" />
         </FrameLayout>
 
         <FrameLayout
@@ -52,21 +52,21 @@
             android:padding="12sp">
 
             <ImageView
-                android:src="@drawable/px_chevron_down"
-                style="@style/Icon24" />
+                style="@style/Icon24"
+                android:src="@drawable/px_chevron_down" />
         </FrameLayout>
 
         <FrameLayout
-            android:visibility="gone"
             android:id="@+id/save_changes_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:padding="12sp">
+            android:padding="12sp"
+            android:visibility="gone">
 
             <ImageView
-                android:src="@drawable/px_disk"
-                style="@style/Icon24" />
+                style="@style/Icon24"
+                android:src="@drawable/px_disk" />
         </FrameLayout>
 
         <FrameLayout
@@ -77,8 +77,8 @@
             android:padding="12sp">
 
             <ImageView
-                android:src="@drawable/px_times"
-                style="@style/Icon24" />
+                style="@style/Icon24"
+                android:src="@drawable/px_times" />
         </FrameLayout>
     </LinearLayout>
 
@@ -86,9 +86,9 @@
 
         <EditText
             android:id="@+id/group_name"
-            android:layout_weight="1"
+            style="@style/EditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/EditText" />
+            android:layout_weight="1" />
     </LinearLayout>
 </LinearLayout>

@@ -2,94 +2,99 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
+    style="@style/VerticalList"
     android:layout_height="match_parent"
     android:paddingLeft="20dp"
-    android:paddingRight="20dp"
     android:paddingTop="32dp"
-    android:paddingBottom="32dp"
-    style="@style/VerticalList">
+    android:paddingRight="20dp"
+    android:paddingBottom="32dp">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:fillViewport="true"
         android:background="@android:color/transparent"
         android:cacheColorHint="@android:color/transparent"
-        android:overScrollMode="never"
         android:fadingEdge="none"
+        android:fillViewport="true"
+        android:overScrollMode="never"
         android:scrollbars="none">
+
         <LinearLayout style="@style/VerticalList">
+
             <LinearLayout
-                android:gravity="center_horizontal"
-                style="@style/VerticalList">
+                style="@style/VerticalList"
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:id="@+id/app_icon"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:tint="@color/accent"
+                    android:layout_gravity="center"
                     android:background="@drawable/mako"
-                    android:layout_gravity="center" />
+                    android:tint="@color/accent" />
 
-                <View
-                    style="@style/SeparatorListHorizontal"/>
+                <View style="@style/SeparatorListHorizontal" />
 
                 <TextView
                     android:id="@+id/name_version"
                     style="@style/H3_Center" />
 
-                <View
-                    style="@style/SeparatorListHorizontal"/>
+                <View style="@style/SeparatorListHorizontal" />
 
                 <TextView
                     android:id="@+id/app_description"
-                    android:text="@string/app_desc"
-                    style="@style/Text_Center" />
+                    style="@style/Text_Center"
+                    android:text="@string/app_desc" />
 
-                <View
-                    style="@style/SeparatorListHorizontal"/>
+                <View style="@style/SeparatorListHorizontal" />
 
                 <LinearLayout
                     android:id="@+id/claims"
-                    android:gravity="center_horizontal"
-                    style="@style/VerticalList" >
+                    style="@style/VerticalList"
+                    android:gravity="center_horizontal">
+
                     <com.rama.mako_forever.widgets.WdLabel
-                        app:text="@string/app_ads_desc"
+                        style="@style/BlockFlow"
                         app:icon="@drawable/px_octagon_check"
-                        style="@style/BlockFlow"/>
-                    <View
-                        style="@style/SeparatorListHorizontal"/>
+                        app:text="@string/app_ads_desc" />
+
+                    <View style="@style/SeparatorListHorizontal" />
+
                     <com.rama.mako_forever.widgets.WdLabel
-                        app:text="@string/app_background_tasks_desc"
+                        style="@style/BlockFlow"
                         app:icon="@drawable/px_octagon_check"
-                        style="@style/BlockFlow"/>
-                    <View
-                        style="@style/SeparatorListHorizontal"/>
+                        app:text="@string/app_background_tasks_desc" />
+
+                    <View style="@style/SeparatorListHorizontal" />
+
                     <com.rama.mako_forever.widgets.WdLabel
-                        app:text="@string/app_trackers_desc"
+                        style="@style/BlockFlow"
                         app:icon="@drawable/px_octagon_check"
-                        style="@style/BlockFlow"/>
-                    <View
-                        style="@style/SeparatorListHorizontal"/>
+                        app:text="@string/app_trackers_desc" />
+
+                    <View style="@style/SeparatorListHorizontal" />
+
                     <com.rama.mako_forever.widgets.WdLabel
-                        app:text="@string/app_offline_desc"
+                        style="@style/BlockFlow"
                         app:icon="@drawable/px_octagon_check"
-                        style="@style/BlockFlow"/>
-                    <View
-                        style="@style/SeparatorListHorizontal"/>
+                        app:text="@string/app_offline_desc" />
+
+                    <View style="@style/SeparatorListHorizontal" />
+
                     <com.rama.mako_forever.widgets.WdLabel
-                        app:text="@string/license_gpl3"
+                        style="@style/BlockFlow"
                         app:icon="@drawable/px_octagon_check"
-                        style="@style/BlockFlow"/>
+                        app:text="@string/license_gpl3" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-    <View
-        style="@style/Separator"/>
+
+    <View style="@style/Separator" />
+
     <Button
         android:id="@+id/go_back"
-        android:text="GO BACK"
         style="@style/BTN1"
-        />
+        android:text="GO BACK" />
 </LinearLayout>

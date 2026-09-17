@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/section_root"
-    android:background="@android:color/transparent"
-    style="@style/VerticalList">
+    style="@style/VerticalList"
+    android:background="@android:color/transparent">
 
     <LinearLayout
         android:id="@+id/section_header"
+        style="@style/HorizontalList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
         android:clickable="true"
         android:focusable="true"
-        style="@style/HorizontalList">
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/section_indicator"
+            style="@style/H3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/settings_section_collapse_indicator"
-            style="@style/H3" />
+            android:text="@string/settings_section_collapse_indicator" />
 
-        <View style="@style/SeparatorListHorizontal"/>
+        <View style="@style/SeparatorListHorizontal" />
 
         <TextView
             android:id="@+id/section_label"
+            style="@style/H3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/H3" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <View
         android:id="@+id/section_content_separator"
-        style="@style/SeparatorListVertical"/>
+        style="@style/SeparatorListVertical" />
 
     <LinearLayout
         android:id="@+id/section_content"
-        android:orientation="vertical"
-        style="@style/VerticalList" />
+        style="@style/VerticalList"
+        android:orientation="vertical" />
 </LinearLayout>

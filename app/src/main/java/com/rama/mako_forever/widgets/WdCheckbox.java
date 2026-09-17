@@ -48,13 +48,7 @@ public class WdCheckbox extends LinearLayout {
         setFocusable(true);
 
         if (attrs != null) {
-            TypedArray ta = context.obtainStyledAttributes(
-                    attrs,
-                    new int[] {
-                            android.R.attr.text,
-                            android.R.attr.checked
-                    }
-            );
+            TypedArray ta = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.text, android.R.attr.checked});
 
             CharSequence text = ta.getText(0);
 
@@ -108,19 +102,14 @@ public class WdCheckbox extends LinearLayout {
         setChecked(!checked);
     }
 
-    public void setOnCheckedChangeListener(
-            OnCheckedChangeListener listener) {
+    public void setOnCheckedChangeListener(OnCheckedChangeListener listener) {
 
         this.listener = listener;
     }
 
     private void updateCheck() {
 
-        check.setVisibility(
-                checked
-                        ? View.VISIBLE
-                        : View.GONE
-        );
+        check.setVisibility(checked ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -174,10 +163,7 @@ public class WdCheckbox extends LinearLayout {
 
     private boolean isInside(float x, float y) {
 
-        return x >= 0
-                && x < getWidth()
-                && y >= 0
-                && y < getHeight();
+        return x >= 0 && x < getWidth() && y >= 0 && y < getHeight();
     }
 
     @Override
@@ -187,9 +173,7 @@ public class WdCheckbox extends LinearLayout {
             return false;
         }
 
-        if (keyCode == KeyEvent.KEYCODE_SPACE
-                || keyCode == KeyEvent.KEYCODE_ENTER
-                || keyCode == KeyEvent.KEYCODE_DPAD_CENTER) {
+        if (keyCode == KeyEvent.KEYCODE_SPACE || keyCode == KeyEvent.KEYCODE_ENTER || keyCode == KeyEvent.KEYCODE_DPAD_CENTER) {
 
             performClick();
             return true;
@@ -200,8 +184,7 @@ public class WdCheckbox extends LinearLayout {
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
-    public void onInitializeAccessibilityNodeInfo(
-            AccessibilityNodeInfo info) {
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo info) {
 
         super.onInitializeAccessibilityNodeInfo(info);
 
@@ -222,9 +205,7 @@ public class WdCheckbox extends LinearLayout {
     private void updateAccessibility() {
 
         if (Build.VERSION.SDK_INT >= 14) {
-            sendAccessibilityEvent(
-                    AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED
-            );
+            sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED);
         }
 
         invalidate();
@@ -251,9 +232,7 @@ public class WdCheckbox extends LinearLayout {
 
         SavedState savedState = (SavedState) state;
 
-        super.onRestoreInstanceState(
-                savedState.getSuperState()
-        );
+        super.onRestoreInstanceState(savedState.getSuperState());
 
         checked = savedState.checked;
 
@@ -276,29 +255,25 @@ public class WdCheckbox extends LinearLayout {
         }
 
         @Override
-        public void writeToParcel(
-                Parcel out,
-                int flags) {
+        public void writeToParcel(Parcel out, int flags) {
 
             super.writeToParcel(out, flags);
 
             out.writeInt(checked ? 1 : 0);
         }
 
-        public static final Creator<SavedState> CREATOR =
-                new Creator<SavedState>() {
+        public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
 
-                    @Override
-                    public SavedState createFromParcel(
-                            Parcel in) {
-                        return new SavedState(in);
-                    }
+            @Override
+            public SavedState createFromParcel(Parcel in) {
+                return new SavedState(in);
+            }
 
-                    @Override
-                    public SavedState[] newArray(int size) {
-                        return new SavedState[size];
-                    }
-                };
+            @Override
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
     }
 
     public interface OnCheckedChangeListener {

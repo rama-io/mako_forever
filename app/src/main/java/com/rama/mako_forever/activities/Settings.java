@@ -49,7 +49,7 @@ public class Settings extends Activity {
         setupGroupsSection();
         setupAppearanceSection();
         ThemeManager.applyTheme(this, root);
-        
+
         if (Build.VERSION.SDK_INT < 11) {
             findViewById(R.id.themes_section).setVisibility(View.GONE);
             findViewById(R.id.themes_separator).setVisibility(View.GONE);
@@ -99,20 +99,15 @@ public class Settings extends Activity {
         });
 
         final WdCheckbox preventRotation = findViewById(R.id.prevent_home_screen_rotation);
-        preventRotation.setChecked(
-                PrefsManager.getInstance(this).getBoolean(Main.PREF_PREVENT_ROTATION, false)
-        );
+        preventRotation.setChecked(PrefsManager.getInstance(this).getBoolean(Main.PREF_PREVENT_ROTATION, false));
         preventRotation.setOnCheckedChangeListener(new WdCheckbox.OnCheckedChangeListener() {
             public void onCheckedChanged(boolean isChecked) {
-                PrefsManager.getInstance(Settings.this)
-                        .setBoolean(Main.PREF_PREVENT_ROTATION, isChecked);
+                PrefsManager.getInstance(Settings.this).setBoolean(Main.PREF_PREVENT_ROTATION, isChecked);
             }
         });
 
         final WdCheckbox showApiIndicators = findViewById(R.id.show_api_indicators);
-        showApiIndicators.setChecked(
-                PrefsManager.getInstance(this).hasApiIndicatorsVisible()
-        );
+        showApiIndicators.setChecked(PrefsManager.getInstance(this).hasApiIndicatorsVisible());
         showApiIndicators.setOnCheckedChangeListener(new WdCheckbox.OnCheckedChangeListener() {
             public void onCheckedChanged(boolean isChecked) {
                 PrefsManager.getInstance(Settings.this).setApiIndicatorsVisible(isChecked);
@@ -120,9 +115,7 @@ public class Settings extends Activity {
         });
 
         final WdCheckbox showAppSize = findViewById(R.id.show_app_size);
-        showAppSize.setChecked(
-                PrefsManager.getInstance(this).hasAppSizeVisible()
-        );
+        showAppSize.setChecked(PrefsManager.getInstance(this).hasAppSizeVisible());
         showAppSize.setOnCheckedChangeListener(new WdCheckbox.OnCheckedChangeListener() {
             public void onCheckedChanged(boolean isChecked) {
                 PrefsManager.getInstance(Settings.this).setAppSizeVisible(isChecked);
@@ -203,10 +196,7 @@ public class Settings extends Activity {
                 public void onClick(View v) {
                     prefs.setTheme(palette.id);
 
-                    ThemeManager.applyTheme(
-                            Settings.this,
-                            findViewById(R.id.root)
-                    );
+                    ThemeManager.applyTheme(Settings.this, findViewById(R.id.root));
                 }
             });
         }
@@ -255,7 +245,8 @@ public class Settings extends Activity {
 
         final String originalText = name.getText().toString();
         name.addTextChangedListener(new TextWatcher() {
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String current = s.toString();
@@ -263,7 +254,8 @@ public class Settings extends Activity {
                 saveButton.setVisibility(changed ? View.VISIBLE : View.GONE);
             }
 
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+            }
         });
 
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -305,17 +297,11 @@ public class Settings extends Activity {
     }
 
     private void updateVisibilityIcon(ImageView icon, String groupId) {
-        icon.setImageResource(
-                groupManager.isGroupVisible(groupId) ? R.drawable.px_eye : R.drawable.px_eye_cross
-        );
+        icon.setImageResource(groupManager.isGroupVisible(groupId) ? R.drawable.px_eye : R.drawable.px_eye_cross);
     }
 
     private void updateKeepExpandedIcon(ImageView icon, String groupId) {
-        icon.setImageResource(
-                groupManager.isGroupKeepExpanded(groupId)
-                        ? R.drawable.px_pin
-                        : R.drawable.px_pin_outline
-        );
+        icon.setImageResource(groupManager.isGroupKeepExpanded(groupId) ? R.drawable.px_pin : R.drawable.px_pin_outline);
     }
 
     private void showDeleteGroupDialog(final String groupId, String groupLabel) {
@@ -360,10 +346,7 @@ public class Settings extends Activity {
             }
         });
 
-        final Dialog dialog = new Dialog(
-                this,
-                R.style.AppDialog
-        );
+        final Dialog dialog = new Dialog(this, R.style.AppDialog);
 
         dialog.setContentView(view);
         dialog.setCancelable(true);

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="16sp"
+    style="@style/VerticalList"
     android:background="@color/base"
     android:focusableInTouchMode="true"
-    style="@style/VerticalList">
+    android:padding="16sp">
 
     <TextView
-        android:text="Move to group"
-        style="@style/H2_center" />
+        style="@style/H2_center"
+        android:text="Move to group" />
 
-     <View style="@style/SeparatorListVertical"/>
+    <View style="@style/SeparatorListVertical" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,10 +21,10 @@
             style="@style/VerticalListDivided_BG2" />
     </ScrollView>
 
-     <View style="@style/SeparatorListVertical"/>
+    <View style="@style/SeparatorListVertical" />
 
     <Button
         android:id="@+id/close_button"
-        android:text="CANCEL"
-        style="@style/BTN1" />
+        style="@style/BTN1"
+        android:text="CANCEL" />
 </LinearLayout>

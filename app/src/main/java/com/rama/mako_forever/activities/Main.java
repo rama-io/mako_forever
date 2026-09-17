@@ -70,19 +70,17 @@ public class Main extends Activity implements AppListAdapter.Listener {
         appList.setAdapter(adapter);
 
         final ListView appListRef = appList;
-        final GestureDetector emptySpaceDetector = new GestureDetector(this,
-                new GestureDetector.SimpleOnGestureListener() {
-                    @Override
-                    public void onLongPress(MotionEvent event) {
-                        if (adapter.isMultiSelectMode()) return;
-                        int position = appListRef.pointToPosition(
-                                (int) event.getX(), (int) event.getY());
-                        if (position == AdapterView.INVALID_POSITION) {
-                            appListRef.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
-                            onOpenSettingsRequested();
-                        }
-                    }
-                });
+        final GestureDetector emptySpaceDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public void onLongPress(MotionEvent event) {
+                if (adapter.isMultiSelectMode()) return;
+                int position = appListRef.pointToPosition((int) event.getX(), (int) event.getY());
+                if (position == AdapterView.INVALID_POSITION) {
+                    appListRef.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+                    onOpenSettingsRequested();
+                }
+            }
+        });
         appList.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 emptySpaceDetector.onTouchEvent(event);
@@ -183,10 +181,7 @@ public class Main extends Activity implements AppListAdapter.Listener {
 
     private void openAppDetails(AppsProvider.AppEntry app) {
         try {
-            Intent intent = new Intent(
-                    android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                    Uri.fromParts("package", app.packageName, null)
-            );
+            Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", app.packageName, null));
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         } catch (Exception e) {
@@ -206,11 +201,7 @@ public class Main extends Activity implements AppListAdapter.Listener {
         input.setText(groupManager.getAppLabel(app));
         input.setSelection(input.getText().length());
 
-        final android.app.Dialog dialog =
-                new android.app.Dialog(
-                        this,
-                        R.style.AppDialog
-                );
+        final android.app.Dialog dialog = new android.app.Dialog(this, R.style.AppDialog);
 
         dialog.setContentView(view);
 
@@ -249,11 +240,7 @@ public class Main extends Activity implements AppListAdapter.Listener {
         final WdRadioGroup radioGroup = view.findViewById(R.id.groups);
         View closeButton = view.findViewById(R.id.close_button);
 
-        final android.app.Dialog dialog =
-                new android.app.Dialog(
-                        this,
-                        R.style.AppDialog
-                );
+        final android.app.Dialog dialog = new android.app.Dialog(this, R.style.AppDialog);
 
         dialog.setContentView(view);
 

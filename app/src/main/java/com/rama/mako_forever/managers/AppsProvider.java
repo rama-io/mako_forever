@@ -26,17 +26,12 @@ public class AppsProvider {
 
         private final ApplicationInfo applicationInfo;
 
-        AppEntry(
-                String packageName,
-                String activityName,
-                String label,
-                ResolveInfo resolveInfo) {
+        AppEntry(String packageName, String activityName, String label, ResolveInfo resolveInfo) {
 
             this.packageName = packageName;
             this.activityName = activityName;
             this.label = label;
-            this.applicationInfo =
-                    resolveInfo.activityInfo.applicationInfo;
+            this.applicationInfo = resolveInfo.activityInfo.applicationInfo;
         }
 
         public int getMinSdkVersion() {
@@ -54,8 +49,7 @@ public class AppsProvider {
 
     private final Context context;
 
-    private final Map<String, Long> appSizeCache =
-            new HashMap<String, Long>();
+    private final Map<String, Long> appSizeCache = new HashMap<String, Long>();
 
     public AppsProvider(Context context) {
         this.context = context.getApplicationContext();
@@ -80,12 +74,9 @@ public class AppsProvider {
                 size += new File(info.sourceDir).length();
             }
 
-            if (Build.VERSION.SDK_INT >= 21
-                    && info.splitSourceDirs != null) {
+            if (Build.VERSION.SDK_INT >= 21 && info.splitSourceDirs != null) {
 
-                for (int i = 0;
-                     i < info.splitSourceDirs.length;
-                     i++) {
+                for (int i = 0; i < info.splitSourceDirs.length; i++) {
 
                     String split = info.splitSourceDirs[i];
 
@@ -116,61 +107,34 @@ public class AppsProvider {
 
         PackageManager pm = context.getPackageManager();
 
-        Intent launcherIntent =
-                new Intent(Intent.ACTION_MAIN);
+        Intent launcherIntent = new Intent(Intent.ACTION_MAIN);
 
-        launcherIntent.addCategory(
-                Intent.CATEGORY_LAUNCHER
-        );
+        launcherIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
-        List<ResolveInfo> resolved =
-                pm.queryIntentActivities(
-                        launcherIntent,
-                        0
-                );
+        List<ResolveInfo> resolved = pm.queryIntentActivities(launcherIntent, 0);
 
-        List<AppEntry> apps =
-                new ArrayList<AppEntry>(
-                        resolved.size()
-                );
+        List<AppEntry> apps = new ArrayList<AppEntry>(resolved.size());
 
         for (int i = 0; i < resolved.size(); i++) {
 
             ResolveInfo info = resolved.get(i);
 
-            String packageName =
-                    info.activityInfo.packageName;
+            String packageName = info.activityInfo.packageName;
 
-            String activityName =
-                    info.activityInfo.name;
+            String activityName = info.activityInfo.name;
 
-            String label =
-                    info.loadLabel(pm).toString();
+            String label = info.loadLabel(pm).toString();
 
-            apps.add(
-                    new AppEntry(
-                            packageName,
-                            activityName,
-                            label,
-                            info
-                    )
-            );
+            apps.add(new AppEntry(packageName, activityName, label, info));
         }
 
-        Collections.sort(
-                apps,
-                new Comparator<AppEntry>() {
+        Collections.sort(apps, new Comparator<AppEntry>() {
 
-                    public int compare(
-                            AppEntry a,
-                            AppEntry b) {
+            public int compare(AppEntry a, AppEntry b) {
 
-                        return a.label.compareToIgnoreCase(
-                                b.label
-                        );
-                    }
-                }
-        );
+                return a.label.compareToIgnoreCase(b.label);
+            }
+        });
 
         return apps;
     }
@@ -179,23 +143,13 @@ public class AppsProvider {
 
         try {
 
-            Intent intent =
-                    new Intent(Intent.ACTION_MAIN);
+            Intent intent = new Intent(Intent.ACTION_MAIN);
 
-            intent.addCategory(
-                    Intent.CATEGORY_LAUNCHER
-            );
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
 
-            intent.setComponent(
-                    new ComponentName(
-                            app.packageName,
-                            app.activityName
-                    )
-            );
+            intent.setComponent(new ComponentName(app.packageName, app.activityName));
 
-            intent.setFlags(
-                    Intent.FLAG_ACTIVITY_NEW_TASK
-            );
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             context.startActivity(intent);
 

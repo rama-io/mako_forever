@@ -27,8 +27,7 @@ public class PrefsManager {
     private final SharedPreferences prefs;
 
     private PrefsManager(Context context) {
-        prefs = context.getApplicationContext()
-                .getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        prefs = context.getApplicationContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
     }
 
     public static synchronized PrefsManager getInstance(Context context) {
@@ -135,13 +134,7 @@ public class PrefsManager {
         if (DEFAULT_GROUP_ID.equals(groupId)) return;
         List<String> ids = getGroupIds();
         ids.remove(groupId);
-        prefs.edit()
-                .putString(key("groups", "ids"), joinCsv(ids))
-                .remove(key("group", groupId, "label"))
-                .remove(key("group", groupId, "order"))
-                .remove(key("group", groupId, "expanded"))
-                .remove(key("group", groupId, "visible"))
-                .commit();
+        prefs.edit().putString(key("groups", "ids"), joinCsv(ids)).remove(key("group", groupId, "label")).remove(key("group", groupId, "order")).remove(key("group", groupId, "expanded")).remove(key("group", groupId, "visible")).commit();
     }
 
     public boolean isGroupVisible(String groupId) {
@@ -200,7 +193,11 @@ public class PrefsManager {
         setBoolean(APPS_SHOW_SIZE, value);
     }
 
-    public boolean getBoolean( String key, boolean defaultValue ) { return prefs.getBoolean(key, defaultValue); }
+    public boolean getBoolean(String key, boolean defaultValue) {
+        return prefs.getBoolean(key, defaultValue);
+    }
 
-    public void setBoolean( String key, boolean value ) { prefs.edit() .putBoolean(key, value) .commit(); }
+    public void setBoolean(String key, boolean value) {
+        prefs.edit().putBoolean(key, value).commit();
+    }
 }

@@ -7,21 +7,20 @@
         android:id="@+id/radio"
         android:layout_width="18sp"
         android:layout_height="18sp"
-        android:padding="3sp"
-        android:background="@drawable/px_circle">
+        android:background="@drawable/px_circle"
+        android:padding="3sp">
 
         <ImageView
             android:id="@+id/check"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:importantForAccessibility="no"
             android:src="@drawable/px_check"
-            android:visibility="gone"
-            android:importantForAccessibility="no" />
+            android:visibility="gone" />
 
     </FrameLayout>
 
-    <View
-        style="@style/SeparatorListHorizontal" />
+    <View style="@style/SeparatorListHorizontal" />
 
     <TextView
         android:id="@+id/text"
