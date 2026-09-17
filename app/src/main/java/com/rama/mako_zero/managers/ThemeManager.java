@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import com.rama.mako_zero.R;
 import com.rama.mako_zero.objects.Themes;
+import com.rama.mako_zero.widgets.WdCheckbox;
+import com.rama.mako_zero.widgets.WdRadio;
 
 import java.util.HashMap;
 import java.util.List;
@@ -40,12 +42,50 @@ public final class ThemeManager {
     }
 
     private static void applyRecursively(View view, Themes.Palette palette, Map<Integer, Integer> map) {
+        if (view instanceof WdRadio) {
+            applyToRadio((WdRadio) view, palette);
+            return;
+        }
+        if (view instanceof WdCheckbox) {
+            applyToCheckbox((WdCheckbox) view, palette);
+            return;
+        }
         applyToView(view, palette, map);
         if (view instanceof ViewGroup) {
             ViewGroup group = (ViewGroup) view;
             for (int i = 0; i < group.getChildCount(); i++) {
                 applyRecursively(group.getChildAt(i), palette, map);
             }
+        }
+    }
+
+    private static void applyToRadio(WdRadio radio, Themes.Palette palette) {
+        View circle = radio.findViewById(R.id.radio);
+        ImageView check = radio.findViewById(R.id.check);
+        TextView text = radio.findViewById(R.id.text);
+        if (circle != null && circle.getBackground() != null) {
+            circle.getBackground().mutate().setColorFilter(palette.text, PorterDuff.Mode.SRC_IN);
+        }
+        if (check != null) {
+            check.setColorFilter(palette.base, PorterDuff.Mode.SRC_IN);
+        }
+        if (text != null) {
+            text.setTextColor(palette.text);
+        }
+    }
+
+    private static void applyToCheckbox(WdCheckbox checkbox, Themes.Palette palette) {
+        View box = checkbox.findViewById(R.id.box);
+        ImageView check = checkbox.findViewById(R.id.check);
+        TextView text = checkbox.findViewById(R.id.text);
+        if (box != null && box.getBackground() != null) {
+            box.getBackground().mutate().setColorFilter(palette.text, PorterDuff.Mode.SRC_IN);
+        }
+        if (check != null) {
+            check.setColorFilter(palette.base, PorterDuff.Mode.SRC_IN);
+        }
+        if (text != null) {
+            text.setTextColor(palette.text);
         }
     }
 
