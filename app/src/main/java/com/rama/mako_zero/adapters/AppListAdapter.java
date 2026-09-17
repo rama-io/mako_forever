@@ -211,6 +211,7 @@ public class AppListAdapter extends BaseAdapter {
         final String groupId = header.groupId;
         TextView label = view.findViewById(R.id.header_text);
         label.setTypeface(FontManager.getJersey25(context));
+        label.setTextColor(ThemeManager.currentPalette(context).accent);
         boolean pinned = groupManager.isGroupKeepExpanded(groupId);
         boolean expanded = groupManager.isGroupExpanded(groupId);
         String symbol = pinned ? "" : (context.getString(expanded ? R.string.settings_section_collapse_indicator : R.string.settings_section_expand_indicator) + " ");
@@ -235,6 +236,7 @@ public class AppListAdapter extends BaseAdapter {
         }
         final TextView label = view.findViewById(R.id.app_label);
         label.setTypeface(FontManager.getJersey25(context));
+        label.setTextColor(ThemeManager.currentPalette(context).text);
         label.setText(groupManager.getAppLabel(app));
         View emptySpace = view.findViewById(R.id.empty_space);
         ImageView selectionCheck = view.findViewById(R.id.selection_check);

@@ -119,7 +119,7 @@ public class Settings extends Activity {
     private void setupAppearanceSection() {
         final PrefsManager prefs = PrefsManager.getInstance(this);
         WdRadioGroup themeGroup = findViewById(R.id.theme_group);
-        String currentTheme = prefs.getTheme();
+        String currentTheme = ThemeManager.currentPalette(this).id;
         List<Themes.Palette> palettes = Themes.all();
         for (int i = 0; i < palettes.size(); i++) {
             final Themes.Palette palette = palettes.get(i);

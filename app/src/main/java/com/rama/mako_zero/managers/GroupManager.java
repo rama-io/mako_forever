@@ -33,7 +33,7 @@ public class GroupManager {
     }
 
     public void renameGroup(String groupId, String label) {
-        prefs.setGroupLabel(groupId, label);
+        prefs.setGroupLabel(groupId, FontManager.sanitizeForFont(label));
     }
 
     public boolean isGroupExpanded(String groupId) {
@@ -145,7 +145,7 @@ public class GroupManager {
     }
 
     public void renameApp(String packageName, String label) {
-        prefs.setCustomName(packageName, label);
+        prefs.setCustomName(packageName, FontManager.sanitizeForFont(label));
     }
 
     public void resetAppLabel(String packageName) {

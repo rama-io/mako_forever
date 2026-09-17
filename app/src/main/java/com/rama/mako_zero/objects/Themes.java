@@ -78,6 +78,6 @@ public final class Themes {
                 return list.get(i);
             }
         }
-        return CATPPUCCIN_MOCHA_YELLOW;
+        return CATPPUCCIN_MOCHA_MAUVE;
     }
 }

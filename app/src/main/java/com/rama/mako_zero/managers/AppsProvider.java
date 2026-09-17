@@ -94,7 +94,7 @@ public class AppsProvider {
             ResolveInfo info = resolved.get(i);
             String packageName = info.activityInfo.packageName;
             String activityName = info.activityInfo.name;
-            String label = info.loadLabel(pm).toString();
+            String label = FontManager.sanitizeForFont(info.loadLabel(pm).toString());
             apps.add(new AppEntry(packageName, activityName, label, info));
         }
         Collections.sort(apps, new Comparator<AppEntry>() {

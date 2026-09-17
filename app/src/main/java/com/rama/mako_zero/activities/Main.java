@@ -59,6 +59,12 @@ public class Main extends Activity implements AppListAdapter.Listener {
         adapter = new AppListAdapter(this, appsProvider, groupManager);
         adapter.setListener(this);
         appList.setAdapter(adapter);
+        View homeHeader = findViewById(R.id.home_header);
+        homeHeader.setOnLongClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+            onOpenSettingsRequested();
+            return true;
+        });
         final ListView appListRef = appList;
         final GestureDetector emptySpaceDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             @Override
