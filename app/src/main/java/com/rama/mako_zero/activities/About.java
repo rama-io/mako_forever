@@ -6,7 +6,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.rama.mako_zero.R;
@@ -18,28 +17,16 @@ public class About extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-
         View root = findViewById(R.id.root);
         FontManager.apply(root, FontManager.getJersey25(this));
         ThemeManager.applyTheme(this, root);
-
         TextView appName = findViewById(R.id.name_version);
-
         try {
             PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), 0);
-
             appName.setText(getString(R.string.app_name) + " " + info.versionCode);
-
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-
-        Button btnBack = findViewById(R.id.go_back);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(About.this, Settings.class));
-            }
-        });
+        findViewById(R.id.go_back).setOnClickListener(v -> startActivity(new Intent(this, Settings.class)));
     }
 }

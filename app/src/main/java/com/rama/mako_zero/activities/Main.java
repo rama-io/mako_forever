@@ -30,15 +30,12 @@ import com.rama.mako_zero.widgets.WdRadioGroup;
 import java.util.List;
 
 public class Main extends Activity implements AppListAdapter.Listener {
-
     public static final String PREF_PREVENT_ROTATION = "settings:prevent_rotation";
-
     private ClockManager clockManager;
     private BatteryStatusManager batteryStatusManager;
     private AppsProvider appsProvider;
     private GroupManager groupManager;
     private AppListAdapter adapter;
-
     private View menuBar;
     private TextView selectedCountView;
     private View renameButton;
@@ -49,25 +46,19 @@ public class Main extends Activity implements AppListAdapter.Listener {
         super.onCreate(savedInstanceState);
         applyRotationLock();
         setContentView(R.layout.activity_main);
-
         View root = findViewById(R.id.root);
         FontManager.apply(root, FontManager.getJersey25(this));
-
         TextView timeView = findViewById(R.id.time);
         TextView dateView = findViewById(R.id.date);
         TextView batteryView = findViewById(R.id.battery);
         ListView appList = findViewById(R.id.app_list);
-
         clockManager = new ClockManager(timeView, dateView);
         batteryStatusManager = new BatteryStatusManager(this, batteryView);
-
         appsProvider = new AppsProvider(this);
         groupManager = new GroupManager(this);
         adapter = new AppListAdapter(this, appsProvider, groupManager);
         adapter.setListener(this);
-
         appList.setAdapter(adapter);
-
         final ListView appListRef = appList;
         final GestureDetector emptySpaceDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             @Override
@@ -80,49 +71,30 @@ public class Main extends Activity implements AppListAdapter.Listener {
                 }
             }
         });
-        appList.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent event) {
-                emptySpaceDetector.onTouchEvent(event);
-                return false;
-            }
+        appList.setOnTouchListener((v, event) -> {
+            emptySpaceDetector.onTouchEvent(event);
+            return false;
         });
-
         menuBar = findViewById(R.id.menu_bar);
         selectedCountView = findViewById(R.id.selected_count);
         renameButton = findViewById(R.id.rename_btn);
         appSettingsButton = findViewById(R.id.app_settings);
         View moveToGroupButton = findViewById(R.id.move_to_group_button);
         View cancelButton = findViewById(R.id.multi_select_cancel_button);
-
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        cancelButton.setOnClickListener(v -> adapter.exitMultiSelectMode());
+        moveToGroupButton.setOnClickListener(v -> showGroupPickerDialog());
+        renameButton.setOnClickListener(v -> {
+            AppsProvider.AppEntry app = adapter.getSingleSelectedApp();
+            if (app != null) {
                 adapter.exitMultiSelectMode();
+                showRenameDialog(app);
             }
         });
-
-        moveToGroupButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                showGroupPickerDialog();
-            }
-        });
-
-        renameButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                AppsProvider.AppEntry app = adapter.getSingleSelectedApp();
-                if (app != null) {
-                    adapter.exitMultiSelectMode();
-                    showRenameDialog(app);
-                }
-            }
-        });
-
-        appSettingsButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                AppsProvider.AppEntry app = adapter.getSingleSelectedApp();
-                if (app != null) {
-                    adapter.exitMultiSelectMode();
-                    openAppDetails(app);
-                }
+        appSettingsButton.setOnClickListener(v -> {
+            AppsProvider.AppEntry app = adapter.getSingleSelectedApp();
+            if (app != null) {
+                adapter.exitMultiSelectMode();
+                openAppDetails(app);
             }
         });
     }
@@ -155,8 +127,6 @@ public class Main extends Activity implements AppListAdapter.Listener {
         batteryStatusManager.unregister();
     }
 
-    // ---------------- AppListAdapter.Listener ----------------
-
     @Override
     public void onAppLaunchFailed() {
         Toast.makeText(this, R.string.toast_unable_to_launch_app, Toast.LENGTH_SHORT).show();
@@ -176,8 +146,6 @@ public class Main extends Activity implements AppListAdapter.Listener {
         appSettingsButton.setVisibility(singleVisibility);
     }
 
-    // ---------------- app actions ----------------
-
     private void openAppDetails(AppsProvider.AppEntry app) {
         try {
             Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", app.packageName, null));
@@ -191,58 +159,38 @@ public class Main extends Activity implements AppListAdapter.Listener {
     private void showRenameDialog(final AppsProvider.AppEntry app) {
         View view = getLayoutInflater().inflate(R.layout.dialog_rename_app, null);
         FontManager.apply(view, FontManager.getJersey25(this));
-
         final android.widget.EditText input = view.findViewById(R.id.edit_text);
         View yesButton = view.findViewById(R.id.yes_button);
         View resetButton = view.findViewById(R.id.reset_button);
         View noButton = view.findViewById(R.id.no_button);
-
         input.setText(groupManager.getAppLabel(app));
         input.setSelection(input.getText().length());
-
         final android.app.Dialog dialog = new android.app.Dialog(this, R.style.AppDialog);
-
         dialog.setContentView(view);
-
-        yesButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String label = input.getText().toString().trim();
-                if (label.length() > 0) {
-                    groupManager.renameApp(app.packageName, label);
-                    adapter.refresh();
-                }
-                dialog.dismiss();
-            }
-        });
-
-        resetButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                groupManager.resetAppLabel(app.packageName);
+        yesButton.setOnClickListener(v -> {
+            String label = input.getText().toString().trim();
+            if (label.length() > 0) {
+                groupManager.renameApp(app.packageName, label);
                 adapter.refresh();
-                dialog.dismiss();
             }
+            dialog.dismiss();
         });
-
-        noButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
+        resetButton.setOnClickListener(v -> {
+            groupManager.resetAppLabel(app.packageName);
+            adapter.refresh();
+            dialog.dismiss();
         });
-
+        noButton.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
     }
 
     private void showGroupPickerDialog() {
         View view = getLayoutInflater().inflate(R.layout.dialog_groups_pick, null);
         FontManager.apply(view, FontManager.getJersey25(this));
-
         final WdRadioGroup radioGroup = view.findViewById(R.id.groups);
         View closeButton = view.findViewById(R.id.close_button);
-
         final android.app.Dialog dialog = new android.app.Dialog(this, R.style.AppDialog);
-
         dialog.setContentView(view);
-
         List<String> groupIds = groupManager.getGroupIds();
         for (int i = 0; i < groupIds.size(); i++) {
             final String groupId = groupIds.get(i);
@@ -251,21 +199,12 @@ public class Main extends Activity implements AppListAdapter.Listener {
             radio.setText(groupManager.getGroupLabel(groupId));
             radio.setTextColor(getResources().getColor(R.color.text));
             radioGroup.addView(radio);
-
-            radio.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    adapter.moveSelectedAppsToGroup(groupId);
-                    dialog.dismiss();
-                }
+            radio.setOnClickListener(v -> {
+                adapter.moveSelectedAppsToGroup(groupId);
+                dialog.dismiss();
             });
         }
-
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
+        closeButton.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
     }
 
@@ -275,7 +214,6 @@ public class Main extends Activity implements AppListAdapter.Listener {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
             return;
         }
-
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);

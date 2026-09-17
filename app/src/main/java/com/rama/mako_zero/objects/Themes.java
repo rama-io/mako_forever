@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Themes {
-
     public static final class Palette {
         public final String id;
         public final String label;

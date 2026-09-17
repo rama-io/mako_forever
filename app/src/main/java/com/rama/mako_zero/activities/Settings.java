@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Settings extends Activity {
-
     private GroupManager groupManager;
     private LinearLayout groupsContainer;
 
@@ -37,89 +36,50 @@ public class Settings extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
         groupManager = new GroupManager(this);
         groupsContainer = findViewById(R.id.groups_container);
-
         View root = findViewById(R.id.root);
         FontManager.apply(root, FontManager.getJersey25(this));
-
         setupSystemSection();
         setupGroupsSection();
         setupAppearanceSection();
         ThemeManager.applyTheme(this, root);
-
         if (Build.VERSION.SDK_INT < 11) {
             findViewById(R.id.themes_section).setVisibility(View.GONE);
             findViewById(R.id.themes_separator).setVisibility(View.GONE);
         }
-
         Button btnAbout = findViewById(R.id.go_about);
-        btnAbout.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(Settings.this, About.class));
-            }
-        });
-
+        btnAbout.setOnClickListener(v -> startActivity(new Intent(Settings.this, About.class)));
         Button btnBack = findViewById(R.id.go_back);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(Settings.this, Main.class));
-            }
-        });
+        btnBack.setOnClickListener(v -> startActivity(new Intent(Settings.this, Main.class)));
     }
 
     private void setupSystemSection() {
         Button activateButton = findViewById(R.id.activate_button);
-        activateButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                setLauncherAsDefault();
-            }
-        });
-
+        activateButton.setOnClickListener(v -> setLauncherAsDefault());
         Button resetButton = findViewById(R.id.reset_button);
-        resetButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(Settings.this, Main.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-            }
+        resetButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Settings.this, Main.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         });
-
         Button changeAppsButton = findViewById(R.id.change_apps_button);
-        changeAppsButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                try {
-                    startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_SETTINGS));
-                } catch (Exception e) {
-                    Toast.makeText(Settings.this, R.string.toast_unable_open_settings, Toast.LENGTH_SHORT).show();
-                }
+        changeAppsButton.setOnClickListener(v -> {
+            try {
+                startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_SETTINGS));
+            } catch (Exception e) {
+                Toast.makeText(Settings.this, R.string.toast_unable_open_settings, Toast.LENGTH_SHORT).show();
             }
         });
-
         final WdCheckbox preventRotation = findViewById(R.id.prevent_home_screen_rotation);
         preventRotation.setChecked(PrefsManager.getInstance(this).getBoolean(Main.PREF_PREVENT_ROTATION, false));
-        preventRotation.setOnCheckedChangeListener(new WdCheckbox.OnCheckedChangeListener() {
-            public void onCheckedChanged(boolean isChecked) {
-                PrefsManager.getInstance(Settings.this).setBoolean(Main.PREF_PREVENT_ROTATION, isChecked);
-            }
-        });
-
+        preventRotation.setOnCheckedChangeListener(isChecked -> PrefsManager.getInstance(Settings.this).setBoolean(Main.PREF_PREVENT_ROTATION, isChecked));
         final WdCheckbox showApiIndicators = findViewById(R.id.show_api_indicators);
         showApiIndicators.setChecked(PrefsManager.getInstance(this).hasApiIndicatorsVisible());
-        showApiIndicators.setOnCheckedChangeListener(new WdCheckbox.OnCheckedChangeListener() {
-            public void onCheckedChanged(boolean isChecked) {
-                PrefsManager.getInstance(Settings.this).setApiIndicatorsVisible(isChecked);
-            }
-        });
-
+        showApiIndicators.setOnCheckedChangeListener(isChecked -> PrefsManager.getInstance(Settings.this).setApiIndicatorsVisible(isChecked));
         final WdCheckbox showAppSize = findViewById(R.id.show_app_size);
         showAppSize.setChecked(PrefsManager.getInstance(this).hasAppSizeVisible());
-        showAppSize.setOnCheckedChangeListener(new WdCheckbox.OnCheckedChangeListener() {
-            public void onCheckedChanged(boolean isChecked) {
-                PrefsManager.getInstance(Settings.this).setAppSizeVisible(isChecked);
-            }
-        });
+        showAppSize.setOnCheckedChangeListener(isChecked -> PrefsManager.getInstance(Settings.this).setAppSizeVisible(isChecked));
     }
 
     private void setLauncherAsDefault() {
@@ -127,9 +87,8 @@ public class Settings extends Activity {
             startActivity(new Intent(android.provider.Settings.ACTION_HOME_SETTINGS));
             return;
         } catch (Exception ignored) {
-            // No direct "default home app" screen before Android 10 - fall through.
+            // No direct default-home-app screen before Android 10, fall through.
         }
-
         try {
             getPackageManager().clearPackagePreferredActivities(getPackageName());
             Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -143,60 +102,36 @@ public class Settings extends Activity {
 
     private void setupGroupsSection() {
         renderGroups();
-
         final PrefsManager prefs = PrefsManager.getInstance(this);
-
         final WdCheckbox collapseOnHome = findViewById(R.id.collapse_groups_on_home);
         collapseOnHome.setChecked(prefs.shouldCollapseGroupsOnHome());
-        collapseOnHome.setOnCheckedChangeListener(new WdCheckbox.OnCheckedChangeListener() {
-            public void onCheckedChanged(boolean isChecked) {
-                prefs.setCollapseGroupsOnHome(isChecked);
-            }
-        });
-
+        collapseOnHome.setOnCheckedChangeListener(isChecked -> prefs.setCollapseGroupsOnHome(isChecked));
         final WdCheckbox onlyOneOpen = findViewById(R.id.only_one_group_open);
         onlyOneOpen.setChecked(prefs.isOnlyOneGroupOpenEnabled());
-        onlyOneOpen.setOnCheckedChangeListener(new WdCheckbox.OnCheckedChangeListener() {
-            public void onCheckedChanged(boolean isChecked) {
-                prefs.setOnlyOneGroupOpenEnabled(isChecked);
-            }
-        });
-
+        onlyOneOpen.setOnCheckedChangeListener(isChecked -> prefs.setOnlyOneGroupOpenEnabled(isChecked));
         Button addGroupButton = findViewById(R.id.add_group_button);
-        addGroupButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                groupManager.createGroup(getString(R.string.new_group_header));
-                renderGroups();
-            }
+        addGroupButton.setOnClickListener(v -> {
+            groupManager.createGroup(getString(R.string.new_group_header));
+            renderGroups();
         });
     }
 
     private void setupAppearanceSection() {
         final PrefsManager prefs = PrefsManager.getInstance(this);
         WdRadioGroup themeGroup = findViewById(R.id.theme_group);
-
         String currentTheme = prefs.getTheme();
         List<Themes.Palette> palettes = Themes.all();
-
         for (int i = 0; i < palettes.size(); i++) {
             final Themes.Palette palette = palettes.get(i);
-
             WdRadio radio = new WdRadio(this);
-
             radio.setId(1000 + i);
-
             radio.setText(palette.label);
             radio.setTextColor(getResources().getColor(R.color.text));
             radio.setChecked(palette.id.equals(currentTheme));
-
             themeGroup.addView(radio);
-
-            radio.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    prefs.setTheme(palette.id);
-
-                    ThemeManager.applyTheme(Settings.this, findViewById(R.id.root));
-                }
+            radio.setOnClickListener(v -> {
+                prefs.setTheme(palette.id);
+                ThemeManager.applyTheme(Settings.this, findViewById(R.id.root));
             });
         }
     }
@@ -212,7 +147,6 @@ public class Settings extends Activity {
     private void addGroupRow(final String groupId) {
         View row = getLayoutInflater().inflate(R.layout.list_item_group, groupsContainer, false);
         FontManager.apply(row, FontManager.getJersey25(this));
-
         final EditText name = row.findViewById(R.id.group_name);
         View delete = row.findViewById(R.id.delete_group);
         View toggleVisibility = row.findViewById(R.id.toggle_visibility);
@@ -222,26 +156,18 @@ public class Settings extends Activity {
         final View saveButton = row.findViewById(R.id.save_changes_button);
         View ascend = row.findViewById(R.id.ascend_group);
         View descend = row.findViewById(R.id.descend_group);
-
         name.setText(groupManager.getGroupLabel(groupId));
         updateVisibilityIcon(toggleVisibilityIcon, groupId);
         updateKeepExpandedIcon(toggleKeepExpandedIcon, groupId);
-
-        toggleVisibility.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                groupManager.toggleGroupVisible(groupId);
-                updateVisibilityIcon(toggleVisibilityIcon, groupId);
-            }
+        toggleVisibility.setOnClickListener(v -> {
+            groupManager.toggleGroupVisible(groupId);
+            updateVisibilityIcon(toggleVisibilityIcon, groupId);
         });
-
-        toggleKeepExpanded.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                groupManager.toggleGroupKeepExpanded(groupId);
-                updateKeepExpandedIcon(toggleKeepExpandedIcon, groupId);
-                renderGroups();
-            }
+        toggleKeepExpanded.setOnClickListener(v -> {
+            groupManager.toggleGroupKeepExpanded(groupId);
+            updateKeepExpandedIcon(toggleKeepExpandedIcon, groupId);
+            renderGroups();
         });
-
         final String originalText = name.getText().toString();
         name.addTextChangedListener(new TextWatcher() {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -257,41 +183,27 @@ public class Settings extends Activity {
             }
         });
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String newLabel = name.getText().toString().trim();
-                if (newLabel.length() > 0) {
-                    groupManager.renameGroup(groupId, newLabel);
-                    Toast.makeText(Settings.this, R.string.toast_group_label_updated, Toast.LENGTH_SHORT).show();
-                    renderGroups();
-                }
-            }
-        });
-
-        ascend.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                groupManager.moveGroup(groupId, -1);
+        saveButton.setOnClickListener(v -> {
+            String newLabel = name.getText().toString().trim();
+            if (newLabel.length() > 0) {
+                groupManager.renameGroup(groupId, newLabel);
+                Toast.makeText(Settings.this, R.string.toast_group_label_updated, Toast.LENGTH_SHORT).show();
                 renderGroups();
             }
         });
-
-        descend.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                groupManager.moveGroup(groupId, 1);
-                renderGroups();
-            }
+        ascend.setOnClickListener(v -> {
+            groupManager.moveGroup(groupId, -1);
+            renderGroups();
         });
-
+        descend.setOnClickListener(v -> {
+            groupManager.moveGroup(groupId, 1);
+            renderGroups();
+        });
         if (PrefsManager.DEFAULT_GROUP_ID.equals(groupId)) {
             delete.setVisibility(View.GONE);
         } else {
-            delete.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    showDeleteGroupDialog(groupId, name.getText().toString());
-                }
-            });
+            delete.setOnClickListener(v -> showDeleteGroupDialog(groupId, name.getText().toString()));
         }
-
         groupsContainer.addView(row);
     }
 
@@ -306,20 +218,16 @@ public class Settings extends Activity {
     private void showDeleteGroupDialog(final String groupId, String groupLabel) {
         View view = getLayoutInflater().inflate(R.layout.dialog_groups_delete, null);
         FontManager.apply(view, FontManager.getJersey25(this));
-
         TextView groupNameView = view.findViewById(R.id.group_name);
         WdRadioGroup radioGroup = view.findViewById(R.id.groups);
         View yesButton = view.findViewById(R.id.yes_button);
         View noButton = view.findViewById(R.id.no_button);
-
         groupNameView.setText(groupLabel);
-
         final List<String> targetGroups = new ArrayList<String>();
         List<String> allGroups = groupManager.getGroupIds();
         for (int i = 0; i < allGroups.size(); i++) {
             if (!allGroups.get(i).equals(groupId)) targetGroups.add(allGroups.get(i));
         }
-
         final String[] selectedGroupId = new String[1];
         for (int i = 0; i < targetGroups.size(); i++) {
             String targetId = targetGroups.get(i);
@@ -333,41 +241,27 @@ public class Settings extends Activity {
                 selectedGroupId[0] = targetId;
             }
         }
-
-        radioGroup.setOnCheckedChangeListener(new WdRadioGroup.OnCheckedChangeListener() {
-            public void onCheckedChanged(WdRadioGroup group, int checkedId) {
-                WdRadio checked = group.findViewById(checkedId);
-                if (checked == null) return;
-                int index = group.indexOfChild(checked);
-                if (index >= 0 && index < targetGroups.size()) {
-                    selectedGroupId[0] = targetGroups.get(index);
-                }
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            WdRadio checked = group.findViewById(checkedId);
+            if (checked == null) return;
+            int index = group.indexOfChild(checked);
+            if (index >= 0 && index < targetGroups.size()) {
+                selectedGroupId[0] = targetGroups.get(index);
             }
         });
-
         final Dialog dialog = new Dialog(this, R.style.AppDialog);
-
         dialog.setContentView(view);
         dialog.setCancelable(true);
-
-        yesButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (selectedGroupId[0] == null) {
-                    Toast.makeText(Settings.this, R.string.toast_select_target_group, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                groupManager.deleteGroup(groupId, selectedGroupId[0]);
-                renderGroups();
-                dialog.dismiss();
+        yesButton.setOnClickListener(v -> {
+            if (selectedGroupId[0] == null) {
+                Toast.makeText(Settings.this, R.string.toast_select_target_group, Toast.LENGTH_SHORT).show();
+                return;
             }
+            groupManager.deleteGroup(groupId, selectedGroupId[0]);
+            renderGroups();
+            dialog.dismiss();
         });
-
-        noButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
+        noButton.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
     }
 }

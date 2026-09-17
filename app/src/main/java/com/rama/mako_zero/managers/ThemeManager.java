@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 
 public final class ThemeManager {
-
     private ThemeManager() {
     }
 
@@ -51,35 +50,27 @@ public final class ThemeManager {
     }
 
     private static void applyToView(View view, Themes.Palette palette, Map<Integer, Integer> map) {
-
         if (view instanceof AbsListView) {
             ((AbsListView) view).setSelector(buildSelector(palette));
         }
-
         if (view instanceof TextView) {
             TextView textView = (TextView) view;
-
             if (view instanceof RadioButton || view instanceof CheckBox) {
                 textView.setTextColor(palette.text);
             } else {
                 Integer mapped = map.get(textView.getCurrentTextColor());
-
                 if (mapped != null) {
                     textView.setTextColor(mapped);
                 }
             }
         }
-
         if (view instanceof ImageView) {
             ((ImageView) view).setColorFilter(palette.text, PorterDuff.Mode.SRC_IN);
         }
-
         Drawable background = view.getBackground();
-
         if (background instanceof ColorDrawable) {
             int color = getColorDrawableColor((ColorDrawable) background);
             Integer mapped = map.get(color);
-
             if (mapped != null) {
                 view.setBackgroundColor(mapped);
             }
@@ -90,14 +81,11 @@ public final class ThemeManager {
 
     private static Drawable buildSelector(Themes.Palette palette) {
         int highlight = withAlpha(palette.accent, 110);
-
         StateListDrawable selector = new StateListDrawable();
         selector.addState(new int[]{android.R.attr.state_pressed}, new ColorDrawable(highlight));
-
-//        if (android.os.Build.VERSION.SDK_INT >= 14) {
+        if (android.os.Build.VERSION.SDK_INT >= 14) {
             selector.addState(new int[]{android.R.attr.state_focused}, new ColorDrawable(highlight));
-//        }
-
+        }
         selector.addState(new int[]{}, new ColorDrawable(Color.TRANSPARENT));
         return selector;
     }
@@ -106,7 +94,6 @@ public final class ThemeManager {
         return (color & 0x00FFFFFF) | (alpha << 24);
     }
 
-    @SuppressWarnings("deprecation")
     private static int getColorDrawableColor(ColorDrawable drawable) {
         try {
             return (Integer) ColorDrawable.class.getMethod("getColor").invoke(drawable);
@@ -118,7 +105,6 @@ public final class ThemeManager {
     private static Map<Integer, Integer> buildColorMap(Context context, Themes.Palette target) {
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         List<Themes.Palette> all = Themes.all();
-
         for (int i = 0; i < all.size(); i++) {
             Themes.Palette p = all.get(i);
             map.put(p.text, target.text);
@@ -139,7 +125,6 @@ public final class ThemeManager {
             map.put(p.info, target.info);
             map.put(p.link, target.link);
         }
-
         android.content.res.Resources res = context.getResources();
         map.put(res.getColor(R.color.text), target.text);
         map.put(res.getColor(R.color.base), target.base);
@@ -158,7 +143,6 @@ public final class ThemeManager {
         map.put(res.getColor(R.color.error), target.error);
         map.put(res.getColor(R.color.info), target.info);
         map.put(res.getColor(R.color.link), target.link);
-
         return map;
     }
 }

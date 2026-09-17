@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class GroupManager {
-
     private final PrefsManager prefs;
     private final AppsProvider appsProvider;
 
@@ -19,14 +18,12 @@ public class GroupManager {
     }
 
     public List<String> getGroupIds() {
-        List<String> ids = new ArrayList<String>(prefs.getGroupIds());
-        Collections.sort(ids, new Comparator<String>() {
-            public int compare(String a, String b) {
-                boolean pinnedA = prefs.isGroupKeepExpanded(a);
-                boolean pinnedB = prefs.isGroupKeepExpanded(b);
-                if (pinnedA != pinnedB) return pinnedA ? -1 : 1;
-                return prefs.getGroupOrder(a) - prefs.getGroupOrder(b);
-            }
+        List<String> ids = new ArrayList<>(prefs.getGroupIds());
+        Collections.sort(ids, (a, b) -> {
+            boolean pinnedA = prefs.isGroupKeepExpanded(a);
+            boolean pinnedB = prefs.isGroupKeepExpanded(b);
+            if (pinnedA != pinnedB) return pinnedA ? -1 : 1;
+            return prefs.getGroupOrder(a) - prefs.getGroupOrder(b);
         });
         return ids;
     }
@@ -55,10 +52,8 @@ public class GroupManager {
 
     public void toggleGroupExpanded(String groupId) {
         if (prefs.isGroupKeepExpanded(groupId)) return;
-
         boolean shouldExpand = !prefs.isGroupExpanded(groupId);
         prefs.setGroupExpanded(groupId, shouldExpand);
-
         if (shouldExpand && prefs.isOnlyOneGroupOpenEnabled()) {
             List<String> ids = getGroupIds();
             for (int i = 0; i < ids.size(); i++) {
@@ -111,18 +106,15 @@ public class GroupManager {
     public String createGroup(String baseLabel) {
         String id = "group_" + System.currentTimeMillis();
         String label = generateUniqueLabel(baseLabel);
-
         prefs.addGroupId(id);
         prefs.setGroupLabel(id, label);
         prefs.setGroupVisible(id, true);
         prefs.setGroupExpanded(id, true);
-
         return id;
     }
 
     public void deleteGroup(String groupId, String newGroupId) {
         if (PrefsManager.DEFAULT_GROUP_ID.equals(groupId)) return;
-
         List<AppsProvider.AppEntry> allApps = appsProvider.getAll();
         for (int i = 0; i < allApps.size(); i++) {
             AppsProvider.AppEntry app = allApps.get(i);
@@ -130,7 +122,6 @@ public class GroupManager {
                 prefs.setAppGroupId(app.packageName, newGroupId);
             }
         }
-
         prefs.removeGroupId(groupId);
         reindexOrder();
     }
@@ -140,11 +131,9 @@ public class GroupManager {
         int index = ordered.indexOf(groupId);
         int targetIndex = index + direction;
         if (index < 0 || targetIndex < 0 || targetIndex >= ordered.size()) return;
-
         for (int i = 0; i < ordered.size(); i++) {
             prefs.setGroupOrder(ordered.get(i), i);
         }
-
         String otherId = ordered.get(targetIndex);
         prefs.setGroupOrder(groupId, targetIndex);
         prefs.setGroupOrder(otherId, index);
@@ -169,7 +158,6 @@ public class GroupManager {
         for (int i = 0; i < ids.size(); i++) {
             existingLabels.add(prefs.getGroupLabel(ids.get(i)).trim().toLowerCase(Locale.getDefault()));
         }
-
         String label = base;
         int counter = 1;
         while (existingLabels.contains(label.trim().toLowerCase(Locale.getDefault()))) {

@@ -10,20 +10,15 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 public class PrefsManager {
-
     private static final String PREFS_NAME = "mako_forever";
-
     public static final String DEFAULT_GROUP_ID = "ungrouped";
     public static final String DEFAULT_GROUP_LABEL = "Default";
-
     private static final String KEY_THEME = "settings:theme";
     private static final String KEY_COLLAPSE_ON_HOME = "settings:collapse_groups_on_home";
     private static final String KEY_ONLY_ONE_GROUP_OPEN = "settings:only_one_group_open";
     private static final String KEY_SHOW_API_INDICATORS = "apps:show_api_indicators";
     private static final String APPS_SHOW_SIZE = "apps:show_size";
-
     private static PrefsManager instance;
-
     private final SharedPreferences prefs;
 
     private PrefsManager(Context context) {
@@ -71,7 +66,7 @@ public class PrefsManager {
         LinkedHashSet<String> ids = new LinkedHashSet<String>();
         ids.add(DEFAULT_GROUP_ID);
         ids.addAll(splitCsv(prefs.getString(key("groups", "ids"), "")));
-        return new ArrayList<String>(ids);
+        return new ArrayList<>(ids);
     }
 
     public void addGroupId(String groupId) {

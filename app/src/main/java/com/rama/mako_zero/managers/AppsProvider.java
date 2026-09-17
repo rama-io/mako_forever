@@ -17,17 +17,13 @@ import java.util.List;
 import java.util.Map;
 
 public class AppsProvider {
-
     public static class AppEntry {
-
         public final String packageName;
         public final String activityName;
         public final String label;
-
         private final ApplicationInfo applicationInfo;
 
         AppEntry(String packageName, String activityName, String label, ResolveInfo resolveInfo) {
-
             this.packageName = packageName;
             this.activityName = activityName;
             this.label = label;
@@ -38,7 +34,6 @@ public class AppsProvider {
             if (Build.VERSION.SDK_INT >= 24) {
                 return applicationInfo.minSdkVersion;
             }
-
             return 0;
         }
 
@@ -48,7 +43,6 @@ public class AppsProvider {
     }
 
     private final Context context;
-
     private final Map<String, Long> appSizeCache = new HashMap<String, Long>();
 
     public AppsProvider(Context context) {
@@ -56,42 +50,29 @@ public class AppsProvider {
     }
 
     public long getAppSizeBytes(AppEntry app) {
-
         String key = appCacheKey(app);
-
         Long cached = appSizeCache.get(key);
-
         if (cached != null) {
             return cached.longValue();
         }
-
         long size = 0;
-
         try {
             ApplicationInfo info = app.applicationInfo;
-
             if (info.sourceDir != null) {
                 size += new File(info.sourceDir).length();
             }
-
             if (Build.VERSION.SDK_INT >= 21 && info.splitSourceDirs != null) {
-
                 for (int i = 0; i < info.splitSourceDirs.length; i++) {
-
                     String split = info.splitSourceDirs[i];
-
                     if (split != null) {
                         size += new File(split).length();
                     }
                 }
             }
-
         } catch (Exception e) {
             size = 0;
         }
-
         appSizeCache.put(key, Long.valueOf(size));
-
         return size;
     }
 
@@ -104,59 +85,35 @@ public class AppsProvider {
     }
 
     public List<AppEntry> getAll() {
-
         PackageManager pm = context.getPackageManager();
-
         Intent launcherIntent = new Intent(Intent.ACTION_MAIN);
-
         launcherIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-
         List<ResolveInfo> resolved = pm.queryIntentActivities(launcherIntent, 0);
-
         List<AppEntry> apps = new ArrayList<AppEntry>(resolved.size());
-
         for (int i = 0; i < resolved.size(); i++) {
-
             ResolveInfo info = resolved.get(i);
-
             String packageName = info.activityInfo.packageName;
-
             String activityName = info.activityInfo.name;
-
             String label = info.loadLabel(pm).toString();
-
             apps.add(new AppEntry(packageName, activityName, label, info));
         }
-
         Collections.sort(apps, new Comparator<AppEntry>() {
-
             public int compare(AppEntry a, AppEntry b) {
-
                 return a.label.compareToIgnoreCase(b.label);
             }
         });
-
         return apps;
     }
 
     public boolean launch(AppEntry app) {
-
         try {
-
             Intent intent = new Intent(Intent.ACTION_MAIN);
-
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
-
             intent.setComponent(new ComponentName(app.packageName, app.activityName));
-
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
             context.startActivity(intent);
-
             return true;
-
         } catch (Exception e) {
-
             return false;
         }
     }

@@ -82,13 +82,9 @@
         </FrameLayout>
     </LinearLayout>
 
-    <LinearLayout style="@style/HorizontalList">
+    <View style="@style/SeparatorListVertical" />
 
-        <EditText
-            android:id="@+id/group_name"
-            style="@style/EditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-    </LinearLayout>
+    <EditText
+        android:id="@+id/group_name"
+        style="@style/EditText" />
 </LinearLayout>

@@ -63,18 +63,32 @@
                     style="@style/Checkbox"
                     android:text="Prevent screen rotation" />
 
-                <!--                <LinearLayout style="@style/VerticalListDivided_BG2">-->
+                <View style="@style/SeparatorListVertical" />
 
-                <!--                    <TextView-->
-                <!--                        android:text="@string/label_zoom"-->
-                <!--                        style="@style/Text" />-->
+                    <LinearLayout style="@style/VerticalList_BG2">
 
-                <!--                    <com.rama.bohio.widgets.WdRange-->
-                <!--                        android:id="@+id/zoom"-->
-                <!--                        app:valuesArray="@array/ui_scale_steps"-->
-                <!--                        style="@style/BlockFlow" />-->
+                        <TextView
+                            android:text="App Zoom"
+                            style="@style/Text" />
 
-                <!--                </LinearLayout>-->
+                        <View style="@style/SeparatorListVertical" />
+
+                        <LinearLayout style="@style/HorizontalList">
+                                <EditText
+                                    android:layout_weight="1"
+                                    android:id="@+id/zoom"
+                                    android:text="100"
+                                    style="@style/EditText" />
+
+                            <View style="@style/SeparatorListHorizontal" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                style="@style/Text"
+                                android:text="%"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
             </com.rama.mako_zero.widgets.WdCollapsibleSection>
 
             <View style="@style/SeparatorListVertical" />

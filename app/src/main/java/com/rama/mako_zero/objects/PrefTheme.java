@@ -1,7 +1,6 @@
 package com.rama.mako_zero.objects;
 
 public final class PrefTheme {
-
     private PrefTheme() {
     }
 

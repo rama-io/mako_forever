@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.rama.mako_zero.R;
 
 public class WdLabel extends LinearLayout {
-
     private final ImageView iconImage;
     private final TextView iconText;
 
@@ -20,12 +19,9 @@ public class WdLabel extends LinearLayout {
 
     public WdLabel(Context context, AttributeSet attrs) {
         super(context, attrs);
-
         LayoutInflater.from(context).inflate(R.layout.wd_label, this, true);
-
         iconImage = findViewById(R.id.icon_image);
         iconText = findViewById(R.id.icon_text);
-
         if (attrs != null) {
             setAttrs(context, attrs);
         }
@@ -35,16 +31,13 @@ public class WdLabel extends LinearLayout {
         for (int i = 0; i < attrs.getAttributeCount(); i++) {
             String name = attrs.getAttributeName(i);
             String value = attrs.getAttributeValue(i);
-
             if ("text".equals(name)) {
                 int resId = attrs.getAttributeResourceValue(i, 0);
-
                 if (resId != 0) {
                     iconText.setText(context.getString(resId));
                 } else {
                     iconText.setText(value);
                 }
-
             } else if ("icon".equals(name)) {
                 int resId = attrs.getAttributeResourceValue(i, 0);
 
