@@ -66,6 +66,11 @@
                     android:text="Show min/target API levels"
                     style="@style/Checkbox" />
 
+                <com.rama.mako_forever.widgets.WdCheckbox
+                    android:id="@+id/show_app_size"
+                    android:text="Show app size"
+                    style="@style/Checkbox" />
+
 <!--                <LinearLayout style="@style/VerticalListDivided_BG2">-->
 
 <!--                    <TextView-->

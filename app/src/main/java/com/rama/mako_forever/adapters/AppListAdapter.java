@@ -514,44 +514,54 @@ public class AppListAdapter extends BaseAdapter {
         }
 
         TextView appSize = view.findViewById(
-                        R.id.app_size
-                );
-
-        final long APP_SIZE_WARNING_BYTES =
-                200L * 1024L * 1024L;
-
-        long sizeBytes =
-                appsProvider.getAppSizeBytes(app);
-
-        appSize.setVisibility(
-                View.VISIBLE
+                R.id.app_size
         );
 
-        appSize.setText(
-                Formatter.formatShortFileSize(
-                        context,
-                        sizeBytes
-                )
-        );
+        if (PrefsManager
+                .getInstance(context)
+                .hasAppSizeVisible()) {
 
-        int sizeColor;
 
-        if (sizeBytes > APP_SIZE_WARNING_BYTES) {
+            final long APP_SIZE_WARNING_BYTES =
+                    200L * 1024L * 1024L;
 
-            sizeColor =
-                    ThemeManager
-                            .currentPalette(context)
-                            .error;
+            long sizeBytes =
+                    appsProvider.getAppSizeBytes(app);
 
+            appSize.setVisibility(
+                    View.VISIBLE
+            );
+
+            appSize.setText(
+                    Formatter.formatShortFileSize(
+                            context,
+                            sizeBytes
+                    )
+            );
+
+            int sizeColor;
+
+            if (sizeBytes > APP_SIZE_WARNING_BYTES) {
+
+                sizeColor =
+                        ThemeManager
+                                .currentPalette(context)
+                                .error;
+
+            } else {
+
+                sizeColor =
+                        ThemeManager
+                                .currentPalette(context)
+                                .disabled;
+            }
+
+            appSize.setTextColor(sizeColor);
         } else {
-
-            sizeColor =
-                    ThemeManager
-                            .currentPalette(context)
-                            .text;
+            appSize.setVisibility(
+                    View.GONE
+            );
         }
-
-        appSize.setTextColor(sizeColor);
 
         View.OnClickListener launchOrToggle =
                 new View.OnClickListener() {

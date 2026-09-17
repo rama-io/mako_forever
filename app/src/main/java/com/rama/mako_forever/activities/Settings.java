@@ -118,6 +118,16 @@ public class Settings extends Activity {
                 PrefsManager.getInstance(Settings.this).setApiIndicatorsVisible(isChecked);
             }
         });
+
+        final WdCheckbox showAppSize = findViewById(R.id.show_app_size);
+        showAppSize.setChecked(
+                PrefsManager.getInstance(this).hasAppSizeVisible()
+        );
+        showAppSize.setOnCheckedChangeListener(new WdCheckbox.OnCheckedChangeListener() {
+            public void onCheckedChanged(boolean isChecked) {
+                PrefsManager.getInstance(Settings.this).setAppSizeVisible(isChecked);
+            }
+        });
     }
 
     private void setLauncherAsDefault() {

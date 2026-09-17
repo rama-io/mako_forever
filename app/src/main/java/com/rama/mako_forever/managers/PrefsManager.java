@@ -20,6 +20,7 @@ public class PrefsManager {
     private static final String KEY_COLLAPSE_ON_HOME = "settings:collapse_groups_on_home";
     private static final String KEY_ONLY_ONE_GROUP_OPEN = "settings:only_one_group_open";
     private static final String KEY_SHOW_API_INDICATORS = "apps:show_api_indicators";
+    private static final String APPS_SHOW_SIZE = "apps:show_size";
 
     private static PrefsManager instance;
 
@@ -189,6 +190,14 @@ public class PrefsManager {
 
     public void setApiIndicatorsVisible(boolean value) {
         setBoolean(KEY_SHOW_API_INDICATORS, value);
+    }
+
+    public boolean hasAppSizeVisible() {
+        return getBoolean(APPS_SHOW_SIZE, false);
+    }
+
+    public void setAppSizeVisible(boolean value) {
+        setBoolean(APPS_SHOW_SIZE, value);
     }
 
     public boolean getBoolean( String key, boolean defaultValue ) { return prefs.getBoolean(key, defaultValue); }
