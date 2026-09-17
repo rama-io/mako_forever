@@ -13,6 +13,8 @@ android {
 
         versionCode 1
         versionName "${currentYear}.${versionCode}"
+
+        resConfigs "en"
     }
 
     buildTypes {
