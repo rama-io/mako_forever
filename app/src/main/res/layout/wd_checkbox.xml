@@ -7,7 +7,7 @@
         android:id="@+id/box"
         android:layout_width="18sp"
         android:layout_height="18sp"
-        android:background="@drawable/px_box"
+        android:background="@drawable/px_box_solid"
         android:padding="3sp">
 
         <ImageView

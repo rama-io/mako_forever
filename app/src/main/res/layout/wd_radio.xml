@@ -7,7 +7,7 @@
         android:id="@+id/radio"
         android:layout_width="18sp"
         android:layout_height="18sp"
-        android:background="@drawable/px_circle"
+        android:background="@drawable/px_circle_solid"
         android:padding="3sp">
 
         <ImageView
