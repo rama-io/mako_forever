@@ -23,7 +23,7 @@ public class About extends Activity {
         TextView appName = findViewById(R.id.name_version);
         try {
             PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), 0);
-            appName.setText(getString(R.string.app_name) + " " + info.versionCode);
+            appName.setText(getString(R.string.app_name) + " v" + info.versionCode);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
