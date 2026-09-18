@@ -16,9 +16,6 @@ import android.widget.TextView;
 
 import com.rama.mako_zero.R;
 import com.rama.mako_zero.objects.Themes;
-import com.rama.mako_zero.widgets.WdCheckbox;
-import com.rama.mako_zero.widgets.WdRadio;
-import com.rama.mako_zero.widgets.WdRadioGroup;
 
 import java.util.HashMap;
 import java.util.List;

@@ -11,12 +11,14 @@ import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rama.mako_zero.R;
 import com.rama.mako_zero.adapters.AppListAdapter;
+import com.rama.mako_zero.helpers.DialogHelper;
 import com.rama.mako_zero.managers.AppsProvider;
 import com.rama.mako_zero.managers.BatteryStatusManager;
 import com.rama.mako_zero.managers.ClockManager;
@@ -163,55 +165,47 @@ public class Main extends Activity implements AppListAdapter.Listener {
     }
 
     private void showRenameDialog(final AppsProvider.AppEntry app) {
-        View view = getLayoutInflater().inflate(R.layout.dialog_rename_app, null);
-        FontManager.apply(view, FontManager.getJersey25(this));
-        final android.widget.EditText input = view.findViewById(R.id.edit_text);
-        View yesButton = view.findViewById(R.id.yes_button);
-        View resetButton = view.findViewById(R.id.reset_button);
-        View noButton = view.findViewById(R.id.no_button);
-        input.setText(groupManager.getAppLabel(app));
-        input.setSelection(input.getText().length());
-        final android.app.Dialog dialog = new android.app.Dialog(this, R.style.AppDialog);
-        dialog.setContentView(view);
-        yesButton.setOnClickListener(v -> {
-            String label = input.getText().toString().trim();
-            if (label.length() > 0) {
+        DialogHelper.show(this, R.layout.dialog_rename_app, (view, dialog) -> {
+            EditText input = view.findViewById(R.id.edit_text);
+            View yesButton = view.findViewById(R.id.yes_button);
+            View resetButton = view.findViewById(R.id.reset_button);
+            View noButton = view.findViewById(R.id.no_button);
+            input.setText(groupManager.getAppLabel(app));
+            input.setSelection(input.getText().length());
+            yesButton.setOnClickListener(v -> {
+                String label = input.getText().toString().trim();
                 groupManager.renameApp(app.packageName, label);
                 adapter.refresh();
-            }
-            dialog.dismiss();
+                dialog.dismiss();
+            });
+            resetButton.setOnClickListener(v -> {
+                groupManager.resetAppLabel(app.packageName);
+                adapter.refresh();
+                dialog.dismiss();
+            });
+            noButton.setOnClickListener(v -> dialog.dismiss());
         });
-        resetButton.setOnClickListener(v -> {
-            groupManager.resetAppLabel(app.packageName);
-            adapter.refresh();
-            dialog.dismiss();
-        });
-        noButton.setOnClickListener(v -> dialog.dismiss());
-        dialog.show();
     }
 
     private void showGroupPickerDialog() {
-        View view = getLayoutInflater().inflate(R.layout.dialog_groups_pick, null);
-        FontManager.apply(view, FontManager.getJersey25(this));
-        final WdRadioGroup radioGroup = view.findViewById(R.id.groups);
-        View closeButton = view.findViewById(R.id.close_button);
-        final android.app.Dialog dialog = new android.app.Dialog(this, R.style.AppDialog);
-        dialog.setContentView(view);
-        List<String> groupIds = groupManager.getGroupIds();
-        for (int i = 0; i < groupIds.size(); i++) {
-            final String groupId = groupIds.get(i);
-            WdRadio radio = new WdRadio(this);
-            radio.setId(3000 + i);
-            radio.setText(groupManager.getGroupLabel(groupId));
-            radio.setTextColor(getResources().getColor(R.color.text));
-            radioGroup.addView(radio);
-            radio.setOnClickListener(v -> {
-                adapter.moveSelectedAppsToGroup(groupId);
-                dialog.dismiss();
-            });
-        }
-        closeButton.setOnClickListener(v -> dialog.dismiss());
-        dialog.show();
+        DialogHelper.show(this, R.layout.dialog_groups_pick, (view, dialog) -> {
+            WdRadioGroup radioGroup = view.findViewById(R.id.groups);
+            View closeButton = view.findViewById(R.id.close_button);
+            List<String> groupIds = groupManager.getGroupIds();
+            for (int i = 0; i < groupIds.size(); i++) {
+                final String groupId = groupIds.get(i);
+                WdRadio radio = new WdRadio(this);
+                radio.setId(3000 + i);
+                radio.setText(groupManager.getGroupLabel(groupId));
+                radio.setTextColor(getResources().getColor(R.color.text));
+                radioGroup.addView(radio);
+                radio.setOnClickListener(v -> {
+                    adapter.moveSelectedAppsToGroup(groupId);
+                    dialog.dismiss();
+                });
+            }
+            closeButton.setOnClickListener(v -> dialog.dismiss());
+        });
     }
 
     private void applyRotationLock() {
