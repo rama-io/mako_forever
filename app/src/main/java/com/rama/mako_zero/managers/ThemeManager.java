@@ -143,7 +143,7 @@ public final class ThemeManager {
     }
 
     private static Map<Integer, Integer> buildColorMap(Context context, Themes.Palette target) {
-        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> map = new HashMap<>();
         List<Themes.Palette> all = Themes.all();
         for (int i = 0; i < all.size(); i++) {
             Themes.Palette p = all.get(i);

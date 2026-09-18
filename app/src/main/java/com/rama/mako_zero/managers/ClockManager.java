@@ -36,8 +36,7 @@ public class ClockManager {
     private void update() {
         Calendar calendar = Calendar.getInstance();
         Locale locale = timeView.getResources().getConfiguration().locale;
-        String timePattern = "HH:mm";
-        timeView.setText(new SimpleDateFormat(timePattern, locale).format(calendar.getTime()));
+        timeView.setText(new SimpleDateFormat("HH:mm", locale).format(calendar.getTime()));
         DateFormatSymbols symbols = new DateFormatSymbols(locale);
         String weekday = symbols.getWeekdays()[calendar.get(Calendar.DAY_OF_WEEK)];
         String date = new SimpleDateFormat("yyyy-MM-dd", locale).format(calendar.getTime());

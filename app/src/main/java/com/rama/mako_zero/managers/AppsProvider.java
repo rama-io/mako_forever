@@ -89,7 +89,7 @@ public class AppsProvider {
         Intent launcherIntent = new Intent(Intent.ACTION_MAIN);
         launcherIntent.addCategory(Intent.CATEGORY_LAUNCHER);
         List<ResolveInfo> resolved = pm.queryIntentActivities(launcherIntent, 0);
-        List<AppEntry> apps = new ArrayList<AppEntry>(resolved.size());
+        List<AppEntry> apps = new ArrayList<>(resolved.size());
         for (int i = 0; i < resolved.size(); i++) {
             ResolveInfo info = resolved.get(i);
             String packageName = info.activityInfo.packageName;
@@ -97,11 +97,7 @@ public class AppsProvider {
             String label = FontManager.sanitizeForFont(info.loadLabel(pm).toString());
             apps.add(new AppEntry(packageName, activityName, label, info));
         }
-        Collections.sort(apps, new Comparator<AppEntry>() {
-            public int compare(AppEntry a, AppEntry b) {
-                return a.label.compareToIgnoreCase(b.label);
-            }
-        });
+        Collections.sort(apps, (AppEntry a, AppEntry b) -> a.label.compareToIgnoreCase(b.label));
         return apps;
     }
 

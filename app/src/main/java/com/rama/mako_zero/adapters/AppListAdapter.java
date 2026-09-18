@@ -27,7 +27,6 @@ import java.util.Map;
 import java.util.Set;
 
 public class AppListAdapter extends BaseAdapter {
-
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_APP = 1;
     final long APP_SIZE_WARNING_BYTES = 200L * 1024L * 1024L;

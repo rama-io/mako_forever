@@ -154,7 +154,7 @@ public class GroupManager {
 
     private String generateUniqueLabel(String base) {
         List<String> ids = prefs.getGroupIds();
-        List<String> existingLabels = new ArrayList<String>();
+        List<String> existingLabels = new ArrayList<>();
         for (int i = 0; i < ids.size(); i++) {
             existingLabels.add(prefs.getGroupLabel(ids.get(i)).trim().toLowerCase(Locale.getDefault()));
         }

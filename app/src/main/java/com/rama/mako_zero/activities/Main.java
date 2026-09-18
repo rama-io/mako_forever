@@ -30,7 +30,6 @@ import com.rama.mako_zero.widgets.WdRadioGroup;
 import java.util.List;
 
 public class Main extends Activity implements AppListAdapter.Listener {
-    public static final String PREF_PREVENT_ROTATION = "settings:prevent_rotation";
     private ClockManager clockManager;
     private BatteryStatusManager batteryStatusManager;
     private AppsProvider appsProvider;
@@ -215,7 +214,7 @@ public class Main extends Activity implements AppListAdapter.Listener {
     }
 
     private void applyRotationLock() {
-        boolean prevent = PrefsManager.getInstance(this).getBoolean(PREF_PREVENT_ROTATION, false);
+        boolean prevent = PrefsManager.getInstance(this).getBoolean(PrefsManager.PREF_PREVENT_ROTATION, false);
         if (!prevent) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
             return;
