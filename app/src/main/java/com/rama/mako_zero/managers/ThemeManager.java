@@ -64,10 +64,10 @@ public final class ThemeManager {
         ImageView check = radio.findViewById(R.id.check);
         TextView text = radio.findViewById(R.id.text);
         if (circle != null && circle.getBackground() != null) {
-            circle.getBackground().mutate().setColorFilter(palette.text, PorterDuff.Mode.SRC_IN);
+            circle.getBackground().mutate().setColorFilter(palette.accent, PorterDuff.Mode.SRC_IN);
         }
         if (check != null) {
-            check.setColorFilter(palette.base, PorterDuff.Mode.SRC_IN);
+            check.setColorFilter(palette.accent, PorterDuff.Mode.SRC_IN);
         }
         if (text != null) {
             text.setTextColor(palette.text);
@@ -79,10 +79,10 @@ public final class ThemeManager {
         ImageView check = checkbox.findViewById(R.id.check);
         TextView text = checkbox.findViewById(R.id.text);
         if (box != null && box.getBackground() != null) {
-            box.getBackground().mutate().setColorFilter(palette.text, PorterDuff.Mode.SRC_IN);
+            box.getBackground().mutate().setColorFilter(palette.accent, PorterDuff.Mode.SRC_IN);
         }
         if (check != null) {
-            check.setColorFilter(palette.base, PorterDuff.Mode.SRC_IN);
+            check.setColorFilter(palette.accent, PorterDuff.Mode.SRC_IN);
         }
         if (text != null) {
             text.setTextColor(palette.text);

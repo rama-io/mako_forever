@@ -7,15 +7,15 @@
         android:id="@+id/radio"
         android:layout_width="18sp"
         android:layout_height="18sp"
-        android:background="@drawable/px_circle_solid"
-        android:padding="1sp">
+        android:background="@drawable/px_circle_outline"
+        android:padding="5sp">
 
         <ImageView
             android:id="@+id/check"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:importantForAccessibility="no"
-            android:src="@drawable/px_check"
+            android:src="@drawable/px_circle"
             android:visibility="gone" />
 
     </FrameLayout>
