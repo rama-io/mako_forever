@@ -6,9 +6,9 @@
 
     <ImageView
         android:id="@+id/selection_check"
-        style="@style/Icon24"
+        style="@style/Icon32"
         android:paddingRight="8sp"
-        android:src="@drawable/px_octagon_check"
+        android:src="@drawable/px_check"
         android:visibility="gone" />
 
     <TextView
