@@ -218,11 +218,8 @@ public class Settings extends Activity {
 
     private void showDeleteGroupDialog(final String groupId, String groupLabel) {
         DialogHelper.show(this, R.layout.dialog_groups_delete, (view, dialog) -> {
-            TextView groupNameView = view.findViewById(R.id.group_name);
             WdRadioGroup radioGroup = view.findViewById(R.id.groups);
-            View yesButton = view.findViewById(R.id.yes_button);
-            View noButton = view.findViewById(R.id.no_button);
-            groupNameView.setText(groupLabel);
+            ((TextView) view.findViewById(R.id.group_name)).setText(groupLabel);
             final List<String> targetGroups = new ArrayList<>();
             List<String> allGroups = groupManager.getGroupIds();
             for (int i = 0; i < allGroups.size(); i++) {
@@ -254,7 +251,7 @@ public class Settings extends Activity {
                     selectedGroupId[0] = targetGroups.get(index);
                 }
             });
-            yesButton.setOnClickListener(v -> {
+            view.findViewById(R.id.yes_button).setOnClickListener(v -> {
                 if (selectedGroupId[0] == null) {
                     Toast.makeText(Settings.this, R.string.toast_select_target_group, Toast.LENGTH_SHORT).show();
                     return;
@@ -263,7 +260,7 @@ public class Settings extends Activity {
                 renderGroups();
                 dialog.dismiss();
             });
-            noButton.setOnClickListener(v -> dialog.dismiss());
+            view.findViewById(R.id.no_button).setOnClickListener(v -> dialog.dismiss());
         });
     }
 

@@ -167,30 +167,25 @@ public class Main extends Activity implements AppListAdapter.Listener {
     private void showRenameDialog(final AppsProvider.AppEntry app) {
         DialogHelper.show(this, R.layout.dialog_rename_app, (view, dialog) -> {
             EditText input = view.findViewById(R.id.edit_text);
-            View yesButton = view.findViewById(R.id.yes_button);
-            View resetButton = view.findViewById(R.id.reset_button);
-            View noButton = view.findViewById(R.id.no_button);
             input.setText(groupManager.getAppLabel(app));
             input.setSelection(input.getText().length());
-            yesButton.setOnClickListener(v -> {
+            view.findViewById(R.id.yes_button).setOnClickListener(v -> {
                 String label = input.getText().toString().trim();
                 groupManager.renameApp(app.packageName, label);
                 adapter.refresh();
                 dialog.dismiss();
             });
-            resetButton.setOnClickListener(v -> {
+            view.findViewById(R.id.reset_button).setOnClickListener(v -> {
                 groupManager.resetAppLabel(app.packageName);
                 adapter.refresh();
                 dialog.dismiss();
             });
-            noButton.setOnClickListener(v -> dialog.dismiss());
+            view.findViewById(R.id.no_button).setOnClickListener(v -> dialog.dismiss());
         });
     }
 
     private void showGroupPickerDialog() {
         DialogHelper.show(this, R.layout.dialog_groups_pick, (view, dialog) -> {
-            WdRadioGroup radioGroup = view.findViewById(R.id.groups);
-            View closeButton = view.findViewById(R.id.close_button);
             List<String> groupIds = groupManager.getGroupIds();
             for (int i = 0; i < groupIds.size(); i++) {
                 final String groupId = groupIds.get(i);
@@ -198,13 +193,13 @@ public class Main extends Activity implements AppListAdapter.Listener {
                 radio.setId(3000 + i);
                 radio.setText(groupManager.getGroupLabel(groupId));
                 radio.setTextColor(getResources().getColor(R.color.text));
-                radioGroup.addView(radio);
+                ((WdRadioGroup) view.findViewById(R.id.groups)).addView(radio);
                 radio.setOnClickListener(v -> {
                     adapter.moveSelectedAppsToGroup(groupId);
                     dialog.dismiss();
                 });
             }
-            closeButton.setOnClickListener(v -> dialog.dismiss());
+            view.findViewById(R.id.close_button).setOnClickListener(v -> dialog.dismiss());
         });
     }
 
