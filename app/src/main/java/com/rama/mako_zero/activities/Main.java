@@ -34,7 +34,6 @@ import java.util.List;
 public class Main extends Activity implements AppListAdapter.Listener {
     private ClockManager clockManager;
     private BatteryStatusManager batteryStatusManager;
-    private AppsProvider appsProvider;
     private GroupManager groupManager;
     private AppListAdapter adapter;
     private View menuBar;
@@ -47,22 +46,16 @@ public class Main extends Activity implements AppListAdapter.Listener {
         super.onCreate(savedInstanceState);
         applyRotationLock();
         setContentView(R.layout.activity_main);
-        View root = findViewById(R.id.root);
-        FontManager.apply(root, FontManager.getJersey25(this));
-        TextView timeView = findViewById(R.id.time);
-        TextView dateView = findViewById(R.id.date);
-        TextView batteryView = findViewById(R.id.battery);
+        FontManager.apply(findViewById(R.id.root), FontManager.getJersey25(this));
         ListView appList = findViewById(R.id.app_list);
-        clockManager = new ClockManager(timeView, dateView);
-        batteryStatusManager = new BatteryStatusManager(this, batteryView);
-        appsProvider = new AppsProvider(this);
+        clockManager = new ClockManager(findViewById(R.id.time), findViewById(R.id.date));
+        batteryStatusManager = new BatteryStatusManager(this, findViewById(R.id.battery));
         groupManager = new GroupManager(this);
-        adapter = new AppListAdapter(this, appsProvider, groupManager);
+        adapter = new AppListAdapter(this, new AppsProvider(this), groupManager);
         adapter.setListener(this);
         appList.setAdapter(adapter);
         appList.setOnItemClickListener((parent, view, position, id) -> adapter.performRowAction(position));
-        View homeHeader = findViewById(R.id.home_header);
-        homeHeader.setOnLongClickListener(v -> {
+        findViewById(R.id.home_header).setOnLongClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             onOpenSettingsRequested();
             return true;

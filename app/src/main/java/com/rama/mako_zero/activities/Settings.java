@@ -1,14 +1,12 @@
 package com.rama.mako_zero.activities;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -49,23 +47,18 @@ public class Settings extends Activity {
             findViewById(R.id.themes_section).setVisibility(View.GONE);
             findViewById(R.id.themes_separator).setVisibility(View.GONE);
         }
-        Button btnAbout = findViewById(R.id.go_about);
-        btnAbout.setOnClickListener(v -> startActivity(new Intent(Settings.this, About.class)));
-        Button btnBack = findViewById(R.id.go_back);
-        btnBack.setOnClickListener(v -> startActivity(new Intent(Settings.this, Main.class)));
+        findViewById(R.id.go_about).setOnClickListener(v -> startActivity(new Intent(Settings.this, About.class)));
+        findViewById(R.id.go_back).setOnClickListener(v -> startActivity(new Intent(Settings.this, Main.class)));
     }
 
     private void setupSystemSection() {
-        Button activateButton = findViewById(R.id.activate_button);
-        activateButton.setOnClickListener(v -> setLauncherAsDefault());
-        Button resetButton = findViewById(R.id.reset_button);
-        resetButton.setOnClickListener(v -> {
+        findViewById(R.id.activate_button).setOnClickListener(v -> setLauncherAsDefault());
+        findViewById(R.id.reset_button).setOnClickListener(v -> {
             Intent intent = new Intent(Settings.this, Main.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
-        Button changeAppsButton = findViewById(R.id.change_apps_button);
-        changeAppsButton.setOnClickListener(v -> {
+        findViewById(R.id.change_apps_button).setOnClickListener(v -> {
             try {
                 startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_SETTINGS));
             } catch (Exception e) {
@@ -110,8 +103,7 @@ public class Settings extends Activity {
         final WdCheckbox onlyOneOpen = findViewById(R.id.only_one_group_open);
         onlyOneOpen.setChecked(prefs.isOnlyOneGroupOpenEnabled());
         onlyOneOpen.setOnCheckedChangeListener(isChecked -> prefs.setOnlyOneGroupOpenEnabled(isChecked));
-        Button addGroupButton = findViewById(R.id.add_group_button);
-        addGroupButton.setOnClickListener(v -> {
+        findViewById(R.id.add_group_button).setOnClickListener(v -> {
             groupManager.createGroup(getString(R.string.new_group_header));
             renderGroups();
         });
