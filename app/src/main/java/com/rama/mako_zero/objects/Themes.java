@@ -44,7 +44,7 @@ public final class Themes {
     }
 
     private static Palette mocha(String id, String label, int accent) {
-        return new Palette(id, label, 0xFFCDD6F4, 0xFF1E1E2E, 0xFF45475A, 0xFF585B70, 0xFF587D52, 0xFF585B70, 0xFF585B70, accent, 0xFFA6E3A2, 0xFFFFD701, 0xFFF38BA9, 0xFF89DCEB, 0xFF89DCEB);
+        return new Palette(id, label, 0xFFCDD6F4, 0xFF1E1E2E, 0xFF45475A, 0xFF585B71, 0xFF587D52, 0xFF585B70, 0xFF585B72, accent, 0xFFA6E3A2, 0xFFFFD701, 0xFFF38BA9, 0xFF89DCEB, 0xFF89DCEC);
     }
 
     public static final Palette CATPPUCCIN_MOCHA_MAUVE = mocha(PrefTheme.CATPPUCCIN_MOCHA_MAUVE, "Mauve", 0xFFCBA6F7);

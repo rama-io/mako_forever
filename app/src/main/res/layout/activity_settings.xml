@@ -161,6 +161,8 @@
                     style="@style/Checkbox"
                     android:text="Show min/target API levels" />
 
+                <View style="@style/SeparatorListVertical" />
+
                 <com.rama.mako_zero.widgets.WdCheckbox
                     android:id="@+id/show_app_size"
                     style="@style/Checkbox"
