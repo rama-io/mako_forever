@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rama.mako_zero.R;
+import com.rama.mako_zero.helpers.DialogHelper;
 import com.rama.mako_zero.managers.FontManager;
 import com.rama.mako_zero.managers.GroupManager;
 import com.rama.mako_zero.managers.PrefsManager;
@@ -216,52 +217,54 @@ public class Settings extends Activity {
     }
 
     private void showDeleteGroupDialog(final String groupId, String groupLabel) {
-        View view = getLayoutInflater().inflate(R.layout.dialog_groups_delete, null);
-        FontManager.apply(view, FontManager.getJersey25(this));
-        TextView groupNameView = view.findViewById(R.id.group_name);
-        WdRadioGroup radioGroup = view.findViewById(R.id.groups);
-        View yesButton = view.findViewById(R.id.yes_button);
-        View noButton = view.findViewById(R.id.no_button);
-        groupNameView.setText(groupLabel);
-        final List<String> targetGroups = new ArrayList<String>();
-        List<String> allGroups = groupManager.getGroupIds();
-        for (int i = 0; i < allGroups.size(); i++) {
-            if (!allGroups.get(i).equals(groupId)) targetGroups.add(allGroups.get(i));
-        }
-        final String[] selectedGroupId = new String[1];
-        for (int i = 0; i < targetGroups.size(); i++) {
-            String targetId = targetGroups.get(i);
-            WdRadio radio = new WdRadio(this);
-            radio.setId(2000 + i);
-            radio.setText(groupManager.getGroupLabel(targetId));
-            radio.setTextColor(getResources().getColor(R.color.text));
-            radioGroup.addView(radio);
-            if (i == 0) {
-                radio.setChecked(true);
-                selectedGroupId[0] = targetId;
+        DialogHelper.show(this, R.layout.dialog_groups_delete, (view, dialog) -> {
+            TextView groupNameView = view.findViewById(R.id.group_name);
+            WdRadioGroup radioGroup = view.findViewById(R.id.groups);
+            View yesButton = view.findViewById(R.id.yes_button);
+            View noButton = view.findViewById(R.id.no_button);
+            groupNameView.setText(groupLabel);
+            final List<String> targetGroups = new ArrayList<>();
+            List<String> allGroups = groupManager.getGroupIds();
+            for (int i = 0; i < allGroups.size(); i++) {
+                String targetId = allGroups.get(i);
+                if (!targetId.equals(groupId)) {
+                    targetGroups.add(targetId);
+                }
             }
-        }
-        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            WdRadio checked = group.findViewById(checkedId);
-            if (checked == null) return;
-            int index = group.indexOfChild(checked);
-            if (index >= 0 && index < targetGroups.size()) {
-                selectedGroupId[0] = targetGroups.get(index);
+            final String[] selectedGroupId = new String[1];
+            for (int i = 0; i < targetGroups.size(); i++) {
+                String targetId = targetGroups.get(i);
+                WdRadio radio = new WdRadio(this);
+                radio.setId(2000 + i);
+                radio.setText(groupManager.getGroupLabel(targetId));
+                radio.setTextColor(getResources().getColor(R.color.text));
+                radioGroup.addView(radio);
+                if (i == 0) {
+                    radio.setChecked(true);
+                    selectedGroupId[0] = targetId;
+                }
             }
+            radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+                WdRadio checked = group.findViewById(checkedId);
+                if (checked == null) {
+                    return;
+                }
+                int index = group.indexOfChild(checked);
+                if (index >= 0 && index < targetGroups.size()) {
+                    selectedGroupId[0] = targetGroups.get(index);
+                }
+            });
+            yesButton.setOnClickListener(v -> {
+                if (selectedGroupId[0] == null) {
+                    Toast.makeText(Settings.this, R.string.toast_select_target_group, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                groupManager.deleteGroup(groupId, selectedGroupId[0]);
+                renderGroups();
+                dialog.dismiss();
+            });
+            noButton.setOnClickListener(v -> dialog.dismiss());
         });
-        final Dialog dialog = new Dialog(this, R.style.AppDialog);
-        dialog.setContentView(view);
-        dialog.setCancelable(true);
-        yesButton.setOnClickListener(v -> {
-            if (selectedGroupId[0] == null) {
-                Toast.makeText(Settings.this, R.string.toast_select_target_group, Toast.LENGTH_SHORT).show();
-                return;
-            }
-            groupManager.deleteGroup(groupId, selectedGroupId[0]);
-            renderGroups();
-            dialog.dismiss();
-        });
-        noButton.setOnClickListener(v -> dialog.dismiss());
-        dialog.show();
     }
+
 }
