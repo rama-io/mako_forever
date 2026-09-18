@@ -19,12 +19,7 @@ public class GroupManager {
 
     public List<String> getGroupIds() {
         List<String> ids = new ArrayList<>(prefs.getGroupIds());
-        Collections.sort(ids, (a, b) -> {
-            boolean pinnedA = prefs.isGroupKeepExpanded(a);
-            boolean pinnedB = prefs.isGroupKeepExpanded(b);
-            if (pinnedA != pinnedB) return pinnedA ? -1 : 1;
-            return prefs.getGroupOrder(a) - prefs.getGroupOrder(b);
-        });
+        Collections.sort(ids, (a, b) -> prefs.getGroupOrder(a) - prefs.getGroupOrder(b));
         return ids;
     }
 

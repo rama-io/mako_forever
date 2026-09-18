@@ -72,8 +72,8 @@ public class Settings extends Activity {
             }
         });
         final WdCheckbox preventRotation = findViewById(R.id.prevent_home_screen_rotation);
-        preventRotation.setChecked(PrefsManager.getInstance(this).getBoolean(Main.PREF_PREVENT_ROTATION, false));
-        preventRotation.setOnCheckedChangeListener(isChecked -> PrefsManager.getInstance(Settings.this).setBoolean(Main.PREF_PREVENT_ROTATION, isChecked));
+        preventRotation.setChecked(PrefsManager.getInstance(this).getBoolean(PrefsManager.PREVENT_ROTATION, false));
+        preventRotation.setOnCheckedChangeListener(isChecked -> PrefsManager.getInstance(Settings.this).setBoolean(PrefsManager.PREVENT_ROTATION, isChecked));
         final WdCheckbox showApiIndicators = findViewById(R.id.show_api_indicators);
         showApiIndicators.setChecked(PrefsManager.getInstance(this).hasApiIndicatorsVisible());
         showApiIndicators.setOnCheckedChangeListener(isChecked -> PrefsManager.getInstance(Settings.this).setApiIndicatorsVisible(isChecked));

@@ -10,7 +10,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 public class PrefsManager {
-    public static final String PREF_PREVENT_ROTATION = "settings:prevent_rotation";
+    public static final String PREVENT_ROTATION = "settings:prevent_rotation";
     private static final String PREFS_NAME = "mako_zero";
     public static final String DEFAULT_GROUP_ID = "ungrouped";
     public static final String DEFAULT_GROUP_LABEL = "Default";

@@ -58,6 +58,7 @@ public class Main extends Activity implements AppListAdapter.Listener {
         adapter = new AppListAdapter(this, appsProvider, groupManager);
         adapter.setListener(this);
         appList.setAdapter(adapter);
+        appList.setOnItemClickListener((parent, view, position, id) -> adapter.performRowAction(position));
         View homeHeader = findViewById(R.id.home_header);
         homeHeader.setOnLongClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
@@ -214,7 +215,7 @@ public class Main extends Activity implements AppListAdapter.Listener {
     }
 
     private void applyRotationLock() {
-        boolean prevent = PrefsManager.getInstance(this).getBoolean(PrefsManager.PREF_PREVENT_ROTATION, false);
+        boolean prevent = PrefsManager.getInstance(this).getBoolean(PrefsManager.PREVENT_ROTATION, false);
         if (!prevent) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
             return;

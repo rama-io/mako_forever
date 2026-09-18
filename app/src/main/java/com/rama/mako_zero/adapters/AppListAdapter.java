@@ -220,12 +220,35 @@ public class AppListAdapter extends BaseAdapter {
             view.setOnClickListener(null);
             view.setClickable(false);
         } else {
-            view.setOnClickListener(v -> {
-                groupManager.toggleGroupExpanded(groupId);
-                refresh();
-            });
+            view.setOnClickListener(v -> handleHeaderClick(groupId));
         }
         return view;
+    }
+
+    private void handleHeaderClick(String groupId) {
+        if (groupManager.isGroupKeepExpanded(groupId)) return;
+        groupManager.toggleGroupExpanded(groupId);
+        refresh();
+    }
+
+    private void handleAppClick(AppsProvider.AppEntry app) {
+        if (multiSelectMode) {
+            toggleSelection(app.packageName);
+        } else if (!appsProvider.launch(app)) {
+            if (listener != null) {
+                listener.onAppLaunchFailed();
+            }
+        }
+    }
+
+    public void performRowAction(int position) {
+        if (position < 0 || position >= items.size()) return;
+        Object item = items.get(position);
+        if (item instanceof HeaderRow) {
+            handleHeaderClick(((HeaderRow) item).groupId);
+        } else if (item instanceof AppsProvider.AppEntry) {
+            handleAppClick((AppsProvider.AppEntry) item);
+        }
     }
 
     private View getAppView(final AppsProvider.AppEntry app, View convertView, ViewGroup parent) {
@@ -276,15 +299,7 @@ public class AppListAdapter extends BaseAdapter {
         } else {
             appSize.setVisibility(View.GONE);
         }
-        View.OnClickListener launchOrToggle = v -> {
-            if (multiSelectMode) {
-                toggleSelection(app.packageName);
-            } else if (!appsProvider.launch(app)) {
-                if (listener != null) {
-                    listener.onAppLaunchFailed();
-                }
-            }
-        };
+        View.OnClickListener launchOrToggle = v -> handleAppClick(app);
         view.setOnClickListener(launchOrToggle);
         label.setOnClickListener(launchOrToggle);
         emptySpace.setOnClickListener(launchOrToggle);
