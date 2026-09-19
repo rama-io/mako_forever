@@ -44,7 +44,40 @@ public final class Themes {
     }
 
     private static Palette mocha(String id, String label, int accent) {
-        return new Palette(id, label, 0xFFCDD6F4, 0xFF1E1E2E, 0xFF45475A, 0xFF585B71, 0xFF587D52, 0xFF585B70, 0xFF585B72, accent, 0xFFA6E3A2, 0xFFFFD701, 0xFFF38BA9, 0xFF89DCEB, 0xFF89DCEC);
+        return new Palette(id, label, 0xFFCDD6F4, 0xFF1E1E2E, 0xFF45475A, 0xFF585B71, 0xFF587D52, 0xFF585B70, 0xFF585B72, accent, 0xFFA6E3A2, 0xFFF9E2AE, 0xFFF38BA9, 0xFF89DCEB, 0xFF89DCEC);
+    }
+
+    public static int getPaletteColor(Themes.Palette palette, String name) {
+        switch (name) {
+            case "text":
+                return palette.text;
+            case "base":
+                return palette.base;
+            case "surface_0":
+                return palette.surface_0;
+            case "surface_1":
+                return palette.surface_1;
+            case "subtle":
+                return palette.subtle;
+            case "disabled":
+                return palette.disabled;
+            case "border":
+                return palette.border;
+            case "accent":
+                return palette.accent;
+            case "success":
+                return palette.success;
+            case "warning":
+                return palette.warning;
+            case "error":
+                return palette.error;
+            case "info":
+                return palette.info;
+            case "link":
+                return palette.link;
+            default:
+                return palette.text;
+        }
     }
 
     public static final Palette CATPPUCCIN_MOCHA_MAUVE = mocha(PrefTheme.CATPPUCCIN_MOCHA_MAUVE, "Mauve", 0xFFCBA6F7);

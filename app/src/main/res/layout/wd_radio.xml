@@ -8,7 +8,8 @@
         android:layout_width="18sp"
         android:layout_height="18sp"
         android:background="@drawable/px_circle_outline"
-        android:padding="5sp">
+        android:padding="5sp"
+        android:tag="accent">
 
         <ImageView
             android:id="@+id/check"
@@ -16,6 +17,7 @@
             android:layout_height="match_parent"
             android:importantForAccessibility="no"
             android:src="@drawable/px_circle"
+            android:tag="accent"
             android:visibility="gone" />
 
     </FrameLayout>

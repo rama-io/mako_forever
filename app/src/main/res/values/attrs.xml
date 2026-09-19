@@ -16,5 +16,4 @@
         <attr name="values" format="string" />
         <attr name="valuesArray" format="reference" />
     </declare-styleable>
-
 </resources>

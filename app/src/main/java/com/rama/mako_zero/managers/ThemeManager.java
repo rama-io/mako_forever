@@ -1,5 +1,7 @@
 package com.rama.mako_zero.managers;
 
+import static com.rama.mako_zero.objects.Themes.getPaletteColor;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -9,9 +11,7 @@ import android.graphics.drawable.StateListDrawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.rama.mako_zero.R;
@@ -41,8 +41,7 @@ public final class ThemeManager {
 
     private static void applyRecursively(View view, Themes.Palette palette, Map<Integer, Integer> map) {
         applyToView(view, palette, map);
-        if (view instanceof ViewGroup) {
-            ViewGroup group = (ViewGroup) view;
+        if (view instanceof ViewGroup group) {
             for (int i = 0; i < group.getChildCount(); i++) {
                 applyRecursively(group.getChildAt(i), palette, map);
             }
@@ -50,13 +49,17 @@ public final class ThemeManager {
     }
 
     private static void applyToView(View view, Themes.Palette palette, Map<Integer, Integer> map) {
+        Object tag = view.getTag();
+        int themeColor = palette.text;
+        if (tag instanceof String) {
+            themeColor = getPaletteColor(palette, (String) tag);
+        }
         if (view instanceof AbsListView) {
             ((AbsListView) view).setSelector(buildSelector(palette));
         }
-        if (view instanceof TextView) {
-            TextView textView = (TextView) view;
-            if (view instanceof RadioButton || view instanceof CheckBox) {
-                textView.setTextColor(palette.text);
+        if (view instanceof TextView textView) {
+            if (tag instanceof String) {
+                textView.setTextColor(themeColor);
             } else {
                 Integer mapped = map.get(textView.getCurrentTextColor());
                 if (mapped != null) {
@@ -65,17 +68,18 @@ public final class ThemeManager {
             }
         }
         if (view instanceof ImageView) {
-            ((ImageView) view).setColorFilter(palette.text, PorterDuff.Mode.SRC_IN);
+            ((ImageView) view).setColorFilter(themeColor, PorterDuff.Mode.SRC_IN);
         }
         Drawable background = view.getBackground();
         if (background instanceof ColorDrawable) {
             int color = getColorDrawableColor((ColorDrawable) background);
             Integer mapped = map.get(color);
+
             if (mapped != null) {
                 view.setBackgroundColor(mapped);
             }
         } else if (background != null) {
-            background.mutate().setColorFilter(palette.text, PorterDuff.Mode.SRC_IN);
+            background.mutate().setColorFilter(themeColor, PorterDuff.Mode.SRC_IN);
         }
     }
 
