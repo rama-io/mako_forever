@@ -99,9 +99,6 @@ public class WdRadioGroup extends LinearLayout {
             return;
         }
         final WdRadio radio = (WdRadio) child;
-        if (radioContainer.getChildCount() > 0) {
-            radioContainer.addView(createDivider());
-        }
         radioContainer.addView(radio, params);
         radio.setInternalCheckedChangeListener((WdRadio internalRadioBtn, boolean checked) -> {
             if (protectFromCheckedChange) {
@@ -118,12 +115,6 @@ public class WdRadioGroup extends LinearLayout {
         if (radio.isChecked()) {
             check(radio.getId());
         }
-    }
-
-    private View createDivider() {
-        View divider = new View(getContext());
-        divider.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, getResources().getDimensionPixelSize(R.dimen.space_between_elements)));
-        return divider;
     }
 
     @Override

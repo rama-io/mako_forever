@@ -32,10 +32,8 @@ public class BatteryStatusManager {
         if (level < 0 || scale <= 0) return;
         int levelPct = Math.round(level * 100f / scale);
         int tempC = intent.getIntExtra(android.os.BatteryManager.EXTRA_TEMPERATURE, -1) / 10;
-        boolean useFahrenheit = FAHRENHEIT_COUNTRIES.contains("," + Locale.getDefault().getCountry() + ",");
-        int temperature = useFahrenheit ? (tempC * 9 / 5 + 32) : tempC;
-        String unit = useFahrenheit ? "\u00B0F" : "\u00B0C";
-        view.setText(levelPct + "% :: " + temperature + unit);
+        int temperature = tempC * 9 / 5 + 32;
+        view.setText(levelPct + "% :: " + temperature + "F");
     }
 
     public void register() {

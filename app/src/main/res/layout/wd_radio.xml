@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="@dimen/space_between_elements"
+    android:paddingBottom="@dimen/space_between_elements"
     style="@style/HorizontalList">
 
     <FrameLayout
