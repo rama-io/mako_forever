@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="text">#CBDECD</color>
-    <color name="base">#0E190E</color>
+    <color name="text">#CDD6F4</color>
+    <color name="base">#1E1E2E</color>
 
     <!-- Surfaces -->
-    <color name="surface_0">#2D3B24</color>
-    <color name="surface_1">#3A4D2E</color>
+    <color name="surface_0">#45475A</color>
+    <color name="surface_1">#585B71</color>
 
     <!-- Text -->
-    <color name="subtle">#4D7A4E</color>
-    <color name="disabled">#3A4D2E</color>
+    <color name="subtle">#587D52</color>
+    <color name="disabled">#585B70</color>
 
     <!-- UI -->
-    <color name="border">#3A4D2E</color>
+    <color name="border">#585B72</color>
 
     <!-- Accents -->
-    <color name="accent">#45995A</color>
+    <color name="accent">#CBA6F7</color>
 
     <!-- Semantic -->
-    <color name="success">#ABD68D</color>
-    <color name="warning">#DCD07C</color>
-    <color name="error">#DC6364</color>
-    <color name="info">#7CCF8E</color>
+    <color name="success">#A6E3A2</color>
+    <color name="warning">#FFD701</color>
+    <color name="error">#F38BA9</color>
+    <color name="info">#89DCEB</color>
 
     <!-- Links -->
-    <color name="link">#7CCF8E</color>
+    <color name="link">#89DCEC</color>
 
     <!-- ANSI Palette -->
-    <color name="black">#0E190E</color>
-    <color name="blue">#4D6F7A</color>
-    <color name="green">#45995A</color>
-    <color name="cyan">#4F8F82</color>
-    <color name="red">#B65354</color>
-    <color name="magenta">#8A5F82</color>
-    <color name="brown">#9A8350</color>
-    <color name="light_gray">#B5B9B5</color>
+    <color name="black">#1E1E2E</color>
+    <color name="blue">#89B4FA</color>
+    <color name="green">#A6E3A2</color>
+    <color name="cyan">#89DCEB</color>
+    <color name="red">#F38BA9</color>
+    <color name="magenta">#CBA6F7</color>
+    <color name="brown">#F9E2AF</color>
+    <color name="light_gray">#BAC2DE</color>
 
-    <color name="dark_gray">#1F2920</color>
-    <color name="light_blue">#6D9EAD</color>
-    <color name="light_green">#7CCF8E</color>
-    <color name="light_cyan">#72C4B3</color>
-    <color name="light_red">#DC6364</color>
-    <color name="light_magenta">#B77AA9</color>
-    <color name="yellow">#DCD07C</color>
-    <color name="white">#CBDECD</color>
+    <color name="dark_gray">#45475A</color>
+    <color name="light_blue">#89B4FA</color>
+    <color name="light_green">#A6E3A1</color>
+    <color name="light_cyan">#89DCEB</color>
+    <color name="light_red">#F38BA8</color>
+    <color name="light_magenta">#CBA6F7</color>
+    <color name="yellow">#F9E2AF</color>
+    <color name="white">#CDD6F4</color>
 
 </resources>
