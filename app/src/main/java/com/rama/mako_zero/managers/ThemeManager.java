@@ -1,6 +1,6 @@
 package com.rama.mako_zero.managers;
 
-import static com.rama.mako_zero.objects.Themes.getPaletteColor;
+import static com.rama.mako_zero.objects.Themes.getColor;
 
 import android.app.Activity;
 import android.content.Context;
@@ -57,7 +57,7 @@ public final class ThemeManager {
         Object tag = view.getTag();
         int themeColor = palette.text;
         if (tag instanceof String) {
-            themeColor = getPaletteColor(palette, (String) tag);
+            themeColor = getColor(palette, (String) tag);
         }
         if (view instanceof AbsListView) {
             ((AbsListView) view).setSelector(buildSelector(palette));

@@ -48,6 +48,7 @@ public final class Themes {
     }
 
     public static int getPaletteColor(Themes.Palette palette, String name) {
+    public static int getColor(Themes.Palette palette, String name) {
         switch (name) {
             case "text":
                 return palette.text;
