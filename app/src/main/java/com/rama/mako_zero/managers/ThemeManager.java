@@ -2,6 +2,7 @@ package com.rama.mako_zero.managers;
 
 import static com.rama.mako_zero.objects.Themes.getPaletteColor;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rama.mako_zero.R;
+import com.rama.mako_zero.helpers.SystemBars;
 import com.rama.mako_zero.objects.Themes;
 
 import java.util.HashMap;
@@ -35,6 +37,9 @@ public final class ThemeManager {
 
     public static void applyTheme(Context context, View root) {
         Themes.Palette palette = currentPalette(context);
+        if (context instanceof Activity activity) {
+            SystemBars.apply(activity, palette);
+        }
         Map<Integer, Integer> colorMap = buildColorMap(context, palette);
         applyRecursively(root, palette, colorMap);
     }

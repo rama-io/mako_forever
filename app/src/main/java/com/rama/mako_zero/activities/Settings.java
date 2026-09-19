@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.rama.mako_zero.R;
 import com.rama.mako_zero.helpers.DialogHelper;
+import com.rama.mako_zero.helpers.SystemBars;
 import com.rama.mako_zero.managers.FontManager;
 import com.rama.mako_zero.managers.GroupManager;
 import com.rama.mako_zero.managers.PrefsManager;
@@ -38,6 +39,7 @@ public class Settings extends Activity {
         groupManager = new GroupManager(this);
         groupsContainer = findViewById(R.id.groups_container);
         View root = findViewById(R.id.root);
+        SystemBars.applyInsets(root);
         FontManager.apply(root, FontManager.getJersey25(this));
         setupSystemSection();
         setupGroupsSection();

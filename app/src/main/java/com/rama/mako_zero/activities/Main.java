@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.rama.mako_zero.R;
 import com.rama.mako_zero.adapters.AppListAdapter;
 import com.rama.mako_zero.helpers.DialogHelper;
+import com.rama.mako_zero.helpers.SystemBars;
 import com.rama.mako_zero.managers.AppsProvider;
 import com.rama.mako_zero.managers.BatteryStatusManager;
 import com.rama.mako_zero.managers.ClockManager;
@@ -46,6 +47,7 @@ public class Main extends Activity implements AppListAdapter.Listener {
         super.onCreate(savedInstanceState);
         applyRotationLock();
         setContentView(R.layout.activity_main);
+        SystemBars.applyInsets(findViewById(R.id.root));
         FontManager.apply(findViewById(R.id.root), FontManager.getJersey25(this));
         ListView appList = findViewById(R.id.app_list);
         clockManager = new ClockManager(findViewById(R.id.time), findViewById(R.id.date));

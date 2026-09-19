@@ -5,10 +5,18 @@
     style="@style/VerticalList"
     android:layout_height="match_parent"
     android:background="@color/base"
-    android:paddingLeft="20dp"
-    android:paddingTop="32dp"
-    android:paddingRight="20dp"
-    android:paddingBottom="32dp">
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp">
+
+    <TextView
+        style="@style/H2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Settings" />
+
+    <View style="@style/SeparatorListVertical" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,15 +30,6 @@
         android:scrollbars="none">
 
         <LinearLayout style="@style/VerticalList">
-
-            <TextView
-                style="@style/H2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Settings" />
-
-            <View style="@style/SeparatorListVertical" />
-
             <com.rama.mako_zero.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
