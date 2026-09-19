@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Mako Zero</string>
-    <string name="app_desc">Less stuff. More speed. Just a launcher that gets out of the way.</string>
+    <string name="app_desc">Just a launcher that gets out of the way</string>
     <string name="toast_unable_to_launch_app">Unable to open app</string>
 
     <string name="app_ads_desc">No Ads</string>
