@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/VerticalList"
+    android:layout_width="match_parent"
+    android:background="@color/base"
+    android:focusableInTouchMode="true"
+    android:padding="16sp">
+
+    <TextView
+        style="@style/H2_center"
+        android:text="Are you sure you want to delete this group?" />
+
+    <View style="@style/SeparatorListVertical" />
+
+    <TextView
+        android:id="@+id/group_name"
+        style="@style/Text_Center"
+        android:background="@color/surface_0"
+        android:padding="@dimen/space_between_elements" />
+
+    <View style="@style/SeparatorListVertical" />
+
+    <TextView
+        style="@style/Disclaimer"
+        android:gravity="center"
+        android:text="Your apps will go to the following group:" />
+
+    <View style="@style/SeparatorListVertical" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.rama.mako_zero.widgets.WdRadioGroup
+            android:id="@+id/groups"
+            style="@style/VerticalListDivided_BG2" />
+    </ScrollView>
+
+    <View style="@style/SeparatorListVertical" />
+
+    <Button
+        android:id="@+id/yes_button"
+        style="@style/BTN_danger"
+        android:text="DELETE GROUP" />
+
+    <View style="@style/SeparatorListVertical" />
+
+    <Button
+        android:id="@+id/no_button"
+        style="@style/BTN"
+        android:text="CANCEL" />
+</LinearLayout>
